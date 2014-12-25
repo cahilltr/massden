@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+
+  if Vagrant.has_plugin?("vagrant-cachier")
+      config.cache.scope = :box
+      config.cache.synced_folder_opts = {
+      type: :nfs,
+      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+    }
+  end
+
+  config.vm.provision "shell", path: "setup.sh"
+
+  config.vm.define "master" do |master|
+    master.vm.box = "chef/centos-6.5"
+    master.vm.hostname = "cluster.master"
+    master.vm.network "private_network", ip: "192.168.110.10"
+    master.hostmanager.aliases = %w(cluster)
+  end
+
+  config.vm.define "node1" do |node1|
+    node1.vm.box = "chef/centos-6.5"
+    node1.vm.hostname = "cluster.node1"
+    node1.vm.network "private_network", ip: "192.168.110.20"
+    node1.hostmanager.aliases = %w(cluster)
+  end
+
+  config.vm.define "node2" do |node2|
+    node2.vm.box = "chef/centos-6.5"
+    node2.vm.hostname = "cluster.node2"
+    node2.vm.network "private_network", ip: "192.168.110.30"
+    node2.hostmanager.aliases = %w(cluster)
+  end
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  end
+
+end
