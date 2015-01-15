@@ -21,3 +21,14 @@ sudo sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
 sudo setenforce 0
 
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+# Setup Solr
+wget http://archive.apache.org/dist/lucene/solr/4.10.1/solr-4.10.1.tgz
+sudo mv solr-4.10.1.tgz /opt/
+cd /opt/
+sudo tar zxvf solr-4.10.1.tgz
+sudo ln -s /opt/solr-4.10.1/ /opt/solr
+
+cd /opt/solr/bin
+
+./solr start -noprompt -e cloud
