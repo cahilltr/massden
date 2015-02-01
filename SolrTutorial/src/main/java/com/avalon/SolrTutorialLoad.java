@@ -26,16 +26,17 @@ public class SolrTutorialLoad {
   static Random r = new Random();
 
   public static void main(String[] args) throws IOException, SolrServerException {
-    String zkhost = "localhost:2181";
+    String zkhost = "localhost:9983";
 
     CloudSolrServer cloudSolrServer = new CloudSolrServer(zkhost);
+    cloudSolrServer.setDefaultCollection("collection1");
     cloudSolrServer.connect();
     loadData(cloudSolrServer);
   }
 
   private static void loadData(CloudSolrServer cloudSolrServer) throws IOException, SolrServerException {
     long timeadj = 24*60*60*1000;
-    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
     Date date = new Date(0);
 
     Random r = new Random();
@@ -54,13 +55,14 @@ public class SolrTutorialLoad {
       doc.addField("int_i", r.nextInt((max - min) + 1) + min);
 
       cloudSolrServer.add(doc);
+      cloudSolrServer.commit();
       date = new Date(date.getTime() + timeadj);
     }
 
   }
 
   private static String generateSentence() {
-    String sentence = null;
+    String sentence;
 
     sentence = article[rand()];
     char c = sentence.charAt(0);
