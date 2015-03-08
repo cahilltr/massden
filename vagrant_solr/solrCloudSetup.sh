@@ -23,11 +23,11 @@ sudo setenforce 0
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 
 # Setup Solr
-wget http://archive.apache.org/dist/lucene/solr/4.10.3/solr-4.10.3.tgz
-sudo mv solr-4.10.3.tgz /opt/
+wget http://apache.spinellicreations.com/lucene/solr/5.0.0/solr-5.0.0.tgz
+sudo mv solr-5.0.0.tgz /opt/
 cd /opt/
-sudo tar zxvf solr-4.10.3.tgz
-sudo ln -s /opt/solr-4.10.3/ /opt/solr
+sudo tar zxvf solr-5.0.0.tgz
+sudo ln -s /opt/solr-5.0.0/ /opt/solr
 
 cd /opt/solr/bin
 
@@ -35,6 +35,4 @@ cd /opt/solr/bin
 
 sleep 10
 
-#Insert Data Into Solr
-cd /vagrant/
-java -cp SolrTutorial-1.0-SNAPSHOT.jar com.avalon.SolrTutorialLoad
+echo "setup complete"
