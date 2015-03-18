@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
   end
 
-  config.vm.provision "shell", path: "solrCloudSetup.sh"
+  config.vm.provision "shell", path: "solrSetup.sh"
 
   config.vm.define "master" do |master|
     master.vm.box = "chef/centos-6.5"
