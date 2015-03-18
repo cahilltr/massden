@@ -4,8 +4,8 @@
   <!-- Begin everything else -->
     <luceneMatchVersion>4.7</luceneMatchVersion>
 
-    <lib dir="/opt/solr-5.0.0/contrib/langid/lib/" regex=".*\.jar" />
-    <lib dir="/opt/solr-5.0.0/dist/" regex="solr-langid-\d.*\.jar" />
+    <lib dir="/opt/solr/contrib/langid/lib/" regex=".*\.jar" />
+    <lib dir="/opt/solr/dist/" regex="solr-langid-\d.*\.jar" />
 
     <dataDir>${solr.data.dir:}</dataDir>
     <directoryFactory name="DirectoryFactory"
