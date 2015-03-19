@@ -36,5 +36,11 @@ You will then be SSH'd into the Solr Sandbox as user vagrant.  In the home direc
 sh load_ch10.sh
 ```
 
+### Starting Solr after a Halt
+To restart solr after a halt, run the start_solr.sh script.
+```bash
+sh start_solr.sh
+```
+
 ##Notes
 I borrowed/stole/etc a good portion of the documentation, Vagrantfile, and setup.sh from risdenk.  I took the chapter configuration and data from https://github.com/treygrainger/solr-in-action.  The configurations required some editing to work with Solr 5.0/SolrCloud.  The custom Jar that is used through out the book needed edited as well to update the code from Solr 4.7 to Solr 5.0
