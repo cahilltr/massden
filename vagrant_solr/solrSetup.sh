@@ -47,4 +47,5 @@ bin/solr start -c
 
 sleep 10
 
+sudo cp /vagrant/load_* /home/vagrant/
 echo "setup complete"
