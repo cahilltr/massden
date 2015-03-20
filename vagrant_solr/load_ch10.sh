@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #CH10
 
 sudo sh /opt/solr/bin/solr create_collection -c solrpedia -d /vagrant/ch10/cores/solrpedia/conf/ -n solrpedia
