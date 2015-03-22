@@ -43,6 +43,9 @@ jar -uf solr.war WEB-INF/lib/jts.jar
 cd /opt/solr/
 rm -r server/webapps/WEB-INF/
 
+#move sia jar to dist
+cp /vagrant/solr-in-action.jar /opt/solr/dist/solr-in-action.jar
+
 bin/solr start -c
 
 sleep 10

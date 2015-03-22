@@ -46,6 +46,6 @@
         <defaultQuery>*:*</defaultQuery>
     </admin>
 
-    <lib dir="/vagrant" regex=".*\.jar" />
+    <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-in-action*\.jar" />
 <!-- End everything else -->
 </config>

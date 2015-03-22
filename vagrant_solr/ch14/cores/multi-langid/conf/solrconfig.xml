@@ -6,8 +6,8 @@
     
     <lib dir="/opt/solr/contrib/langid/lib/" regex=".*\.jar" />
     <lib dir="/opt/solr/dist/" regex="solr-langid-\d.*\.jar" />
-    <lib dir="/vagrant" regex=".*\.jar" />
-    
+    <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-in-action*\.jar" />   
+ 
     <!-- Begin Language Identification specific configuration -->
     <requestHandler name="/update" class="solr.UpdateRequestHandler">
         <lst name="invariants">

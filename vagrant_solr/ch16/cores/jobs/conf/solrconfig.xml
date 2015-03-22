@@ -17,7 +17,7 @@
 <lib dir="${solr.install.dir:../../../..}/contrib/dataimporthandler/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-dataimporthandler.*\.jar" />
 
-  <lib dir="/vagrant" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-in-action*\.jar" />
 
     <dataDir>${solr.data.dir:}</dataDir>
 

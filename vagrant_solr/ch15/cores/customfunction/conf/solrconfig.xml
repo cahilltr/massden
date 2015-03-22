@@ -13,7 +13,7 @@
   <lib dir="${solr.install.dir:../../../..}/contrib/velocity/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-velocity-\d.*\.jar" />
     
-  <lib dir="/vagrant" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-in-action*\.jar" />
     <valueSourceParser name="concat"
     class="sia.ch15.ConcatenateFunctionParser" />
 
