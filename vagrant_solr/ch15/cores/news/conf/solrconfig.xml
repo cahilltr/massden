@@ -2,17 +2,17 @@
 <config>
   <luceneMatchVersion>4.7</luceneMatchVersion>
    
-<lib dir="/opt/solr/contrib/extraction/lib" regex=".*\.jar" />
-  <lib dir="/opt/solr/dist/" regex="solr-cell-\d.*\.jar" />
+<lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar" />
 
-  <lib dir="/opt/solr/contrib/clustering/lib/" regex=".*\.jar" />
-  <lib dir="/opt/solr/dist/" regex="solr-clustering-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/clustering/lib/" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-clustering-\d.*\.jar" />
 
-  <lib dir="/opt/solr/contrib/langid/lib/" regex=".*\.jar" />
-  <lib dir="/opt/solr/dist/" regex="solr-langid-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/langid/lib/" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-langid-\d.*\.jar" />
 
-  <lib dir="/opt/solr/contrib/velocity/lib" regex=".*\.jar" />
-  <lib dir="/opt/solr/dist/" regex="solr-velocity-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/velocity/lib" regex=".*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-velocity-\d.*\.jar" />
 
   <lib dir="/vagrant" regex=".*\.jar" /> 
 
