@@ -16,7 +16,7 @@ vagrant plugin install vagrant-cachier
 vagrant up
 ```
 #### Root Password
-* rootpw
+* vagrant
 
 #### Updating /etc/hosts
 * When running a vagrant up / destroy, Vagrant may ask for a password to edit the /etc/hosts file. This password is the user password of the host machine.
