@@ -19,32 +19,32 @@ public class WhitespaceVsStandardTokenizerIndexing {
 
   //Field type text_test
 //  <fieldType name="text_test" class="solr.TextField" positionIncrementGap="100">
-  //  <analyzer type="index">
-    //  <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-    //  <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
-    //  <filter class="solr.LowerCaseFilterFactory" />
-  //  </analyzer>
-  //  <analyzer type="query">
-    //  <tokenizer class="solr.WhitespaceTokenizerFactory"/>
-    //  <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
-    //  <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
-    //  <filter class="solr.LowerCaseFilterFactory" />
-  //  </analyzer>
+//    <analyzer type="index">
+//      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+//      <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+//      <filter class="solr.LowerCaseFilterFactory" />
+//    </analyzer>
+//    <analyzer type="query">
+//      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+//      <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+//      <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" />
+//      <filter class="solr.LowerCaseFilterFactory" />
+//    </analyzer>
 //  </fieldType>
 
   //Field Type text_general
 //  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
-  //  <analyzer type="index">
-    //  <tokenizer class="solr.StandardTokenizerFactory"/>
-    //  <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
-    //  <filter class="solr.LowerCaseFilterFactory"/>
-  //  </analyzer>
-  //  <analyzer type="query">
-    //  <tokenizer class="solr.StandardTokenizerFactory"/>
-    //  <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
-    //  <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
-    //  <filter class="solr.LowerCaseFilterFactory"/>
-  //  </analyzer>
+//    <analyzer type="index">
+//      <tokenizer class="solr.StandardTokenizerFactory"/>
+//      <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+//      <filter class="solr.LowerCaseFilterFactory"/>
+//    </analyzer>
+//    <analyzer type="query">
+//      <tokenizer class="solr.StandardTokenizerFactory"/>
+//      <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+//      <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+//      <filter class="solr.LowerCaseFilterFactory"/>
+//    </analyzer>
 //  </fieldType>
 
   public static void main(String[] args) throws IOException, SolrServerException {
