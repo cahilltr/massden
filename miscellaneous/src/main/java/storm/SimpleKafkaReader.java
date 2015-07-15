@@ -17,6 +17,7 @@ import storm.kafka.*;
  * Created by cahillt on 7/14/15.
  */
 public class SimpleKafkaReader {
+  //Kafka's cannot determine lag because the directory structure is not the same.
 
   public static void main(String[] args) throws InvalidTopologyException, AuthorizationException, AlreadyAliveException {
 
