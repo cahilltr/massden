@@ -2,6 +2,7 @@ package SimulatedAnnealing.utils;
 
 /**
  * Created by cahillt on 7/20/15.
+ * Class to hold school information
  */
 public class SchoolInfo {
 

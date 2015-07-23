@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 
 /**
  * Created by cahillt on 7/21/15.
+ * This class is used to do the acutal Simulated Annealing
+ * SA currently works best when using Distance only
  */
 public class SimulatedAnnealingProcess {
 

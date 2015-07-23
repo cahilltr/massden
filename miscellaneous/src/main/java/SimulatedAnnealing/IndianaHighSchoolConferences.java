@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Created by cahillt on 7/20/15.
+ * Kicks off Simulated Annealing process
  */
 public class IndianaHighSchoolConferences {
 
@@ -23,7 +24,9 @@ public class IndianaHighSchoolConferences {
       String schoolInfoFileWrite = args[2];
 
       File f = new File(schoolInfoFileWrite);
-      f.createNewFile();
+      if (!f.createNewFile()) {
+        throw new Exception(schoolInfoFileWrite + " file could not be created");
+      }
 
       Map<String, SchoolInfo> schoolAndAddresses = LoadSchoolInfo.getSchoolAddresses(schoolAddress, schoolSports);
 
@@ -41,7 +44,6 @@ public class IndianaHighSchoolConferences {
       throw new Exception("Takes either 1 or 3 arguments");
     }
 
-    //TODO Simulated Annealing
     SimulatedAnnealingProcess simulatedAnnealingProcess = new SimulatedAnnealingProcess(.5, .5, schoolInfo);
     Map<String, List<String>> results = simulatedAnnealingProcess.simulatedAnnealing();
     for (Map.Entry<String, List<String>> result : results.entrySet()) {

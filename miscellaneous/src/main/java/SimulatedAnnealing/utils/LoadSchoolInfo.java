@@ -32,6 +32,9 @@ import org.xml.sax.InputSource;
 
 /**
  * Created by cahillt on 7/21/15.
+ * Loads School info from 2 files, 1 with schools and addresses
+ * and 1 with schools and sports/class size
+ * Also gets lat and long for school.
  */
 public class LoadSchoolInfo {
 
