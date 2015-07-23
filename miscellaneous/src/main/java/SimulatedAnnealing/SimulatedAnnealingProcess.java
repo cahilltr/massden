@@ -18,12 +18,24 @@ public class SimulatedAnnealingProcess {
   private Map<String, SchoolInfo> schoolInfoMap;
   private int conferenceSize = 10;
 
+  private double schoolsSmall = 1.25;
+  private double schoolsBig = 2.85;
+
   public SimulatedAnnealingProcess(double travelWeight, double sizeWeight, Map<String, SchoolInfo> schoolInfoMap) {
     this.travelWeight = travelWeight;
     this.sizeWeight = sizeWeight;
     this.currentConferences = new HashMap<>();
     this.schoolInfoMap = schoolInfoMap;
   }
+
+  public SimulatedAnnealingProcess(double travelWeight, double sizeWeight, double schoolsSmall, double schoolsBig,
+                                   Map<String, SchoolInfo> schoolInfoMap) {
+
+    this(travelWeight, sizeWeight, schoolInfoMap);
+    this.schoolsSmall = schoolsSmall;
+    this.schoolsBig = schoolsBig;
+  }
+
 
   public void initConferences() {
     ArrayList<String> schools = new ArrayList<>(this.schoolInfoMap.keySet());
@@ -34,12 +46,12 @@ public class SimulatedAnnealingProcess {
     for (String school : schools) {
       if (curSchoolCount == conferenceSize) {
         confNum++;
-        this.currentConferences.put(confNum + "", new ArrayList<String>());
+        this.currentConferences.put(confNum + "", new ArrayList<>());
         this.currentConferences.get(confNum + "").add(school);
         curSchoolCount = 0;
       } else {
         if (!this.currentConferences.containsKey(confNum + "")) {
-          this.currentConferences.put(confNum + "", new ArrayList<String>());
+          this.currentConferences.put(confNum + "", new ArrayList<>());
         }
         this.currentConferences.get(confNum + "").add(school);
       }
@@ -53,7 +65,7 @@ public class SimulatedAnnealingProcess {
     double averageSizeConf = 0;
     for (Map.Entry<String, List<String>> entry : conference.entrySet()) {
       List<String> schools = entry.getValue();
-      averageDistanceConf += getAverageDistances(new ArrayList<String>(schools), 0);
+      averageDistanceConf += getAverageDistances(new ArrayList<>(schools), 0);
       averageSizeConf += getAverageSize(schools);
     }
     return ((averageSizeConf / this.currentConferences.size()) * this.sizeWeight) +
@@ -71,7 +83,7 @@ public class SimulatedAnnealingProcess {
 
 
   private double getAverageSize(List<String> schools) {
-    double averageSize = 0;
+    double averageSize;
     //Base BBB GBB FB BSoc GSoc SB VB
     double base = 0;
     double bbb = 0;
@@ -107,23 +119,37 @@ public class SimulatedAnnealingProcess {
     return averageSize/8; //Divided by number of sports
   }
 
+  private double getSchoolSize(String school) {
+    SchoolInfo schoolInfo = this.schoolInfoMap.get(school);
+    double base = getSize(schoolInfo.getBase());
+    double bbb = getSize(schoolInfo.getBBB());
+    double gbb = getSize(schoolInfo.getGBB());
+    double fb = getSize(schoolInfo.getFB());
+    double bsoc = getSize(schoolInfo.getBSoc());
+    double gsoc = getSize(schoolInfo.getGSoc());
+    double sb = getSize(schoolInfo.getSB());
+    double vb = getSize(schoolInfo.getVB());
+    return (base + bbb + gbb + fb + gsoc + bsoc + vb + sb)/8;
+  }
+
   private int getSize(String size) {
-    if (size.equals("A")) {
-      return 1;
-    } else if (size.equals("2A")) {
-      return 2;
-    } else if (size.equals("3A")) {
-      return 3;
-    } else if (size.equals("4A")) {
-      return 4;
-    } else if (size.equals("5A")) {
-      return 5;
-    } else if (size.equals("6A")) {
-      return 6;
-    } else if (size.equals("-")) {
-      return 0;
-    } else {
-      return 0;
+    switch (size) {
+      case "A":
+        return 1;
+      case "2A":
+        return 2;
+      case "3A":
+        return 3;
+      case "4A":
+        return 4;
+      case "5A":
+        return 5;
+      case "6A":
+        return 6;
+      case "-":
+        return 0;
+      default:
+        return 0;
     }
   }
 
@@ -179,23 +205,159 @@ public class SimulatedAnnealingProcess {
     conferences.remove(conf2);
     conferences.remove(conf3);
 
-    //TODO get 3 best conferences out of merged
-    //Get Distances of all schools
-    Map<String, List<String>> newConferences = newConferencesDistanceOnly(mergedSchools, conf1, conf2, conf3);
+    //Redistribute Conferences by distance
+//    Map<String, List<String>> newConferences = newConferencesDistanceOnly(mergedSchools, conf1, conf2, conf3);
+//    conferences.putAll(newConferences);
+
+    //Redisctribute by Size of school and distance
+    Map<String, List<String>> newConferences = newConferencesDistanceAndSize(mergedSchools, conf1, conf2, conf3);
     conferences.putAll(newConferences);
 
-    //TODO Size of school and sports
-
-    //TODO return new conference
     return conferences;
   }
 
-  private Map<String, Double> sortDistances(Map<String, Double> distances) {
+  private Map<String, Double> sortMapDouble(Map<String, Double> distances) {
     final Map<String, Double> results = new LinkedHashMap<>();
     Stream<Map.Entry<String, Double>> st = distances.entrySet().stream();
 
-    st.sorted(Comparator.comparing(e -> e.getValue())).forEach(e -> results.put(e.getKey(), e.getValue()));
+    st.sorted(Comparator.comparing(Map.Entry::getValue)).forEach(e -> results.put(e.getKey(), e.getValue()));
     return results;
+  }
+
+  private Map<String, Double> sortDistanceAndSize(Map<String, Double> distances, Map<String, Double> size, double checkSize) {
+    Map<String, Double> sortedDistances = sortMapDouble(distances);
+
+    List<String> bigSchools = new ArrayList<>();
+    List<String> smallSchools = new ArrayList<>();
+    List<String> medSchools = new ArrayList<>();
+
+    Map<String, Double> score = new HashMap<>();
+    for (Map.Entry<String, Double> s : sortedDistances.entrySet()) {
+      String key = s.getKey();
+      if (size.get(key) <= schoolsSmall) {
+        smallSchools.add(key);
+      } else if (size.get(key) >= schoolsBig) {
+        bigSchools.add(key);
+      } else {
+        medSchools.add(key);
+      }
+    }
+
+    if (checkSize <= schoolsSmall) {
+      for (String s : smallSchools) {
+        score.put(s, distances.get(s));
+      }
+      for (String s : medSchools) {
+        score.put(s, distances.get(s));
+      }
+      for (String s : bigSchools) {
+        score.put(s, distances.get(s));
+      }
+    } else if (checkSize >= schoolsBig){
+      for (String s : bigSchools) {
+        score.put(s, distances.get(s));
+      }
+      for (String s : medSchools) {
+        score.put(s, distances.get(s));
+      }
+      for (String s : smallSchools) {
+        score.put(s, distances.get(s));
+      }
+    } else {
+      Map<String, Double> sortedSize = sortClosestToPoint(checkSize, size);
+      for (String s : medSchools) {
+        score.put(s, distances.get(s));
+        sortedSize.remove(s);
+      }
+      int i = medSchools.size();
+      if (i != this.conferenceSize) {
+        for (Map.Entry<String, Double> school : sortedSize.entrySet()) {
+          if (i == this.conferenceSize) {
+            break;
+          }
+          String key = school.getKey();
+          score.put(key, distances.get(key));
+        }
+      }
+    }
+
+    return score;
+  }
+
+  public Map<String, Double> sortClosestToPoint(double point, Map<String, Double> points) {
+    Map<String, Double> sorted = new HashMap<>();
+
+    for (Map.Entry<String, Double> p : points.entrySet()) {
+      sorted.put(p.getKey(), Math.abs(point - p.getValue()));
+    }
+
+    return sortMapDouble(sorted);
+  }
+
+  public Map<String, List<String>> newConferencesDistanceAndSize(List<String> schools, String conf1, String conf2, String conf3) {
+    if (schools.size() == 0) {
+      return null;
+    }
+    Collections.shuffle(schools);
+
+    String s1 = schools.get(0);
+    SchoolInfo school1 = this.schoolInfoMap.get(s1);
+    schools.remove(s1);
+
+    String s2 = null;
+
+    Map<String, Double> schoolsDistances = new HashMap<>();
+    Map<String, Double> schoolSizes = new HashMap<>();
+    for (String school : schools) {
+      SchoolInfo otherSchoolInfo = this.schoolInfoMap.get(school);
+      Double d = getDistance(school1.getLat(), school1.getLong(), otherSchoolInfo.getLat(), otherSchoolInfo.getLong());
+      schoolsDistances.put(school, d);
+      schoolSizes.put(school, getSchoolSize(school));
+    }
+    schoolsDistances = sortDistanceAndSize(schoolsDistances, schoolSizes, getSchoolSize(s1));
+    int i = 0;
+    int size = schoolsDistances.size();
+    List<String> s1Conference = new ArrayList<>();
+    for (Map.Entry<String, Double> entry : schoolsDistances.entrySet()) {
+      if (i < this.conferenceSize - 1) {
+        s1Conference.add(entry.getKey());
+      } else if (i == (size - 1)) {
+        s2 = entry.getKey();
+      }
+      i++;
+    }
+    schools.remove(s2);
+    schools.removeAll(s1Conference);
+
+    SchoolInfo school2 = this.schoolInfoMap.get(s2);
+    schoolsDistances = new HashMap<>();
+    schoolSizes = new HashMap<>();
+    for (String school : schools) {
+      SchoolInfo otherSchoolInfo = this.schoolInfoMap.get(school);
+      Double d = getDistance(school2.getLat(), school2.getLong(), otherSchoolInfo.getLat(), otherSchoolInfo.getLong());
+      schoolsDistances.put(school, d);
+      schoolSizes.put(school, getSchoolSize(school));
+    }
+    schoolsDistances = sortDistanceAndSize(schoolsDistances, schoolSizes, getSchoolSize(s2));
+    i = 0;
+    List<String> s2Conference = new ArrayList<>();
+    for (Map.Entry<String, Double> entry : schoolsDistances.entrySet()) {
+      if (i < this.conferenceSize - 1) {
+        s2Conference.add(entry.getKey());
+      } else {
+        break;
+      }
+      i++;
+    }
+    schools.removeAll(s2Conference);
+
+    Map<String, List<String>> newConferences = new HashMap<>();
+    s1Conference.add(s1);
+    newConferences.put(conf1, s1Conference);
+    s2Conference.add(s2);
+    newConferences.put(conf2, s2Conference);
+    newConferences.put(conf3, schools);
+    return newConferences;
   }
 
   public Map<String, List<String>> newConferencesDistanceOnly(List<String> schools, String conf1, String conf2, String conf3) {
@@ -206,13 +368,10 @@ public class SimulatedAnnealingProcess {
 
     String s1 = schools.get(0);
     SchoolInfo school1 = this.schoolInfoMap.get(s1);
-    String s2 = schools.get(1);
-    SchoolInfo school2 = this.schoolInfoMap.get(s2);
-    String s3 = schools.get(2);
-
     schools.remove(s1);
-    schools.remove(s2);
-    schools.remove(s3);
+
+    String s2 = null;
+    String s3 = null;
 
     Map<String, Double> schoolsDistances = new HashMap<>();
     for (String school : schools) {
@@ -220,34 +379,41 @@ public class SimulatedAnnealingProcess {
       Double d = getDistance(school1.getLat(), school1.getLong(), otherSchoolInfo.getLat(), otherSchoolInfo.getLong());
       schoolsDistances.put(school, d);
     }
-    schoolsDistances = sortDistances(schoolsDistances);
+    schoolsDistances = sortMapDouble(schoolsDistances);
     int i = 0;
+    int size = schoolsDistances.size();
     List<String> s1Conference = new ArrayList<>();
     for (Map.Entry<String, Double> entry : schoolsDistances.entrySet()) {
-      if (i >= this.conferenceSize - 1) {
-        break;
+      if (i < this.conferenceSize - 1) {
+        s1Conference.add(entry.getKey());
+      } else if (i == (size - 1)) {
+        s2 = entry.getKey();
       }
-      s1Conference.add(entry.getKey());
       i++;
     }
+    schools.remove(s2);
     schools.removeAll(s1Conference);
 
+    SchoolInfo school2 = this.schoolInfoMap.get(s2);
     schoolsDistances = new HashMap<>();
     for (String school : schools) {
       SchoolInfo otherSchoolInfo = this.schoolInfoMap.get(school);
       Double d = getDistance(school2.getLat(), school2.getLong(), otherSchoolInfo.getLat(), otherSchoolInfo.getLong());
       schoolsDistances.put(school, d);
     }
-    schoolsDistances = sortDistances(schoolsDistances);
+    schoolsDistances = sortMapDouble(schoolsDistances);
     i = 0;
+    size = schoolsDistances.size();
     List<String> s2Conference = new ArrayList<>();
     for (Map.Entry<String, Double> entry : schoolsDistances.entrySet()) {
-      if (i >= this.conferenceSize - 1) {
-        break;
+      if (i < this.conferenceSize - 1) {
+        s2Conference.add(entry.getKey());
+      } else if (i == (size - 1)){
+        s3 = entry.getKey();
       }
-      s2Conference.add(entry.getKey());
       i++;
     }
+    schools.remove(s3);
     schools.removeAll(s2Conference);
 
     Map<String, List<String>> newConferences = new HashMap<>();
