@@ -101,7 +101,7 @@ public class LoadSchoolInfo {
 
   private static final String GEOCODE_REQUEST_URL = "http://maps.googleapis.com/maps/api/geocode/xml?sensor=false&";
   private static HttpClient httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
-
+//http://maps.googleapis.com/maps/api/geocode/xml?sensor=false&address=6422+E.+State+Road+218+Walton,+IN+46994
   public static String getLongitudeLatitude(String address) {
 
     String strLatitude = null;
@@ -139,6 +139,7 @@ public class LoadSchoolInfo {
       }
     } catch (Exception e) {
       e.printStackTrace();
+      System.out.println(address);
     }
     return strLatitude + "," + strLongtitude;
   }

@@ -1,10 +1,13 @@
 package SimulatedAnnealing;
 
+import SimulatedAnnealing.utils.Conferences;
 import SimulatedAnnealing.utils.LoadSchoolInfo;
 import SimulatedAnnealing.utils.SchoolInfo;
+import SimulatedAnnealing.utils.Utils;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +37,7 @@ public class IndianaHighSchoolConferences {
         System.out.println(entry.getValue().toString());
         FileUtils.writeStringToFile(f, entry.getValue().toString() + System.lineSeparator(), true);
       }
+      schoolInfo = LoadSchoolInfo.loadMap(schoolInfoFileWrite);
     } else if (args.length == 1) {
       String schoolInfoPath = args[0];
       schoolInfo = LoadSchoolInfo.loadMap(schoolInfoPath);
@@ -44,13 +48,21 @@ public class IndianaHighSchoolConferences {
       throw new Exception("Takes either 1 or 3 arguments");
     }
 
-    SimulatedAnnealingProcess simulatedAnnealingProcess = new SimulatedAnnealingProcess(.5, .5, schoolInfo);
-    Map<String, List<String>> results = simulatedAnnealingProcess.simulatedAnnealing();
-    for (Map.Entry<String, List<String>> result : results.entrySet()) {
+    DecimalFormat df = new DecimalFormat("#.##");
+    SimulatedAnnealingProcess simulatedAnnealingProcess = new SimulatedAnnealingProcess(1, 0, schoolInfo);
+    Conferences results = simulatedAnnealingProcess.simulatedAnnealing();
+    for (Map.Entry<String, List<String>> result : results.getConferences().entrySet()) {
       System.out.println("Conferenece Name: " + result.getKey());
       List<String> schools = result.getValue();
       for (String school : schools) {
-        System.out.println("  " + school);
+        StringBuilder s =
+                new StringBuilder("  " + school + " - Size: " + Utils.getSchoolSize(school, schoolInfo) + "-->");
+        for (String s2 : schools) {
+          if (!school.equals(s2)){
+            s.append(s2 + ":" + df.format(Utils.getDistance(school, s2, schoolInfo)) + ",");
+          }
+        }
+        System.out.println(s.toString());
       }
     }
   }
