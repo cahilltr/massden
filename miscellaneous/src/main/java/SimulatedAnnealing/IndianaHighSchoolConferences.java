@@ -1,9 +1,6 @@
 package SimulatedAnnealing;
 
-import SimulatedAnnealing.utils.Conferences;
-import SimulatedAnnealing.utils.LoadSchoolInfo;
-import SimulatedAnnealing.utils.SchoolInfo;
-import SimulatedAnnealing.utils.Utils;
+import SimulatedAnnealing.utils.*;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
@@ -49,6 +46,8 @@ public class IndianaHighSchoolConferences {
     }
 
     DecimalFormat df = new DecimalFormat("#.##");
+    Sizes sizes = new Sizes();
+    Distances distances = new Distances();
     SimulatedAnnealingProcess simulatedAnnealingProcess = new SimulatedAnnealingProcess(1, 0, schoolInfo);
     Conferences results = simulatedAnnealingProcess.simulatedAnnealing();
     for (Map.Entry<String, List<String>> result : results.getConferences().entrySet()) {
@@ -56,10 +55,10 @@ public class IndianaHighSchoolConferences {
       List<String> schools = result.getValue();
       for (String school : schools) {
         StringBuilder s =
-                new StringBuilder("  " + school + " - Size: " + Utils.getSchoolSize(school, schoolInfo) + "-->");
+                new StringBuilder("  " + school + " - Size: " + sizes.getSchoolSize(school, schoolInfo) + "-->");
         for (String s2 : schools) {
           if (!school.equals(s2)){
-            s.append(s2 + ":" + df.format(Utils.getDistance(school, s2, schoolInfo)) + ",");
+            s.append(s2 + ":" + df.format(distances.getDistance(school, s2, schoolInfo)) + ",");
           }
         }
         System.out.println(s.toString());
