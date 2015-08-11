@@ -17,6 +17,19 @@ public class Utils {
     return results;
   }
 
+  public static Map<String, Double> sortFilteredClosestToPoint(double point, double size, Map<String, Double> points) {
+    Map<String, Double> sorted = new HashMap<>();
+
+    for (Map.Entry<String, Double> p : points.entrySet()) {
+      double dist = Math.abs(point - p.getValue());
+      if (dist <= size) {
+        sorted.put(p.getKey(), dist);
+      }
+    }
+
+    return Utils.sortMapDouble(sorted);
+  }
+
   public static Map<String, Double> sortClosestToPoint(double point, Map<String, Double> points) {
     Map<String, Double> sorted = new HashMap<>();
 

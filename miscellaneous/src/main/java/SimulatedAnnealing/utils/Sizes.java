@@ -69,7 +69,7 @@ public class Sizes {
     double gsoc = getSize(schoolInfo.getGSoc());
     double sb = getSize(schoolInfo.getSB());
     double vb = getSize(schoolInfo.getVB());
-    double size =  (base + bbb + gbb + fb + gsoc + bsoc + vb + sb)/8;
+    double size =  ((base * 2) + (bbb * 2) + (gbb * 2) + (fb * 2.5) + (gsoc * 2) + (bsoc * 2) + (vb * 2) + (sb * 2))/8;
     this.sizes.put(school, size);
     return size;
   }

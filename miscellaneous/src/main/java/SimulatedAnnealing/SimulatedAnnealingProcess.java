@@ -97,12 +97,14 @@ public class SimulatedAnnealingProcess {
     Conferences bestConferences = new Conferences(conferences);
     this.currentConferences = new Conferences(conferences);
 
-    Neighbouring neighbour = new DistanceAndSizeBasedNeighbouring(this.schoolInfoMap, this.conferenceSize, this.sizes);
+    Neighbouring neighbour = new DistanceAndSizeBasedNeighbouring(40, .8, .05, 7, this.schoolInfoMap, this.conferenceSize, this.sizes)
+            .startAlternationWithRadiusIncrease(false)
+            .setMaxDistance(75);
 //    Neighbouring neighbour = new DistanceBasedNeighbouring(this.schoolInfoMap, this.conferenceSize);
 
-    double coolingRate = 0.003;
-    double temp = 10000;
-//    double temp = 100000;
+    double coolingRate = 0.002;
+//    double temp = 10000;
+    double temp = 100000;
     Conferences newConferences;
     while (temp > 1) {
 
