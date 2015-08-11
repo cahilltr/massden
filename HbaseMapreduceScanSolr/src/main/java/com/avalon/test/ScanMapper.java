@@ -1,4 +1,4 @@
-package com.sf.test;
+package com.avalon.test;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
