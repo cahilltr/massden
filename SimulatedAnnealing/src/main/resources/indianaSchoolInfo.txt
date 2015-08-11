@@ -1,0 +1,410 @@
+Greensburg,1000 E. Central Ave. Greensburg; IN 47240,3A,3A,3A,3A,A,A,3A,3A,39.3430974,-85.4681272
+Austin,401 South Highway 31 Austin; IN 47102-1331,2A,2A,2A,—,A,A,2A,2A,38.7398727,-85.8003738
+Hanover Central,10120 W. 133rd Ave. Cedar Lake; IN 46303,3A,3A,3A,—,A,A,3A,3A,41.3791550,-87.4566560
+New Palestine,4485 S. Victory Dr. Box 448 New Palestine; IN 46163,3A,4A,4A,4A,2A,2A,4A,3A,39.7219882,-85.8891471
+Covington,1017 6th St. Covington; IN 47932,A,A,A,A,A,A,A,A,40.1431228,-87.3953314
+New Castle,801 Parkview Dr. New Castle; IN 47362,4A,4A,4A,4A,2A,2A,4A,4A,39.9131538,-85.3788500
+Hauser,9273 N. S.R. 9 Hope; IN 47246,A,A,A,—,A,A,A,A,39.2926055,-85.7700062
+Indianapolis Cardinal Ritter,3360 W. 30th St. Indianapolis; IN 46222,2A,2A,2A,2A,A,A,2A,2A,39.8097255,-86.2156015
+Culver Community,701 School St. Culver; IN 46511,A,A,A,A,A,A,A,A,41.2226755,-86.4242049
+Connersville,1100 Spartan Dr. Connersville; IN 47331,4A,4A,4A,4A,2A,2A,4A,4A,39.6363540,-85.1609440
+Western,2600 S. 600 West Russiaville; IN 46979,4A,3A,3A,3A,2A,2A,3A,3A,40.4377618,-86.2428021
+Clinton Prairie,2400 S. C.R. 450 W. Frankfort; IN 46041,A,A,A,A,—,—,A,A,40.2512840,-86.5920070
+Shakamak,9233 Shakamak School Road Jasonville; IN 47438,A,A,A,—,—,—,A,A,39.1595628,-87.2123124
+McCutcheon,4951 U.S. Hwy. 231 S. Lafayette; IN 47909,4A,4A,4A,5A,2A,2A,4A,4A,40.3524872,-86.9116956
+Westfi eld,18250 N. Union St. Westfi eld; IN 46074,4A,4A,4A,5A,2A,2A,4A,4A,40.0516218,-86.1297808
+Monroe Central,1878 N. 1000 W. Parker City; IN 47368-9571,A,A,A,—,—,—,A,A,40.1915900,-85.1675489
+Whitko,1 Big Blue Ave. South Whitley; IN 46787,3A,3A,3A,3A,A,A,3A,3A,41.0830877,-85.6339445
+Providence,707 Providence Way Clarksville; IN 47129-1599,2A,2A,2A,2A,2A,A,2A,2A,38.3069990,-85.7827939
+Wapahani,10401 E CR 167 S Selma; IN 47383,2A,2A,2A,—,A,A,2A,3A,40.1676513,-85.2639447
+Hamilton Heights,25802 S.R. 19 P.O. Box 379 Arcadia; IN 46030,3A,3A,3A,3A,A,A,3A,3A,40.1655598,-86.0155431
+North Posey,5900 High School Rd. Poseyville; IN 47633,2A,2A,2A,2A,A,A,2A,2A,38.1421044,-87.8019057
+Brownsburg,1000 S. Odell St. Brownsburg; IN 46112,4A,4A,4A,6A,2A,2A,4A,4A,39.8299773,-86.3879708
+Western Boone,1205 N. State Road 75 Thorntown; IN 46071,3A,3A,3A,3A,A,A,3A,3A,40.0563729,-86.6129573
+Floyd Central,6575 Old Vincennes Rd. Floyds Knobs; IN 47119,4A,4A,4A,5A,2A,2A,4A,4A,38.3346340,-85.9331500
+Rockville,506 N. Beadle St. Rockville; IN 47872,A,A,A,A,—,—,A,A,39.7684050,-87.2331700
+DeKalb,3424 C.R. 427 Waterloo; IN 46793-9402,4A,4A,4A,4A,2A,2A,4A,4A,41.4086638,-85.0403689
+Southwood,564 E. State Road 124 Wabash; IN 46992,2A,2A,2A,A,—,—,2A,2A,40.8083674,-85.8135930
+South Bend Washington,4747 W. Washington St. South Bend; IN 46619,4A,4A,4A,4A,2A,2A,4A,4A,41.6750506,-86.3149062
+Andrean,5959 Broadway Merrillville; IN 46410,3A,3A,3A,3A,A,A,3A,3A,41.5102973,-87.3337726
+Fort Wayne Canterbury,3210 Smith Rd. Fort Wayne; IN 46804,2A,2A,2A,—,A,2A,2A,2A,41.0537490,-85.2114820
+Heritage Christian,6401 E. 75th Street Indianapolis; IN 46250,2A,2A,2A,2A,A,A,2A,2A,39.8895532,-86.0579164
+Guerin Catholic,15300 Gray Road Noblesville; IN 46062,3A,3A,3A,3A,2A,A,3A,3A,40.0104107,-86.0878736
+Indiana School for the Blind,7725 N. College Ave. Indianapolis; IN 46240-2504,—,—,—,—,—,,—,—,39.8935370,-86.1434040
+Decatur Central,5251 Kentucky Ave. Indianapolis; IN 46221,4A,4A,4A,5A,2A,2A,4A,4A,39.6877735,-86.2768599
+Hebron,509 S. Main Hebron; IN 46341,2A,2A,2A,—,A,A,2A,2A,41.3128296,-87.1996494
+Eastern (Pekin),1100 N. Eastern School Rd. E-3 Pekin; IN 47165,2A,2A,2A,2A,—,—,2A,2A,38.5145890,-86.0022890
+Salem,700 N. Harrison St. Salem; IN 47167,3A,3A,3A,3A,A,A,3A,3A,38.6116598,-86.1067916
+Fort Wayne Wayne,9100 Winchester Rd. Fort Wayne; IN 46819,4A,4A,4A,5A,2A,2A,4A,4A,41.0004233,-85.1393090
+Wheeler,587 W. 300 N. Valparaiso; IN 46385,3A,3A,3A,2A,A,A,3A,3A,41.4781033,-87.1802827
+Fort Wayne Snider,4600 Fairlawn Pass Fort Wayne; IN 46815,4A,4A,4A,5A,2A,2A,4A,4A,41.1070134,-85.0821565
+Fremont,P.O. Box 655 701 W Toledo St. Fremont; IN 46737,2A,2A,2A,A,—,—,2A,2A,41.7303272,-84.9466606
+Munster,8808 Columbia Ave. Munster; IN 46321,4A,4A,4A,5A,2A,2A,4A,4A,41.5545436,-87.5048099
+Bloomington North,3901 N. Kinser Pike Bloomington; IN 47404,4A,4A,4A,5A,2A,2A,4A,4A,39.2023625,-86.5490592
+South Putnam,1780 E. U.S. Hwy. 40 Greencastle; IN 46135,2A,2A,2A,A,—,—,2A,2A,39.5858762,-86.8153589
+Morgan Township,299 S. State Road 49 Valparaiso; IN 46383,A,A,A,—,A,A,A,A,41.3922454,-87.0246585
+Wes-Del,10000 N. C.R. 600 W. Gaston; IN 47342,A,A,A,A,—,—,A,A,40.2799830,-85.4979770
+Gary West Side,9th Ave. & Gerry St. Gary; IN 46406,4A,4A,4A,4A,—,—,4A,4A,41.5952234,-87.4059282
+Vincennes Rivet,210 Barnett St. Vincennes; IN 47591,A,A,A,—,A,A,A,A,38.6781749,-87.5341263
+Bloomington South,1965 S. Walnut St. Bloomington; IN 47401,4A,4A,4A,5A,2A,2A,4A,4A,39.1430620,-86.5290050
+LaVille,69969 US Highway 31 S. Lakeville; IN 46536,2A,2A,2A,A,A,A,2A,2A,41.4789846,-86.3041102
+Delta,3400 E. State Road 28 Muncie; IN 47303,3A,3A,3A,3A,2A,2A,3A,3A,40.2785460,-85.3476380
+Indianapolis Scecina Memorial,5000 Nowland Ave. Indianapolis; IN 46201,2A,2A,2A,2A,A,A,2A,2A,39.7866190,-86.0847030
+South Bend Clay,19131 Darden Rd. South Bend; IN 46637,4A,4A,4A,4A,2A,2A,4A,4A,41.7303532,-86.2385812
+Bedford North Lawrence,595 Stars Blvd. Bedford; IN 47421,4A,4A,4A,5A,2A,2A,4A,4A,38.8826031,-86.4407102
+Ben Davis,1200 N. Girls School Rd. Indianapolis; IN 46214,4A,4A,4A,6A,2A,2A,4A,4A,39.7843350,-86.2910110
+Loogootee,201 Brooks Ave. Loogootee; IN 47553,A,A,A,—,—,—,A,A,38.6783240,-86.9220160
+Brownstown Central,500 N. Elm St. Brownstown; IN 47220,3A,3A,3A,3A,—,—,3A,3A,38.8861446,-86.0456785
+Bluffton,1 Tiger Trail Bluffton; IN 46714-8905,2A,2A,2A,2A,—,—,2A,2A,40.7236325,-85.1624555
+Medora,P.O. Box 248 Medora; IN 47260,A,A,A,—,—,—,A,A,38.8619511,-86.1548269
+North Decatur,3172 N. State Road 3 Greensburg; IN 47240,2A,2A,2A,A,—,—,2A,2A,39.3829444,-85.4777149
+Covenant Christian (Indpls),7525 W. 21st St. Indianapolis; IN 46214,2A,2A,2A,—,A,A,2A,2A,39.7931057,-86.2930799
+21st Century Charter - Gary,724 Washington ST Gary; IN 46402,A,A,A,—,—,—,A,A,41.5975589,-87.3387470
+Daleville,8400 S. Bronco Dr. Daleville; IN 47334,A,A,A,—,—,—,A,A,40.1180890,-85.5546549
+North Central (Farmersburg),910 E. C.R. 975 N. Farmersburg; IN 47850,2A,2A,2A,A,—,—,2A,2A,39.2248970,-87.3902800
+Rensselaer Central,1106 E. Grace St. Rensselaer; IN 47978,2A,2A,2A,2A,A,A,2A,2A,40.9348210,-87.1357595
+West Washington,8028 W. Batt Rd. Campbellsburg; IN 47108,A,A,A,A,—,—,A,A,38.5839320,-86.2344660
+Taylor,3794 E. 300 S. Kokomo; IN 46902,2A,2A,2A,2A,A,A,2A,2A,40.4342575,-86.0545768
+Twin Lakes,300 S. Third St. Monticello; IN 47960,3A,3A,3A,3A,2A,2A,3A,3A,40.7423063,-86.7692726
+Northwestern,3431 N. 400 W. Kokomo; IN 46901,3A,3A,3A,3A,A,A,3A,3A,40.5332852,-86.2176492
+Clinton Central,P.O. Box 178 Michigantown; IN 46057-0178,2A,2A,2A,A,—,—,2A,2A,40.3264255,-86.3927764
+Elkhart Christian Academy,25943 CR 22 East Elkhart; IN 46517,A,A,A,—,A,A,A,A,41.6393797,-85.9634752
+Heritage,13608 Monroeville Rd. Monroeville; IN 46773-9590,3A,3A,3A,3A,A,A,3A,3A,40.9756840,-84.9625070
+Michigan City,8466 West Pahs Rd Michigan City; IN 46360,4A,4A,4A,5A,2A,2A,4A,4A,41.6782169,-86.8628109
+University,2825 W. 116th St. Carmel; IN 46032,A,A,A,—,A,A,A,A,39.9542639,-86.2122125
+Indianapolis Emmerich Manual,2405 Madison Ave. Indianapolis; IN 46225,2A,2A,2A,4A,2A,2A,2A,2A,39.7335496,-86.1532346
+Shelbyville,2003 S. Miller St. Shelbyville; IN 46176,4A,4A,4A,4A,2A,2A,4A,3A,39.5057142,-85.7879350
+Switzerland County,1020 W. Main St. Vevay; IN 47043,2A,2A,2A,—,A,A,2A,2A,38.7414060,-85.0797370
+Columbus East,230 S. Marr Rd. Columbus; IN 47201,4A,4A,4A,4A,2A,2A,4A,4A,39.1950967,-85.8861493
+East Chicago Central,1100 W. Columbus Dr. East Chicago; IN 46312,4A,4A,4A,4A,2A,2A,4A,4A,41.6407430,-87.4865880
+Linton-Stockton,10 H St. N.E. Linton; IN 47441,2A,2A,2A,A,—,—,2A,2A,39.0435820,-87.1642800
+Cambridge City Lincoln,205 E. Parkway Dr. Cambridge City; IN 47327,2A,2A,2A,A,—,—,2A,2A,39.8160940,-85.1661630
+Gambold Preparatory Magnet,3725 Kiel Avenue Indianapolis; IN 46224,null,null,null,null,null,null,null,null,39.8227890,-86.2618530
+Valparaiso,2727 N. Campbell St. Valparaiso; IN 46385,4A,4A,4A,6A,2A,2A,4A,4A,41.4919632,-87.0659892
+Fort Wayne Concordia Lutheran,1601 St. Joe River Dr. Fort Wayne; IN 46805,3A,3A,3A,3A,A,A,3A,3A,41.1098450,-85.1176680
+Harrison (West Lafayette),5701 N. 50 W. West Lafayette; IN 47906,4A,4A,4A,5A,2A,2A,4A,4A,40.4993690,-86.9149770
+West Vigo,4590 W. Sarah Myers Dr. West Terre Haute; IN 47885,3A,3A,3A,3A,A,A,3A,3A,39.4606165,-87.4896802
+Liberty Christian,2323 Columbus Ave. Anderson; IN 46016,A,A,A,—,A,A,A,A,40.0928850,-85.6674600
+South Newton,13102 S. 50 E. Kentland; IN 47951,A,A,A,A,—,—,A,A,40.8079239,-87.3843312
+Bremen,511 W. Grant St. Bremen; IN 46506,2A,2A,2A,2A,A,A,2A,2A,41.4431058,-86.1514897
+Union (Modoc),8707 W. U.S. Hwy. 36 Modoc; IN 47358,A,A,A,—,—,—,A,A,40.0470503,-85.1413045
+Shenandoah,7354 W. U.S. Hwy. 36 Middletown; IN 47356,2A,2A,2A,2A,—,—,2A,2A,40.0057614,-85.5255344
+South Ripley,1589 S. Benham Rd. Versailles; IN 47042,2A,2A,2A,—,A,A,2A,2A,39.0510622,-85.2502114
+Whiteland Community,300 Main St. Whiteland; IN 46184,4A,4A,4A,5A,2A,2A,4A,4A,39.5499516,-86.0853535
+East Central,1 Trojan Place St. Leon; IN 47012,4A,4A,4A,4A,2A,2A,4A,4A,39.2792600,-84.9742560
+Hagerstown,701 Baker Rd. Hagerstown; IN 47346,2A,2A,2A,A,—,—,2A,2A,39.9205670,-85.1612540
+Tri-County,11298 W. 100 S. Wolcott; IN 47995,A,A,A,A,—,—,A,A,40.7363033,-87.0855282
+NorthWood,2101 N. Main St. Nappanee; IN 46550,3A,3A,3A,4A,2A,2A,3A,3A,41.4616274,-85.9993368
+North Judson-San Pierre,1 Bluejay Dr. North Judson; IN 46366,2A,2A,2A,2A,—,—,2A,2A,41.2150397,-86.7877181
+Mt. Vernon (Fortville),8112 North 200 West Fortville; IN 46040,4A,4A,4A,4A,2A,2A,4A,4A,39.9015514,-85.8442422
+Avon,7575 E. C.R. 150 S. Avon; IN 46123,4A,4A,4A,6A,2A,2A,4A,4A,39.7389748,-86.3879795
+Scottsburg,500 S. Gardner St. Scottsburg; IN 47170,3A,3A,3A,—,2A,2A,3A,3A,38.6808613,-85.7810639
+Madison Consolidated,743 Clifty Dr. Madison; IN 47250,3A,3A,3A,4A,2A,2A,3A,3A,38.7730145,-85.4032040
+Terre Haute South Vigo,3737 South 7th Street Terre Haute; IN 47802,4A,4A,4A,5A,2A,2A,4A,4A,39.4254888,-87.4082875
+Northview,3150 W. State Road 340 Brazil; IN 47834,3A,3A,3A,4A,2A,2A,3A,3A,39.5236107,-87.1311974
+Norwell,1100 E. US Highway 224 Ossian; IN 46777,3A,3A,3A,4A,2A,2A,3A,3A,40.8285460,-85.2018523
+Lowell,2051 E. Commercial Ave. Lowell; IN 46356,4A,4A,4A,4A,2A,2A,4A,4A,41.2917374,-87.3914276
+Indianapolis Lighthouse Charter,1780 Sloan Ave. Indianapolis; IN 46203,null,null,null,null,null,null,null,null,39.7434533,-86.0885836
+LaCrosse,Box 360 LaCrosse; IN 46348,A,A,A,—,—,—,A,A,33.9060289,-117.3198626
+South Spencer,1142 N. Orchard Rd. Rockport; IN 47635,2A,2A,2A,2A,A,A,2A,2A,37.9035151,-87.1063928
+Clarksville,800 Dr Dot Lewis Drive Clarksville; IN 47129,2A,2A,2A,2A,—,—,2A,2A,38.2993989,-85.7668560
+Brebeuf Jesuit Preparatory,2801 W. 86th St. Indianapolis; IN 46268,3A,3A,3A,3A,2A,2A,3A,3A,39.9109900,-86.2095020
+North Putnam,8869 N. C.R. 250 E. Roachdale; IN 46172,2A,2A,2A,2A,A,A,2A,2A,39.8047392,-86.8024921
+LaPorte,602 F St. LaPorte; IN 46350,4A,4A,4A,5A,2A,2A,4A,4A,41.6009480,-86.7270039
+Barr-Reeve,627 N. 3rd St. Montgomery; IN 47558,A,A,A,—,—,—,A,A,38.6682750,-87.0491890
+Pike,5401 W. 71st St. Indianapolis; IN 46268,4A,4A,4A,6A,2A,2A,4A,4A,39.8762017,-86.2552579
+Martinsville,1360 E. Gray St. Martinsville; IN 46151,4A,4A,4A,5A,2A,2A,4A,4A,39.4196740,-86.4117960
+Rossville,PO Box 530 1 Egly Dr. Rossville; IN 46065,A,A,A,—,A,A,A,A,40.4141819,-86.5960740
+Gibson Southern,3499 W. 800 S Fort Branch; IN 47648,3A,3A,3A,3A,A,A,3A,3A,38.2383817,-87.5917276
+North Miami,570 E. 900 N. Denver; IN 46926,A,2A,2A,A,A,A,A,2A,40.8960503,-86.0661541
+Edgewood,601 Edgewood Dr. Ellettsville; IN 47429,3A,3A,3A,3A,2A,2A,3A,3A,39.2341193,-86.6381444
+Seeger,1222 S. State Road 263 West Lebanon; IN 47991,2A,2A,2A,A,—,—,2A,2A,40.2986393,-87.3865042
+Benton Central,4241 E. 300 S. Oxford; IN 47971,3A,3A,3A,2A,A,A,3A,3A,40.5642440,-87.2417220
+Plymouth,#1 Big Red Drive Plymouth; IN 46563,4A,4A,4A,4A,2A,2A,4A,4A,41.3473756,-86.3027616
+Oldenburg Academy,Box 200 1 Twister Circle Oldenburg; IN 47036-0200,A,A,A,—,A,A,A,A,39.3426354,-85.2011501
+Hammond Bishop Noll,1519 Hoffman St. Hammond; IN 46327,2A,2A,2A,2A,A,A,2A,2A,41.6283089,-87.4919370
+Sheridan,24185 N. Hinsley Rd. Sheridan; IN 46069,2A,2A,2A,A,A,A,2A,2A,40.1403630,-86.2153577
+Christel House Academy,2717 S. East St. Indianapolis; IN 46225,null,null,null,null,null,null,null,null,39.7263990,-86.1480250
+Indiana School for the Deaf,1200 East 42nd Street Indianapolis; IN 46205,A,A,A,A,—,—,A,A,39.8337753,-86.1354765
+Sullivan,902 N. Section St. Sullivan; IN 47882,2A,2A,2A,2A,A,A,2A,2A,39.1045927,-87.4094635
+Lake Station Edison,3304 Parkside Ave. Lake Station; IN 46405,2A,2A,2A,A,—,—,2A,2A,41.5771221,-87.2451780
+Traders Point Christian Academy ID:,6600 South Indianapolis Road Whitestown; IN 46076,null,null,null,null,null,null,null,null,39.9417189,-86.3580333
+Perry Meridian,401 W. Meridian School Rd. Indianapolis; IN 46217,4A,4A,4A,6A,2A,2A,4A,4A,39.6483986,-86.1665921
+Cowan,9401 S. Nottingham St. Muncie; IN 47302,A,A,A,—,—,—,A,A,40.1078972,-85.3931491
+Muncie Burris,2000 W. University Muncie; IN 47306,2A,2A,2A,—,A,A,2A,2A,40.1966867,-85.4123789
+Shoals,7900 US Hwy. 50 Shoals; IN 47581,A,A,A,—,A,A,A,A,38.6673225,-86.7771593
+South Adams,1000 Parkway St. Berne; IN 46711,2A,2A,2A,A,A,A,2A,2A,40.6457215,-84.9600497
+Wabash,580 N. Miami St. Wabash; IN 46992,2A,2A,2A,2A,—,—,2A,2A,40.8069790,-85.8250890
+Chesterton,2125 S. 11th St. Chesterton; IN 46304-8934,4A,4A,4A,6A,2A,2A,4A,4A,41.5888629,-87.0645518
+Boonville,300 N. 1st St. Boonville; IN 47601,3A,3A,3A,4A,2A,2A,3A,3A,38.0528076,-87.2790425
+Lafayette Jefferson,1801 S. 18th St. Lafayette; IN 47905,4A,4A,4A,6A,2A,2A,4A,4A,40.3988023,-86.8751563
+Waldron,102 N. East St. P.O. Box 369 Waldron; IN 46182,A,A,A,—,A,A,A,A,39.4531850,-85.6611580
+North Newton,1641 W. 250 N. Morocco; IN 47963,2A,2A,2A,2A,—,—,2A,2A,41.0357013,-87.4255265
+Hobart,2211 E. 10th Street Hobart; IN 46342,4A,4A,4A,4A,2A,2A,4A,4A,41.5199532,-87.2319753
+Indianapolis Shortridge,3401 N. Meridian Indianapolis; IN 46208,2A,2A,2A,—,—,—,2A,2A,39.8187840,-86.1558500
+West Lafayette,1105 N. Grant St. West Lafayette; IN 47906,3A,3A,3A,3A,A,2A,3A,3A,40.4365761,-86.9106493
+Argos,500 Yearick Ave. Argos; IN 46501,A,A,A,—,A,A,A,A,41.2400298,-86.2493117
+Jennings County,800 W. Walnut St. North Vernon; IN 47265,4A,4A,4A,5A,2A,2A,4A,4A,39.0005774,-85.6425699
+Christian Academy of Indiana,1000 Academy Dr. New Albany; IN 47150,A,A,A,—,A,A,A,A,38.3244870,-85.8292170
+Lafayette Central Catholic,2410 S. 9th St. Lafayette ; IN 47909-2499,2A,A,A,2A,A,A,A,A,40.3912359,-86.8858810
+Warren Central,9500 E. 16th St. Indianapolis; IN 46229,null,null,null,null,null,null,null,null,39.7908649,-85.9995792
+North Daviess,5494 E. State Road 58 Elnora; IN 47529,A,A,A,A,—,—,A,A,38.8474347,-87.0619192
+East Noble,901 S. Garden St. Kendallville; IN 46755,4A,4A,4A,4A,2A,2A,4A,4A,41.4347459,-85.2574490
+Seymour,1350 W. Second St. Seymour; IN 47274-2252,4A,4A,4A,4A,2A,2A,4A,4A,38.9562509,-85.9062532
+Franklin Community,2600 Cumberland Dr. Franklin; IN 46131,4A,4A,4A,5A,2A,2A,4A,4A,39.5117904,-86.0867306
+Pike Central,1810 E. State Road 56 Petersburg; IN 47567,3A,3A,3A,3A,A,A,3A,3A,38.4337410,-87.2423160
+South Dearborn,5770 Highlander Place Aurora; IN 47001,3A,3A,3A,4A,2A,2A,3A,3A,39.0639500,-84.9285637
+Homestead,4310 Homestead Rd. Fort Wayne; IN 46814,4A,4A,4A,6A,2A,2A,4A,4A,41.0436373,-85.2852303
+Faith Christian,5526 State Road 26 East Lafayette; IN 47905,A,A,A,—,—,—,A,A,40.4148399,-86.8126577
+Batesville,1 Bulldog Blvd. Batesville; IN 47006,3A,3A,3A,3A,2A,2A,3A,3A,39.3097402,-85.2321776
+North Vermillion,5555 N. Falcon Dr. Cayuga; IN 47928,A,A,A,A,—,—,A,A,39.9678430,-87.4531260
+Evansville Day,3400 N. Green River Rd. Evansville; IN 47715,A,A,A,—,A,A,A,A,38.0105933,-87.4949523
+Trinity Lutheran,7120 N. C.R. 875 E. Seymour; IN 47274,A,A,A,—,A,A,A,A,38.9857370,-85.8778650
+Jimtown,59021 C.R. 3 S. Elkhart; IN 46517,3A,3A,3A,3A,—,—,3A,3A,41.6380211,-86.0235143
+Mishawaka,1202 Lincoln Way E. Mishawaka; IN 46544,4A,4A,4A,5A,2A,2A,4A,4A,41.6625958,-86.1623599
+Crawford County,1130 S. State Road 66 Marengo; IN 47140,2A,2A,2A,2A,—,—,2A,2A,38.3552844,-86.3512022
+Rochester Community,1 Zebra Ln. PO Box 108 Rochester; IN 46975-0108,3A,3A,3A,3A,A,A,3A,3A,41.0577213,-86.2245481
+Garrett,801 E. Houston St. Garrett; IN 46738,3A,3A,3A,3A,A,A,3A,3A,41.3480004,-85.1263722
+Pendleton Heights,1 Arabian Dr. Pendleton; IN 46064,4A,4A,4A,4A,2A,2A,4A,4A,39.9972320,-85.7353886
+Greenwood Christian Academy,835 W. Worthsville Rd. Greenwood; IN 46143,A,A,A,—,A,A,A,A,39.5842151,-86.1230526
+Indianapolis Arsenal Technical,1500 E. Michigan St. Indianapolis; IN 46201,4A,4A,4A,6A,2A,2A,4A,4A,39.7759847,-86.1312696
+Plainfield,1 Red Pride Drive Plainfi eld; IN 46168,4A,4A,4A,4A,2A,2A,4A,4A,39.6818979,-86.3787660
+Tri,6972 S. State Road 103 Straughn; IN 47387,A,A,A,A,—,—,A,A,39.8329350,-85.3510865
+Springs Valley,326 S. Larry Bird Blvd. French Lick; IN 47432-1062,A,A,A,A,—,—,A,A,38.5523412,-86.6172342
+Fort Wayne Bishop Luers,333 E. Paulding Rd. Fort Wayne; IN 46816,3A,3A,3A,3A,A,A,3A,3A,41.0352640,-85.1331050
+Vincennes Lincoln,1545 S. Hart St. Vincennes; IN 47591,3A,3A,3A,3A,2A,2A,3A,3A,38.6509208,-87.5000211
+Lawrence Central,7300 E. 56th St. Indianapolis; IN 46226,4A,4A,4A,6A,2A,2A,4A,4A,39.8566700,-86.0382149
+Southern Wells,9120 S. 300 W. Poneto; IN 46781,A,A,A,A,—,—,A,A,40.6088864,-85.2783108
+Lakewood Park Christian,5555 C.R. 29 Auburn; IN 46706,A,A,A,—,A,A,2A,A,41.3294601,-85.0506417
+Evansville Harrison,211 Fielding Rd. Evansville; IN 47715,4A,4A,4A,4A,2A,2A,4A,4A,37.9735450,-87.4860700
+Park Tudor,7200 N. College Ave. Indianapolis; IN 46240,2A,2A,2A,2A,A,A,2A,2A,39.8857020,-86.1482650
+Oregon-Davis,5990 N. 750 E. Hamlet; IN 46532,A,A,A,—,A,A,A,A,41.3884660,-86.5522510
+Fountain Central,750 E. U.S. Hwy. 136 Veedersburg; IN 47987,2A,2A,2A,A,—,—,2A,2A,40.1063712,-87.2271677
+Gary Roosevelt,730 W. 25th Ave. Gary; IN 46407,3A,3A,3A,3A,—,—,3A,3A,41.5732747,-87.3455455
+Elkhart Central,1 Blazer Blvd. Elkhart; IN 46516,4A,4A,4A,5A,2A,2A,4A,4A,41.6848946,-85.9584021
+Indianapolis Northwest,5525 W. 34th St. Indianapolis; IN 46224,4A,4A,4A,4A,2A,2A,4A,4A,39.8151987,-86.2578085
+Mishawaka Marian,1311 S. Logan St. Mishawaka; IN 46544,3A,3A,3A,3A,2A,A,3A,3A,41.6497967,-86.1985877
+Speedway,5357 W. 25th St. Speedway; IN 46224,2A,2A,2A,2A,A,A,2A,2A,39.8008400,-86.2529040
+Goshen,401 Lincolnway East Goshen; IN 46526,4A,4A,4A,5A,2A,2A,4A,4A,41.5809420,-85.8225990
+Jeffersonville,2315 Allison Ln. Jeffersonville; IN 47130,4A,4A,4A,6A,2A,2A,4A,4A,38.3166996,-85.7101307
+Westville,207 E. Valparaiso St. Westville; IN 46391,A,A,A,—,A,A,A,A,41.5416489,-86.8944443
+Culver Academies,1300 Academy Rd. #147 Culver; IN 46511-1291,3A,3A,3A,3A,2A,2A,3A,3A,41.2208204,-86.4065008
+Lawrence North,7802 Hague Rd. Indianapolis; IN 46256,4A,4A,4A,6A,2A,2A,4A,4A,39.8957998,-86.0340639
+Washington Township,381 E. State Road 2 Valparaiso; IN 46383,A,A,A,—,A,A,A,A,41.4844935,-86.9945285
+Elkhart Memorial,2608 California Rd. Elkhart; IN 46514,4A,4A,4A,5A,2A,2A,4A,4A,41.6968351,-86.0138757
+Cannelton,109 3rd St. Cannelton; IN 47520,A,A,A,—,—,—,A,A,37.9100709,-86.7439861
+Indianapolis Arlington,4825 N. Arlington Ave. Indianapolis; IN 46226,A,A,A,A,—,—,A,A,39.8444870,-86.0622970
+Warsaw Community,1 Tiger Lane Warsaw; IN 46580,4A,4A,4A,6A,2A,2A,4A,4A,41.2230759,-85.8649732
+Fort Wayne Blackhawk Christian,7400 E. State Boulevard Fort Wayne; IN 46815,A,A,A,—,A,A,A,A,41.1050294,-85.0457197
+Hamilton,903 S. Wayne St. Hamilton; IN 46742,A,A,A,—,A,A,A,A,41.5226742,-84.9197994
+Edinburgh,300 S. Keeley St. Edinburgh; IN 46124,A,A,A,A,—,—,A,A,39.3515349,-85.9700552
+Glenn,201 John Glenn Dr. Walkerton; IN 46574,3A,3A,3A,3A,A,A,3A,3A,41.4572905,-86.4796974
+Alexandria Monroe,1 Burden Ct. Alexandria; IN 46001,2A,2A,2A,2A,—,—,2A,2A,40.2489585,-85.6781910
+Highland,9135 Erie St. Highland; IN 46322,null,null,null,null,null,null,null,null,41.5465057,-87.4579527
+Indianapolis Marshall,10101 E. 38th St. Indianapolis; IN 46235,3A,3A,3A,—,—,—,3A,3A,39.8250835,-85.9894323
+Tell City,900 12th St. Tell City; IN 47586,2A,2A,2A,2A,A,A,2A,2A,37.9546249,-86.7634069
+Silver Creek,557 Renz Avenue Sellersburg; IN 47172,3A,3A,3A,4A,2A,2A,3A,3A,38.4077876,-85.7552273
+Attica,211 E. Sycamore St. Attica; IN 47918,A,A,A,A,—,—,A,A,40.2773950,-87.2506290
+Kouts,PO Box 699 302 College Ave. Kouts; IN 46347-0699,A,A,A,—,A,A,A,A,41.3128995,-87.0219989
+Frontier,1 Falcon Dr. Chalmers; IN 47929,A,A,A,A,—,—,A,A,42.6812327,-83.1687933
+South Bend St. Joseph,453 N. Notre Dame Ave South Bend; IN 46617,3A,3A,3A,4A,2A,2A,3A,3A,41.6812721,-86.2384450
+South Vermillion,770 W. Wildcat Dr. Clinton; IN 47842,2A,2A,2A,2A,A,A,2A,2A,39.6887710,-87.4139450
+Fort Wayne Northrop,7001 Coldwater Rd. Fort Wayne; IN 46825,4A,4A,4A,6A,2A,2A,4A,4A,41.1457383,-85.1394507
+Anderson,4610 S. Madison Ave. Anderson; IN 46013,4A,4A,4A,5A,2A,2A,4A,4A,40.0658380,-85.6906820
+Bethesda Christian,7950 N. C.R. 650 E. Brownsburg; IN 46112,A,A,A,—,A,A,A,A,39.8794872,-86.4116919
+Rising Sun,210 S. Henrietta St. Rising Sun; IN 47040,A,A,A,—,A,A,A,A,38.9501149,-84.8595567
+Roncalli,3300 Prague Rd. Indianapolis; IN 46227,4A,4A,4A,4A,2A,2A,4A,4A,39.6906778,-86.1077003
+Forest Park,1440 Michigan St. Ferdinand; IN 47532,2A,2A,2A,2A,A,A,2A,2A,38.2285910,-86.8564840
+Prairie Heights,0245 S. 1150 E. LaGrange; IN 46761,2A,2A,2A,2A,A,A,2A,2A,41.6382036,-85.2020158
+Leo,14600 Amstutz Rd. Leo; IN 46765,3A,3A,3A,4A,2A,2A,3A,3A,41.2198405,-85.0177150
+Monrovia,205 S. Chestnut Street Monrovia; IN 46157,2A,2A,2A,2A,A,A,2A,2A,39.5756350,-86.4781050
+Greencastle,910 East Washington St. Greencastle; IN 46135,3A,3A,3A,3A,A,A,3A,3A,39.6431741,-86.8433368
+Eastern (Greentown),421 S. Harrison St. Greentown; IN 46936,2A,2A,2A,2A,A,A,2A,2A,40.4744402,-85.9756136
+Southwestern (Shelbyville),3406 W. 600 S. Shelbyville; IN 46176,A,A,A,—,A,A,A,A,39.4410540,-85.8456790
+Lighthouse CPA,725 Clark Road Gary; IN 46406,3A,3A,3A,—,—,—,3A,3A,41.5977957,-87.3922770
+Greenwood Community,615 W. Smith Valley Rd. Greenwood; IN 46142,4A,4A,4A,4A,2A,2A,4A,4A,39.6061935,-86.1171207
+Calumet,3900 Calhoun St. Gary; IN 46408,3A,3A,3A,3A,—,—,3A,3A,41.5476375,-87.4092115
+Hammond Morton,6915 Grand Ave. Hammond; IN 46323,4A,4A,4A,4A,2A,2A,4A,4A,41.5863980,-87.4397640
+Merrillville,276 E. 68th Pl. Merrillville; IN 46410,4A,4A,4A,6A,2A,2A,4A,4A,41.4941330,-87.3298650
+Indianapolis George Washington Community,2215 W. Washington St Indianapolis; IN 46222,2A,2A,2A,2A,A,A,2A,2A,39.7651848,-86.1991001
+Orleans,200 W. Wilson St. Orleans; IN 47452,A,A,A,—,—,—,A,A,38.6678802,-86.4544227
+South Decatur,8885 S. State Road 3 Greensburg; IN 47240,A,A,A,A,—,—,A,A,39.3126240,-85.5600208
+Herron,110 E. 16th St. Indianapolis; IN 46202,3A,3A,3A,—,A,A,3A,3A,39.7887861,-86.1552952
+Beech Grove,5330 Hornet Ave. Beech Grove; IN 46107,3A,3A,3A,4A,2A,2A,3A,3A,39.7112755,-86.0763555
+Smith Academy for Excellence,725 W. Washington Blvd. Fort Wayne; IN 46802,null,null,null,null,null,null,null,null,41.0753440,-85.1486480
+Mississinewa,1 Indian Trail Gas City; IN 46933,3A,3A,3A,3A,2A,2A,3A,3A,12.9695286,77.7559024
+North Central (Indianapolis),1801 E. 86th St. Indianapolis; IN 46240,4A,4A,4A,6A,2A,2A,4A,4A,39.9106579,-86.1289930
+Triton,300 Triton Dr. Bourbon; IN 46504,A,A,A,A,—,—,A,A,41.3011701,-86.1099478
+North White,305 E. Broadway Monon; IN 47959,A,A,A,A,—,—,A,A,40.8680629,-86.8814828
+Shawe Memorial,201 West State Street Madison; IN 47250,A,A,A,—,A,A,A,A,38.7576100,-85.3899080
+South Knox,6136 E. State Road 61 Vincennes; IN 47591,2A,2A,2A,—,A,A,2A,2A,38.6349860,-87.4211070
+Eastern Greene,11064 East State Road 54 Bloomfi eld; IN 47424,2A,2A,2A,2A,—,—,2A,2A,39.0308094,-86.7374692
+Milan,609 N. Warpath Dr. Milan; IN 47031,2A,2A,2A,2A,A,A,2A,2A,39.1283014,-85.1299477
+Winchester Community,700 N. Union St. Winchester; IN 47394,2A,2A,2A,2A,—,—,2A,2A,40.1808420,-84.9752860
+Wood Memorial,943 South Franklin St. Oakland City; IN 47660,A,A,A,A,A,A,A,A,38.3309458,-87.3508157
+Carmel,520 E. Main St. Carmel; IN 46032,4A,4A,4A,6A,2A,2A,4A,4A,39.9800196,-86.1194606
+Randolph Southern,2 Rebel Drive Lynn; IN 47355,A,A,A,—,—,—,A,A,40.0497686,-84.9396854
+Southport,971 E. Banta Rd. Indianapolis; IN 46227,4A,4A,4A,6A,2A,2A,4A,4A,39.6708240,-86.1430280
+Owen Valley,622 W. State Hwy. 46 Spencer; IN 47460,3A,3A,3A,4A,2A,2A,3A,3A,39.2886540,-86.7815470
+Tecumseh,5244 W. State Route 68 Lynnville; IN 47619,A,A,A,A,—,—,A,A,38.1933054,-87.3420398
+Eastern Hancock,10320 E. CR 250 N. Charlottesville; IN 46117,2A,2A,2A,A,—,—,2A,2A,39.8241510,-85.6409840
+Indianapolis Bishop Chatard,5885 Crittenden Avenue; Indianapolis; IN 46220-2840,3A,3A,3A,4A,A,2A,3A,4A,39.8613530,-86.1275150
+Washington,608 E. Walnut St. Washington; IN 47501,3A,3A,3A,3A,2A,2A,3A,3A,38.6586919,-87.1689983
+Jac-Cen-Del,4586 N. U.S. 421 Osgood; IN 47037,A,A,A,—,A,A,A,A,39.1404346,-85.2949116
+Rock Creek Academy,11525 Hwy. 31 Sellersburg; IN 47172,A,A,A,—,A,A,A,A,38.4399490,-85.7621701
+Mitchell,1000 Bishop Blvd. Mitchell; IN 47446,3A,3A,3A,3A,—,—,3A,3A,38.7367687,-86.4815645
+Center Grove,2717 S. Morgantown Rd. Greenwood; IN 46143,4A,4A,4A,6A,2A,2A,4A,4A,39.5761193,-86.1956377
+Indianapolis Crispus Attucks,1140 Dr. Martin Luther King Jr. St. Indianapolis; IN 46202,2A,2A,2A,—,A,A,2A,2A,39.7828316,-86.1691992
+Tri-Central,2115 W. 500 N. Sharpsville; IN 46068,A,A,A,A,A,A,A,A,40.3756544,-86.0536605
+Providence Cristo Rey,75 N. Belleview PL. Indianapolis; IN 46222,null,null,null,null,null,null,null,null,39.7676746,-86.2025514
+Delphi Community,301 Armory Rd. Delphi; IN 46923,2A,2A,2A,2A,A,A,2A,2A,40.5764576,-86.6647019
+Woodlan,17215 Woodburn Rd. Woodburn; IN 46797,2A,2A,2A,2A,—,—,2A,2A,41.1235092,-84.9192099
+Evansville F.J. Reitz,350 Dreier Blvd. Evansville; IN 47712-5098,4A,4A,4A,4A,2A,2A,4A,4A,37.9731362,-87.6065086
+Lebanon,510 Essex Dr. Lebanon; IN 46052,3A,3A,3A,4A,2A,2A,3A,3A,40.0571125,-86.4639882
+Jasper,1600 St. Charles St. Jasper; IN 47546,3A,3A,3A,4A,2A,2A,3A,3A,38.4026000,-86.9501499
+Northridge,56779 Northridge Drive Middlebury; IN 46540,4A,4A,4A,4A,2A,2A,4A,4A,41.6734102,-85.7253091
+Lakeland,805 E 75 N LaGrange; IN 46761,3A,3A,3A,3A,A,A,3A,3A,41.5305801,-85.2703305
+Pioneer,417 S. Chicago St. Box 547 Royal Center; IN 46978,A,A,A,A,—,—,A,A,40.8644849,-86.4997266
+White River Valley,P.O. Box 1470 S.R. 54 E. Switz City; IN 47465,A,A,A,—,—,—,A,A,39.0356000,-87.0596154
+Blue River Valley,P.O. Box 249 Mt. Summit; IN 47361,A,A,A,—,—,—,A,A,40.0043978,-85.3865972
+Anderson Preparatory Academy,101 W. 29th St. Anderson; IN 46016,null,null,null,null,null,null,null,null,40.0866395,-85.6802969
+Indianapolis Lutheran,5555 S. Arlington Ave. Indianapolis; IN 46237-2366,A,A,A,A,A,A,A,A,39.6874620,-86.0622177
+Princeton Community,1101 North Main Street Princeton; IN 47670,3A,3A,3A,3A,A,A,3A,3A,38.3689794,-87.5706079
+Knox,1 Redskin Trail Knox; IN 46534,3A,3A,3A,3A,—,—,3A,3A,41.2854763,-86.6259286
+River Forest,3300 Indiana St. Hobart; IN 46342,2A,2A,2A,2A,—,—,2A,2A,41.5300152,-87.2474860
+South Bend Adams,808 S. Twyckenham South Bend; IN 46615,4A,4A,4A,5A,2A,2A,4A,4A,41.6665810,-86.2235760
+West Central,1852 S. US Highway 421 Francesville; IN 47946,A,A,A,A,—,—,A,A,41.0284790,-86.8904020
+Charlestown,1 Pirate Place Charlestown; IN 47111,3A,3A,3A,3A,2A,2A,3A,3A,38.4545732,-85.6649073
+Caston,P.O. Box 128 Fulton; IN 46931,A,A,A,A,A,A,A,A,40.9473108,-86.2617276
+Seton Catholic,233 South 5th St. Richmond; IN 47374,A,A,A,—,A,A,A,A,39.8249890,-84.8954085
+Boone Grove,260 S. 500 W. Valparaiso; IN 46385,2A,2A,2A,—,A,A,2A,2A,41.3962693,-87.1658617
+Bowman Leadership Academy,3401 West 5th Avenue Gary; IN 46406,2A,3A,2A,2A,—,—,2A,2A,41.6018534,-87.3803454
+Crown Point,1500 S. Main St. Crown Point; IN 46307,4A,4A,4A,6A,2A,2A,4A,4A,41.3878349,-87.3604750
+Bethany Christian,2904 S. Main St. Goshen; IN 46526-5499,A,A,A,—,A,A,A,A,41.5455148,-85.8271025
+Penn,56100 Bittersweet Rd. Mishawaka; IN 46545,4A,4A,4A,6A,2A,2A,4A,4A,41.6788340,-86.1077193
+Borden,P.O. Box 260 301 West St. Borden; IN 47106,A,A,A,—,—,—,A,A,38.4691769,-85.9463225
+Southridge,1110 S. Main St. Huntingburg; IN 47542,3A,3A,3A,2A,—,—,3A,3A,38.2748530,-86.9651751
+Cloverdale,205 E. Market St. Cloverdale; IN 46120,2A,2A,2A,2A,—,—,2A,2A,39.5116495,-86.7924263
+Central Noble,302 Cougar Ct. Albion; IN 46701,2A,2A,2A,2A,A,A,2A,2A,41.3980840,-85.4183620
+Fort Wayne North Side,475 E. State Blvd. Fort Wayne; IN 46805,4A,4A,4A,5A,2A,2A,4A,4A,41.0976369,-85.1353011
+Richmond,380 Hub Etchison Pky. Richmond; IN 47374,4A,4A,4A,5A,2A,2A,4A,4A,39.8245230,-84.9021290
+Yorktown,1100 S. Tiger Dr. Yorktown; IN 47396,3A,3A,3A,3A,2A,2A,3A,4A,40.1831240,-85.4937580
+Northeast Dubois,4711 N. Dubois Rd. N.E. Dubois; IN 47527,A,A,A,—,A,A,A,A,38.4511772,-86.8110531
+New Prairie,5333 N. Cougar Rd. New Carlisle; IN 46552,3A,3A,3A,4A,—,—,3A,3A,41.6797242,-86.5649064
+Knightstown,8149 W. U.S. Hwy. 40 Knightstown; IN 46148,2A,2A,2A,2A,A,A,2A,2A,39.7959965,-85.5058256
+Brown County,235 Schoolhouse Lane Nashville; IN 47448,3A,3A,3A,3A,A,A,3A,3A,39.2048496,-86.2448899
+Perry Central,18677 Old State Road 37 Leopold; IN 47551,2A,2A,2A,A,—,—,2A,2A,38.1113972,-86.6021890
+Mooresville,550 N. Indiana St. Mooresville; IN 46158,4A,4A,4A,4A,2A,2A,4A,4A,39.6187970,-86.3770660
+Union City,603 N. Walnut St. Union City; IN 47390,A,A,A,A,—,—,A,A,40.2050170,-84.8152470
+Northfield,154 W 200 N Wabash; IN 46992,3A,2A,2A,A,—,—,2A,2A,40.8557020,-85.7946680
+Cascade,6565 S. C.R. 200 W. Clayton; IN 46118,2A,2A,2A,2A,A,A,2A,2A,39.6658070,-86.5590610
+Northeastern,7295 N. US Hwy. 27 Fountain City; IN 47341,2A,2A,2A,A,—,—,2A,2A,39.9344466,-84.9121812
+Wawasee,1 Warrior Path Bldg. 1 Syracuse; IN 46567,3A,3A,3A,4A,2A,2A,3A,3A,41.4180015,-85.7589398
+Bloomfield,501 W. Springs St. PO Box 266 Bloomfi eld; IN 47424,A,A,A,—,—,—,A,A,39.0250110,-86.9467040
+Carroll (Fort Wayne),3701 Carroll Rd. Fort Wayne; IN 46818,4A,4A,4A,6A,2A,2A,4A,4A,41.1901980,-85.1926050
+North Harrison,1070 Hwy. 64 N.W. Ramsey; IN 47166,3A,3A,3A,3A,A,A,3A,3A,38.3221596,-86.1441210
+Indiana Math & Science Academy,7435 N. Keystone Ave Indianapolis; IN 46240,A,A,A,—,—,—,A,A,39.8899515,-86.1209380
+Turkey Run,1551 E. State Road 47 Marshall; IN 47859,A,A,A,A,A,A,A,A,39.8768970,-87.2118179
+Evansville North,15331 Hwy 41 North Evansville; IN 47725,4A,4A,4A,5A,2A,2A,4A,4A,38.0542041,-87.4749776
+Paoli,501 Elm St. Paoli; IN 47454-1198,2A,2A,2A,2A,—,—,2A,2A,38.5507114,-86.4770536
+Baptist Academy,2565 S. Villa Avenue Indianapolis; IN 46203,A,A,A,—,A,A,A,A,39.7389050,-86.1260432
+Castle,3344 Highway 261 Newburgh; IN 47630-9546,4A,4A,4A,5A,2A,2A,4A,4A,37.9848340,-87.3843680
+Morristown,223 Patterson St. Morristown; IN 46161,A,A,A,—,A,A,A,A,39.6724740,-85.7015530
+Marion,750 W. 26th St. Marion; IN 46953,4A,4A,4A,4A,2A,2A,4A,4A,40.5408810,-85.6677990
+Winamac Community,715 School Dr. Winamac; IN 46996,2A,2A,2A,A,A,A,2A,2A,41.0459470,-86.5963040
+Griffi th,600 N. Wiggs St. Griffi th; IN 46319,3A,3A,3A,4A,2A,2A,3A,3A,41.5312936,-87.4373606
+Angola,350 S. John McBride Ave. Angola; IN 46703,3A,3A,3A,4A,2A,2A,3A,3A,41.6292450,-84.9700649
+North Knox,10890 N. State Road 159 Bicknell; IN 47512,2A,2A,2A,A,A,A,2A,2A,38.8355208,-87.3139715
+Rushville Consolidated,1201 Lions Path Rushville; IN 46173,3A,3A,3A,3A,2A,2A,3A,3A,39.6210308,-85.4476474
+Washington Catholic,201 N.E. 2nd St. Washington; IN 47501,A,A,A,—,A,A,A,A,38.6599226,-87.1725712
+Muncie Central,801 N. Walnut St Muncie; IN 47305,3A,3A,3A,4A,2A,2A,3A,3A,40.2010400,-85.3887360
+Crothersville,109 N. Preston St. Crothersville; IN 47229,A,A,A,—,—,—,A,A,38.7978410,-85.8365242
+Indianapolis Metropolitan,1635 W. Michigan St. Indianapolis; IN 46222,A,A,A,—,A,A,A,A,39.7739401,-86.1916707
+Fort Wayne Bishop Dwenger,1300 E. Washington Ctr. Rd. Fort Wayne; IN 46825,3A,3A,3A,4A,2A,2A,3A,3A,41.1318002,-85.1254925
+Elwood Community,1137 N. 19th St. Elwood; IN 46036,2A,2A,2A,2A,—,—,2A,2A,40.2889490,-85.8354559
+Eminence,6760 State Road 42 N Eminence; IN 46125,A,A,A,—,—,—,A,A,39.5244022,-86.6430812
+Franklin Central,6215 S. Franklin Rd. Indianapolis; IN 46259,4A,4A,4A,6A,2A,2A,4A,4A,39.6769467,-86.0157925
+Irvington Preparatory Academy,5751 University Avenue Indianapolis; IN 46219,2A,2A,2A,—,A,A,2A,2A,39.7658160,-86.0689340
+Greenfi eld-Central,810 N. Broadway Street Greenfi eld; IN 46140,4A,4A,4A,4A,2A,2A,4A,4A,39.7929609,-85.7815070
+Tippecanoe Valley,8345 S. State Road 19 Akron; IN 46910,3A,3A,3A,3A,—,—,3A,3A,41.0997529,-86.0378720
+Lawrenceburg,100 Tiger Blvd. Lawrenceburg; IN 47025,3A,3A,3A,3A,A,A,3A,3A,39.0997464,-84.8514307
+International School of Indiana,4330 N. Michigan Rd. Indianapolis; IN 46208,A,A,A,—,A,A,A,A,39.8337422,-86.1851324
+Whiting,1751 Oliver St. Whiting; IN 46394,2A,2A,2A,A,—,—,2A,2A,41.6810164,-87.4937826
+New Haven,1300 Green Rd. New Haven; IN 46774,3A,3A,3A,4A,2A,2A,3A,3A,41.0651790,-85.0132090
+Hammond,5926 Calumet Ave. Hammond; IN 46320,3A,3A,3A,3A,2A,2A,3A,3A,41.6056880,-87.5095590
+Eastside,603 E. Green St. Butler; IN 46721,2A,2A,2A,A,A,A,2A,2A,41.4315200,-84.8632900
+Hamilton Southeastern,13910 E. 126th St. Fishers; IN 46037,4A,4A,4A,6A,2A,2A,4A,4A,39.9723240,-85.9156190
+Frankfort,1 S. Maish Rd. Frankfort; IN 46041-2825,3A,3A,3A,4A,2A,2A,3A,3A,40.2815479,-86.4851707
+Huntington North,450 MacGahan St. Huntington; IN 46750,4A,4A,4A,5A,2A,2A,4A,4A,40.8917487,-85.5092160
+New Washington,226 N Highway 62 New Washington; IN 47162-9121,A,A,A,—,—,—,A,A,38.5656272,-85.5414070
+Peru,401 N. Broadway Peru; IN 46970,3A,3A,3A,3A,A,A,3A,3A,40.7604880,-86.0728159
+Lapel,1850 South 900 West Lapel; IN 46051,2A,2A,2A,2A,—,—,2A,2A,40.0770890,-85.8415050
+Cass,6422 E. State Road 218 Walton; IN 46994,2A,2A,2A,2A,—,—,2A,2A,12.9718930,77.5978060
+Churubusco,1 Eagle Dr. Churubusco; IN 46723,2A,2A,2A,2A,—,—,2A,2A,41.2318166,-85.3242078
+Henryville,213 N. Ferguson St. Henryville; IN 47126,2A,2A,2A,—,A,A,2A,2A,38.5425156,-85.7681993
+Corydon Central,375 Country Club Rd. Corydon; IN 47112,3A,3A,3A,3A,2A,2A,3A,3A,38.2009714,-86.1195157
+Fishers,13000 Promise Rd Fishers; IN 46038,4A,4A,4A,6A,2A,2A,4A,4A,39.9780698,-85.9667530
+Evansville Mater Dei,1300 Harmony Way Evansville; IN 47720,2A,2A,3A,2A,A,A,2A,2A,37.9888030,-87.6158670
+Clay City,601 Lankford St. Clay City; IN 47841,A,A,A,—,—,,—,A,39.2795639,-87.1100096
+Jay County,2072 W State Road 67 Portland; IN 47371,4A,4A,4A,4A,2A,2A,4A,4A,40.4293241,-85.0239128
+Logansport,1 Berry Ln. Logansport; IN 46947,4A,4A,4A,4A,2A,2A,4A,4A,40.7515141,-86.3325643
+Danville Community,100 Warrior Way Danville; IN 46122,3A,3A,3A,4A,2A,2A,3A,3A,39.7569997,-86.5401579
+Franklin County,1 Wildcat Ln. Brookville; IN 47012,3A,3A,3A,4A,2A,2A,3A,3A,39.4285620,-84.9987640
+Oak Hill,7756 W. Delphi Pike 27 Converse; IN 46919,2A,2A,2A,2A,A,A,2A,2A,40.5793190,-85.8217250
+Columbia City,600 N. Whitley St. Columbia City; IN 46725,3A,3A,3A,4A,2A,2A,3A,3A,41.1625873,-85.4841332
+Noblesville,18111 Cumberland Rd. Noblesville; IN 46060,4A,4A,4A,6A,2A,2A,4A,4A,40.0572534,-85.9978706
+Portage,6450 US Hwy. 6 Portage; IN 46368,4A,4A,4A,6A,2A,2A,4A,4A,41.5506171,-87.1655254
+New Albany,1020 Vincennes St. New Albany; IN 47150,4A,4A,4A,6A,2A,2A,4A,4A,38.2984277,-85.8112431
+South Central (Elizabeth),6675 E. Hwy. 11 S. E. Elizabeth; IN 47117,A,A,A,—,—,—,A,A,38.0826810,-86.0013387
+Columbus North,1400 25th St. Columbus; IN 47201,4A,4A,4A,6A,2A,2A,4A,4A,39.2236513,-85.9103667
+Southwestern (Hanover),167 S. Main Cross Hanover; IN 47243,2A,2A,2A,—,A,A,2A,2A,38.7101690,-85.4729000
+Riverton Parke,4907 S. Coxville Rd. Montezuma; IN 47862,2A,2A,2A,A,—,—,2A,2A,39.6977410,-87.3220879
+Indianapolis Broad Ripple Magnet,1115 Broad Ripple Ave. Indianapolis; IN 46220,2A,2A,2A,2A,A,A,2A,2A,39.8689729,-86.1381030
+Frankton,610 Clyde St. Frankton; IN 46044,2A,2A,2A,2A,—,—,2A,2A,40.2200420,-85.7729500
+Adams Central,222 W. Washington St. Monroe; IN 46772,2A,2A,2A,A,—,—,3A,2A,40.7461693,-84.9427592
+Indianapolis Cathedral,5225 E. 56th St. Indianapolis; IN 46226,4A,4A,4A,5A,2A,2A,4A,4A,39.8520967,-86.0798184
+Covenant Christian (DeMotte),P.O. Box 430 (mail) DeMotte; IN 46310,A,A,A,—,A,A,A,A,41.1937181,-87.1986416
+Eastbrook,560 S. 900 E. Marion; IN 46953,3A,3A,3A,3A,—,—,3A,3A,40.5457625,-85.5056138
+Terre Haute North Vigo,3434 Maple Ave. Terre Haute; IN 47804,4A,4A,4A,5A,2A,2A,4A,4A,39.4928774,-87.3634658
+Tri-West Hendricks,7883 N. State Road 39 Lizton; IN 46149-9575,3A,3A,3A,3A,A,A,3A,3A,39.8771178,-86.5420947
+North Montgomery,5945 US Highway 231 N. Crawfordsville; IN 47933,3A,3A,3A,3A,A,A,3A,3A,40.1267080,-86.9046454
+Marquette Catholic,306 West 10th Street Michigan City; IN 46360,A,A,A,—,A,A,A,A,41.7109078,-86.9027409
+Madison-Grant,11700 S.E. 00 W. Fairmount; IN 46928,2A,2A,2A,2A,—,—,2A,2A,40.3845260,-85.6763689
+Carroll (Flora),2362 E. State Road 18 Flora; IN 46929,A,A,A,A,A,A,A,A,40.5462504,-86.4808664
+Heritage Hills,3644 E CR 1600 N Lincoln City; IN 47552,3A,3A,3A,3A,A,A,3A,3A,38.1183061,-87.0030763
+Technology,33 Muenich Ct. Hammond; IN 46320,null,null,null,null,null,null,null,null,41.6179983,-87.5235321
+Fall Creek Academy,2540 N. Capitol Ave. Indianapolis; IN 46208,A,A,A,—,—,—,A,A,39.8035810,-86.1617660
+South Bend Career Academy,3801 Crescent Circle Dr. South Bend; IN 46628,null,null,null,null,null,null,null,null,40.5576466,-111.8836027
+Kankakee Valley,3923 W. State Road 10 Wheatfi eld; IN 46392,3A,3A,3A,4A,2A,2A,3A,3A,41.1861240,-87.1199460
+Evansville Reitz Memorial,1500 Lincoln Ave. Evansville; IN 47714,3A,3A,3A,3A,2A,2A,3A,3A,37.9717190,-87.5366460
+Tipton,619 S. Main St. Tipton; IN 46072,2A,3A,3A,2A,A,A,2A,3A,40.2739755,-86.0400686
+Centerville,507 Willow Grove Rd. Centerville; IN 47330,2A,2A,2A,2A,A,A,2A,2A,39.8131337,-84.9991623
+Maconaquah,256 E. 800 S. Bunker Hill; IN 46914,3A,3A,3A,3A,A,A,3A,3A,40.6517250,-86.0658030
+South Central (Union Mills),9808 S. 600 W. Union Mills; IN 46382,A,A,A,A,—,—,A,A,41.4642070,-86.8162150
+Evansville Central,5400 First Ave. Evansville; IN 47710,4A,4A,4A,4A,2A,2A,4A,4A,38.0290560,-87.5773490
+Mt. Vernon,700 Harriett St. Mt. Vernon; IN 47620,3A,3A,3A,3A,2A,2A,3A,3A,37.9372440,-87.8880754
+Tindley,3960 Meadows Dr. Indianapolis; IN 46205,A,A,A,—,—,—,A,A,39.8298968,-86.1147031
+West Noble,5094 N. US Highway 33 Ligonier; IN 46767,3A,3A,3A,3A,A,A,3A,3A,41.4259344,-85.5847676
+Kokomo,2501 S. Berkley Rd. Kokomo; IN 46902-3099,4A,4A,4A,5A,2A,2A,4A,4A,40.4560891,-86.1575594
+Indianapolis Howe Community,4900 Julian Ave. Indianapolis; IN 46201,2A,2A,2A,A,2A,2A,2A,2A,39.7683030,-86.0858839
+Westview,1635 S. 600 W. Topeka; IN 46571,2A,2A,2A,—,A,A,2A,2A,41.5543613,-85.4815485
+Union County,410 Patriot Blvd. Liberty; IN 47353,2A,2A,2A,2A,A,A,2A,2A,39.6351750,-84.9208953
+Zionsville,1000 Mulberry St. Zionsville; IN 46077,4A,4A,4A,5A,2A,2A,4A,4A,39.9606659,-86.2730086
+Fairfi eld,67530 US Highway 33 Goshen; IN 46526,3A,3A,3A,3A,—,—,3A,3A,41.5176410,-85.7686860
+Hammond Gavit,1670 175th St. Hammond; IN 46324,3A,3A,3A,4A,2A,2A,3A,3A,41.5762616,-87.4875017
+Evansville Bosse,1300 Washington Ave. Evansville; IN 47714,3A,3A,3A,3A,2A,2A,3A,3A,37.9636577,-87.5400273
+Bellmont,1000 E. North Adams Drive Decatur; IN 46733,3A,3A,3A,3A,2A,2A,3A,3A,40.8357167,-84.9073000
+Indian Creek,803 W. Indian Creek Dr. Trafalgar; IN 46181,3A,3A,3A,3A,—,—,3A,3A,39.4070015,-86.1615663
+Concord,59117 Minuteman Way Elkhart; IN 46517,4A,4A,4A,5A,2A,2A,4A,4A,41.6337110,-85.9272060
+Lakeland Christian Academy,1093 S. 250 E. Winona Lake; IN 46590,A,A,A,—,—,—,A,A,41.2191485,-85.7954207
+Crawfordsville,1 Athenian Dr. Crawfordsville; IN 47933,3A,3A,3A,3A,A,A,3A,3A,40.0209269,-86.9074441
+Fort Wayne South Side,3601 S. Calhoun St. Fort Wayne; IN 46807,4A,4A,4A,4A,2A,2A,4A,4A,41.0526861,-85.1374506
+South Bend Riley,1902 Fellows St. South Bend; IN 46613,4A,4A,4A,4A,2A,2A,4A,4A,41.6544264,-86.2432491
+Hammond Clark,1921 Davis Ave. Whiting; IN 46394,3A,3A,3A,4A,2A,2A,3A,3A,41.6778679,-87.5067800
+Lanesville,2725 Crestview Ave. N.E. Lanesville; IN 47136-8601,A,A,A,—,—,—,A,A,38.2395620,-85.9883170
+Signature,610 Main St. Evansville; IN 47708,A,A,A,—,—,—,A,A,37.9730046,-87.5685368
+Lake Central,8400 Wicker Ave. St. John; IN 46373,4A,4A,4A,6A,2A,2A,4A,4A,41.4670274,-87.4729878
+Manchester,1 Squire Dr. North Manchester; IN 46962,2A,2A,2A,2A,A,A,2A,2A,43.2062151,-73.0582598
+Blackford,2392 N State Road 3 Hartford City; IN 47348,3A,3A,3A,3A,A,A,3A,3A,40.4850617,-85.3717671
+Triton Central,4774 W. 600 N. Fairland; IN 46126,2A,2A,2A,2A,—,—,2A,2A,39.6112540,-85.8732090
+Southmont,6425 S U.S. Hwy 231 Crawfordsville; IN 47933,2A,2A,2A,2A,A,A,2A,2A,40.0109154,-86.9044900
