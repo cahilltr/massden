@@ -11,4 +11,13 @@ A vagrant file to set up a Solr Sandbox, with Solr Collections scripts being cre
 Getting started is by reading ReadMe of the Vagrant-Solr and by reading the wiki https://github.com/cahilltr/massden/wiki/Solr-Sandbox
 
 Vagrant-Spark
+-------------
 A vagrant file to set up a Spark sandbox.
+
+HBaseMapReduceScanSolr
+-------------
+Scans All of an HBase table to be indexed into Solr
+
+Simulated Annealing
+-------------
+Current work on a Simulated Annealing Example
