@@ -19,7 +19,6 @@ public class SimulatedAnnealingProcess {
   private double sizeWeight;
   private Map<String, SchoolInfo> schoolInfoMap;
   private int conferenceSize = 10;
-  private Neighbour neighbour;
   private Distances distances;
   private Sizes sizes;
 
@@ -27,7 +26,6 @@ public class SimulatedAnnealingProcess {
     this.travelWeight = travelWeight;
     this.sizeWeight = sizeWeight;
     this.schoolInfoMap = schoolInfoMap;
-    this.neighbour = new Neighbour();
     this.distances = new Distances();
     this.sizes = new Sizes();
   }
@@ -36,7 +34,6 @@ public class SimulatedAnnealingProcess {
                                    Map<String, SchoolInfo> schoolInfoMap) {
 
     this(travelWeight, sizeWeight, schoolInfoMap);
-    this.neighbour = new Neighbour();
     this.distances = new Distances();
     this.sizes = new Sizes();
   }
@@ -97,10 +94,10 @@ public class SimulatedAnnealingProcess {
     Conferences bestConferences = new Conferences(conferences);
     this.currentConferences = new Conferences(conferences);
 
-    Neighbouring neighbour = new DistanceAndSizeBasedNeighbouring(40, .8, .05, 7, this.schoolInfoMap, this.conferenceSize, this.sizes)
-            .startAlternationWithRadiusIncrease(false)
-            .setMaxDistance(75);
-//    Neighbouring neighbour = new DistanceBasedNeighbouring(this.schoolInfoMap, this.conferenceSize);
+//    Neighbouring neighbour = new DistanceAndSizeBasedNeighbouring(40, .8, .05, 7, this.schoolInfoMap, this.conferenceSize, this.sizes)
+//            .startAlternationWithRadiusIncrease(false)
+//            .setMaxDistance(75);
+    Neighbouring neighbour = new DistanceBasedNeighbouring(this.schoolInfoMap, this.conferenceSize);
 
     double coolingRate = 0.002;
 //    double temp = 10000;
