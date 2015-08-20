@@ -1,5 +1,7 @@
+import org.apache.spark.SparkContext
+
 /**
- * Created by cahillt on 8/19/15.
+ * Starting point for Simulated annealing on Spark
  */
 object SimulatedAnnealingProcess {
 
@@ -12,6 +14,7 @@ object SimulatedAnnealingProcess {
 
     val Array(zkQuorum, group, topics, numThreads) = args
 
+    val sc = new SparkContext()
 
   }
 
