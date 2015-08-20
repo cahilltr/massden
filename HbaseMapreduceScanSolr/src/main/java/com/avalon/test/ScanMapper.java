@@ -82,7 +82,7 @@ public class ScanMapper extends TableMapper<Text, Text> {
       logger.error("InterruptedException", e);
     }
   }
-  
+
   public void processIDs(List<String> ids) throws IOException, SolrServerException, InterruptedException {
     CloudSolrServer cloudSolrServer = null;
     try {
