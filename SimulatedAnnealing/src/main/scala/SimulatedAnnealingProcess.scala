@@ -20,6 +20,8 @@ object SimulatedAnnealingProcess {
 
     //TODO: broadcast schoolInfo
     //TODO: create collection of RDDs
+    //NOTE: each RDD will essentially be on its own
+    // after the first round to do SA
     //TODO: Figure out SA to begin with
     //TODO: return trials to an rdd
     //TODO: find best scored of each rdd
