@@ -31,7 +31,9 @@ else
 fi
 cd /opt/
 sudo tar zxvf solr-5.0.0.tgz
+#sudo tar zxvf solr-4.10.3.tgz
 mv /opt/solr-5.0.0 /opt/solr
+#mv /opt/solr-4.10.3 /opt/solr
 
 cd /opt/solr/
 
