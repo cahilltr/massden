@@ -61,8 +61,8 @@ public class DocumentGeneration4x {
       SolrInputDocument document = new SolrInputDocument();
       document.addField("id", "" + i);
       document.addField("test_i", i);
-      document.addField("test_s", "this is a string");
-      document.addField("test_t", "this is some text");
+      document.addField("test_s", "this is a string " + i);
+      document.addField("test_t", "this is some text " + i);
       cloudSolrServer.add(document);
       System.out.println("" + i);
     }

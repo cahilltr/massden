@@ -17,8 +17,15 @@ import java.util.List;
  * Note that the Documents should Already be
  * in Solr prior to querying. The query is on ID which
  * is assummed to be monotonically increasing
+ * This is based of data from DocumentGeneration4x
  *
  * This class is used to explore the maxBooleanClauses limit.
+ * The current limit is 1024.  See Solr-4586.
+ * If the number of clauses is greater than 1024, an error is thrown by Solr.
+ * NumDocs controls how many Docs to query
+ * clauseBreakup is how many Docs to query per clause.
+ * As long as clauseBreakup is less than 1024, the query will finish;
+ * anything greater than 1024 an error will be thrown.
  */
 public class SolrBooleanMaxClauseWorkAround {
   private final static Logger logger = LoggerFactory.getLogger(SolrBooleanMaxClauseWorkAround.class);
@@ -78,7 +85,7 @@ public class SolrBooleanMaxClauseWorkAround {
     }
 
     int i = 1;
-    String query = "id:(";
+    String query = "( _query_:\"{!complexphrase}id:(";
     for (String id : ids) {
       if (i == booleanClauses) {
         query += id + ") AND id:(";
@@ -94,6 +101,7 @@ public class SolrBooleanMaxClauseWorkAround {
     } else {
       query += ")";
     }
+    query += "\")";
 
     System.out.println("Query: " + query);
 
