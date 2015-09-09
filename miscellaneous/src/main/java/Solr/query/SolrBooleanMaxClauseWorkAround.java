@@ -30,7 +30,7 @@ import java.util.List;
 public class SolrBooleanMaxClauseWorkAround {
   private final static Logger logger = LoggerFactory.getLogger(SolrBooleanMaxClauseWorkAround.class);
 
-  public static void main(String[] args) throws IOException, SolrServerException, ParseException {
+  public static void main(String[] args) throws IOException, SolrServerException, ParseException, InterruptedException {
 
     Option connectionOpt = Option.builder("SolrConnection")
             .required(true)
@@ -78,22 +78,18 @@ public class SolrBooleanMaxClauseWorkAround {
     CloudSolrServer cloudSolrServer = new CloudSolrServer(solrConnect);
     cloudSolrServer.setDefaultCollection(solrCollection);
 
-    List<String> ids = new ArrayList<>(numDocs);
-    for (int i = 0; i < numDocs; i++) {
-      ids.add("" + i);
-      System.out.println("" + i);
-    }
-
-    int i = 1;
     String query = "( _query_:\"{!complexphrase}id:(";
-    for (String id : ids) {
-      if (i == booleanClauses) {
-        query += id + ") AND id:(";
-        i = 1;
+    String textQuery = "( _query_:\"{!complexphrase}test_t:(";
+    for (int i = 0; i < numDocs; i++) {
+
+      if (i % booleanClauses == 0) {
+        query += i + ") AND id:(";
+        textQuery += i + ") AND test_t:(";
       } else {
-        query += " " + id + " ";
-        i++;
+        query += " " + i + " ";
+        textQuery += " " + i + " ";
       }
+      System.out.println("" + i);
     }
 
     if (query.endsWith("(")) {
@@ -107,7 +103,23 @@ public class SolrBooleanMaxClauseWorkAround {
 
     SolrQuery query1 = new SolrQuery(query);
     QueryResponse response = cloudSolrServer.query(query1, SolrRequest.METHOD.POST);
+
+    while (response == null) {
+      //Spin till response is not null
+    }
     System.out.println("Response Time: " + response.getElapsedTime());
+
+    if (textQuery.endsWith("(")) {
+      textQuery = textQuery.substring(0, query.length() - 9);
+    } else {
+      textQuery += ")";
+    }
+    textQuery += "\")";
+
+    SolrQuery queryText = new SolrQuery(textQuery);
+    QueryResponse responseText = cloudSolrServer.query(queryText, SolrRequest.METHOD.POST);
+    System.out.println("Response Time: " + responseText.getElapsedTime());
+
     cloudSolrServer.close();
   }
 }
