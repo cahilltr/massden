@@ -1,15 +1,11 @@
-package Solr.general;
+package Solr.query;
 
 import org.apache.commons.cli.*;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrRequest;
-import org.apache.solr.client.solrj.SolrResponse;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.CloudSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.common.SolrInputDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,13 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Create Documents for Solr Cloud 4.x
- * This is good for use to see affects on documents during
- * Admin type operations such as migrations of cores
- * and shards.
+ * Used to test Boolean query limitiation
+ * Note that the Documents should Already be
+ * in Solr prior to querying.
  */
-public class DocumentGeneration4x {
-  private final static Logger logger = LoggerFactory.getLogger(DocumentGeneration4x.class);
+public class SolrBooleanMaxClauseWorkAround {
+  private final static Logger logger = LoggerFactory.getLogger(SolrBooleanMaxClauseWorkAround.class);
 
   public static void main(String[] args) throws IOException, SolrServerException, ParseException {
 
@@ -64,17 +59,36 @@ public class DocumentGeneration4x {
 
     CloudSolrServer cloudSolrServer = new CloudSolrServer(solrConnect);
     cloudSolrServer.setDefaultCollection(solrCollection);
-    
+
+    List<String> ids = new ArrayList<>(numDocs);
     for (int i = 0; i < numDocs; i++) {
-      SolrInputDocument document = new SolrInputDocument();
-      document.addField("id", "" + i);
-      document.addField("test_i", i);
-      document.addField("test_s", "this is a string");
-      document.addField("test_t", "this is some text");
-      cloudSolrServer.add(document);
+      ids.add("" + i);
       System.out.println("" + i);
     }
-    cloudSolrServer.commit();
+
+    int i = 1;
+    String query = "id:(";
+    for (String id : ids) {
+      if (i == 1024) {
+        query += id + ") AND id:(";
+        i = 1;
+      } else {
+        query += " " + id + " ";
+        i++;
+      }
+    }
+
+    if (query.endsWith("(")) {
+      query = query.substring(0, query.length() - 9);
+    } else {
+      query += ")";
+    }
+
+    System.out.println("Query: " + query);
+
+    SolrQuery query1 = new SolrQuery(query);
+    QueryResponse response = cloudSolrServer.query(query1, SolrRequest.METHOD.POST);
+    System.out.println("Response Time: " + response.getElapsedTime());
     cloudSolrServer.close();
   }
 }
