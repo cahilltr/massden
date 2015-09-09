@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Used to test Boolean query limitiation
  * Note that the Documents should Already be
- * in Solr prior to querying.
+ * in Solr prior to querying. The query is on ID which
+ * is assummed to be monotonically increasing
+ *
+ * This class is used to explore the maxBooleanClauses limit.
  */
 public class SolrBooleanMaxClauseWorkAround {
   private final static Logger logger = LoggerFactory.getLogger(SolrBooleanMaxClauseWorkAround.class);
@@ -41,11 +43,19 @@ public class SolrBooleanMaxClauseWorkAround {
             .hasArg()
             .build();
 
+    Option booleanClauseBreakupOpt = Option.builder("clauseBreakup")
+            .required(false)
+            .longOpt("clauseBreakup")
+            .desc("The number of boolean clauses to have before breaking up into another clause.")
+            .hasArg()
+            .build();
+
 
     Options options = new Options();
     options.addOption(connectionOpt);
     options.addOption(collectionOpt);
     options.addOption(numDocsOpt);
+    options.addOption(booleanClauseBreakupOpt);
 
     CommandLineParser parser = new DefaultParser();
 
@@ -56,6 +66,7 @@ public class SolrBooleanMaxClauseWorkAround {
     logger.info("SolrCollection: " + solrCollection);
     int numDocs = Integer.parseInt(cmd.getOptionValue("NumDocs", "1000"));
     logger.info("NumDocs: " + numDocs);
+    int booleanClauses = Integer.parseInt(cmd.getOptionValue("clauseBreakup", "1024"));
 
     CloudSolrServer cloudSolrServer = new CloudSolrServer(solrConnect);
     cloudSolrServer.setDefaultCollection(solrCollection);
@@ -69,7 +80,7 @@ public class SolrBooleanMaxClauseWorkAround {
     int i = 1;
     String query = "id:(";
     for (String id : ids) {
-      if (i == 1024) {
+      if (i == booleanClauses) {
         query += id + ") AND id:(";
         i = 1;
       } else {

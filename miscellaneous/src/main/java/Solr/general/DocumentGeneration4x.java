@@ -1,21 +1,13 @@
 package Solr.general;
 
 import org.apache.commons.cli.*;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrRequest;
-import org.apache.solr.client.solrj.SolrResponse;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.CloudSolrServer;
-import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Create Documents for Solr Cloud 4.x
@@ -64,7 +56,7 @@ public class DocumentGeneration4x {
 
     CloudSolrServer cloudSolrServer = new CloudSolrServer(solrConnect);
     cloudSolrServer.setDefaultCollection(solrCollection);
-    
+
     for (int i = 0; i < numDocs; i++) {
       SolrInputDocument document = new SolrInputDocument();
       document.addField("id", "" + i);
