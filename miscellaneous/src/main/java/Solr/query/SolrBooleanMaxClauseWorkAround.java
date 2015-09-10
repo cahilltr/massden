@@ -2,7 +2,6 @@ package Solr.query;
 
 import org.apache.commons.cli.*;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.CloudSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -10,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static org.apache.solr.client.solrj.SolrRequest.*;
 
 /**
  * Note that the Documents should Already be
@@ -102,7 +101,7 @@ public class SolrBooleanMaxClauseWorkAround {
     System.out.println("Query: " + query);
 
     SolrQuery query1 = new SolrQuery(query);
-    QueryResponse response = cloudSolrServer.query(query1, SolrRequest.METHOD.POST);
+    QueryResponse response = cloudSolrServer.query(query1, METHOD.POST);
 
     while (response == null) {
       //Spin till response is not null
@@ -117,7 +116,7 @@ public class SolrBooleanMaxClauseWorkAround {
     textQuery += "\")";
 
     SolrQuery queryText = new SolrQuery(textQuery);
-    QueryResponse responseText = cloudSolrServer.query(queryText, SolrRequest.METHOD.POST);
+    QueryResponse responseText = cloudSolrServer.query(queryText, METHOD.POST);
     System.out.println("Response Time: " + responseText.getElapsedTime());
 
     cloudSolrServer.close();
