@@ -8,6 +8,7 @@ import java.util.Random;
  * A chromosome can also be referred to as a Strategy.
  * Size for a 3 game history is 71
  *
+ * generateInitalChromosome code is from https://github.com/aerrity/prisoners-dilemma
  */
 public class Chromosome {
 
@@ -34,5 +35,8 @@ public class Chromosome {
     this.chromosome = ra;
   }
 
+  public boolean get(int index) {
+    return this.chromosome.get(index);
+  }
 
 }
