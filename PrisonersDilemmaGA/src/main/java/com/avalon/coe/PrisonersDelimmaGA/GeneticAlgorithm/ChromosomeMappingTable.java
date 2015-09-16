@@ -1,4 +1,4 @@
-package com.avalon.coe.PrisonersDelimmaGA.prework;
+package com.avalon.coe.PrisonersDelimmaGA.GeneticAlgorithm;
 
 import org.apache.commons.lang3.StringUtils;
 

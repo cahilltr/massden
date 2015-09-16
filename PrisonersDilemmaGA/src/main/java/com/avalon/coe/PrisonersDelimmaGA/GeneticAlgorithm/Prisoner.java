@@ -1,8 +1,5 @@
 package com.avalon.coe.PrisonersDelimmaGA.GeneticAlgorithm;
 
-import com.avalon.coe.PrisonersDelimmaGA.prework.Chromosome;
-import com.avalon.coe.PrisonersDelimmaGA.prework.ChromosomeMappingTable;
-
 import java.util.BitSet;
 
 /**
@@ -54,5 +51,9 @@ public class Prisoner {
       return this.myChromosome.get(x+7); //adjust index to skip setup info
     }
     return false;
+  }
+
+  public void updateScore(int i) {
+    this.myChromosome.updateScore(i);
   }
 }
