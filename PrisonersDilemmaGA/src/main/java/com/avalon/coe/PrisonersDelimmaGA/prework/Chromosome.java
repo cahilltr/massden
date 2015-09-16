@@ -1,24 +1,37 @@
 package com.avalon.coe.PrisonersDelimmaGA.prework;
 
+import java.util.BitSet;
+import java.util.Random;
+
 /**
  * Chromosome Class
+ * A chromosome can also be referred to as a Strategy.
+ * Size for a 3 game history is 71
+ *
  */
 public class Chromosome {
 
   private final int size;
-  private String chromosome;
+  private BitSet chromosome;
 
   public Chromosome(int size) {
     this.size = size;
   }
 
   public void generateInitalChromosome() {
+    BitSet ra;
+    Random rand = new Random();
 
-    for (int i = 0 ; i < this.size; i++) {
-
+    //build random Chromosome
+    ra = new BitSet(size);
+    for(int i = 0; i < size;i++) //set strategy
+    {
+      if(rand.nextBoolean())
+        ra.set(i);
+      else
+        ra.clear(i);
     }
-
-
+    this.chromosome = ra;
   }
 
 
