@@ -56,4 +56,8 @@ public class Prisoner {
   public void updateScore(int i) {
     this.myChromosome.updateScore(i);
   }
+
+  public String getChromosomeString() {
+    return this.myChromosome.toString();
+  }
 }

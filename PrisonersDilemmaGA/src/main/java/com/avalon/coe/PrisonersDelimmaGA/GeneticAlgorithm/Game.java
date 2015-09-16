@@ -12,10 +12,6 @@ public class Game {
   private Prisoner P1;
   private Prisoner P2;
 
-  //Histories from each players view
-  private BitSet P1History;
-  private BitSet P2History;
-
   //Payoffs recieved
   private int P1Score;
   private int P2Score;
@@ -40,10 +36,8 @@ public class Game {
 
 
   /**Play a game of IPD according to the rules*/
-  public void Play()
-  {
+  public void Play() {
     //Init
-    int iteration = 0;
     P1Score = 0;
     P2Score = 0;
     BitSet P1History = new BitSet();
@@ -51,8 +45,7 @@ public class Game {
     boolean P1move, P2move;
 
     //Play the specified number of PD games
-    for(iteration = 0; iteration < this.iterations; iteration++)
-    {
+    for(int iteration = 0; iteration < this.iterations; iteration++) {
       //Get each players move
       P1move = P1.play(iteration,P1History);
       P2move = P2.play(iteration,P2History);

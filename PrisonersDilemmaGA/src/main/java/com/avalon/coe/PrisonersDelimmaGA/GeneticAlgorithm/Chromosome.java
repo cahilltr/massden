@@ -66,13 +66,13 @@ public class Chromosome {
     //One point splicing
     int slicePoint = rand.nextInt(71); //rnd num between 0-70
     BitSet a = (BitSet)parenta.clone();
-    a.clear(slicePoint,71);
+    a.clear(slicePoint, 71);
     BitSet b = (BitSet)parenta.clone();
-    b.clear(0,slicePoint);
+    b.clear(0, slicePoint);
     BitSet c = (BitSet)parentb.clone();
-    c.clear(slicePoint,71);
+    c.clear(slicePoint, 71);
     BitSet d = (BitSet)parentb.clone();
-    d.clear(0,slicePoint);
+    d.clear(0, slicePoint);
 
     //Combine start of p1 with end of p2
     child1.or(a);
@@ -100,6 +100,18 @@ public class Chromosome {
       if(rand.nextDouble() <= mProb)
         this.chromosome.flip(m);
     }
+  }
+
+  public String toString() {
+    String p = "";
+    for(int i = 0; i < this.chromosome.length(); i++)
+    {
+      if(this.chromosome.get(i))
+        p += 'C';
+      else
+        p += 'D';
+    }
+    return p;
   }
 
 }
