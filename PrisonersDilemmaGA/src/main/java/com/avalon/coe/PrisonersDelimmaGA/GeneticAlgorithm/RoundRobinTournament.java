@@ -2,8 +2,6 @@ package com.avalon.coe.PrisonersDelimmaGA.GeneticAlgorithm;
 
 import org.apache.commons.collections.map.HashedMap;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**

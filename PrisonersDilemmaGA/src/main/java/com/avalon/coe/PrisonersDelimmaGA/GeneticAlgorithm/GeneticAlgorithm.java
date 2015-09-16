@@ -17,21 +17,17 @@ public class GeneticAlgorithm {
 
     int generations = 100;
     int populationSize = 20;
+    int gameIterations = 3;
 
+    ChromosomeMappingTable chromosomeMappingTable = new ChromosomeMappingTable();
     Chromosome[] chromosomes = new Chromosome[populationSize];
+    RoundRobinTournament roundRobinTournament = new RoundRobinTournament(gameIterations, chromosomeMappingTable);
 
     for (int i = 0; i < generations; i++) {
+      //TODO initate/alter/offspring chromosomes
+      //TODO create Chromosome offspring class
 
       //TODO create RoundRobinTournament Class
-      
-
-
-
-      if (i + 1 != generations) {
-        //TODO create Chromosome offspring class
-        //TODO Create new offspring
-      }
-
     }
 
   }

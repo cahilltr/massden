@@ -14,7 +14,8 @@ public class Chromosome {
 
   private final int size;
   private BitSet chromosome;
-  private int score;
+  private int score = -1;
+  private int gameScore = -1;
 
   public Chromosome(BitSet chromosome) {
     this.chromosome = chromosome;
@@ -45,7 +46,16 @@ public class Chromosome {
     return this.chromosome.get(index);
   }
 
+  public BitSet getChromosome() {
+    return this.chromosome;
+  }
+
   public void updateScore(int s) {
+    if (this.gameScore < 0) {
+      this.gameScore += 1;
+      this.score += 1;
+    }
+    this.gameScore += s;
     this.score += s;
   }
 
@@ -53,11 +63,13 @@ public class Chromosome {
     return this.score;
   }
 
+  public int getGameScore() { return this.gameScore; }
+
   /**
    * Mate two parents using random, one point crossover
    * and returns an array containing the two children Chromosomes
    */
-  public static Chromosome[] crossover(BitSet parenta,BitSet parentb)
+  public Chromosome[] crossover(Chromosome parentb)
   {
     Random rand = new Random();
     BitSet child1 = new BitSet(71);
@@ -65,13 +77,13 @@ public class Chromosome {
 
     //One point splicing
     int slicePoint = rand.nextInt(71); //rnd num between 0-70
-    BitSet a = (BitSet)parenta.clone();
+    BitSet a = (BitSet)this.chromosome.clone();
     a.clear(slicePoint, 71);
-    BitSet b = (BitSet)parenta.clone();
+    BitSet b = (BitSet)this.chromosome.clone();
     b.clear(0, slicePoint);
-    BitSet c = (BitSet)parentb.clone();
+    BitSet c = (BitSet)parentb.chromosome.clone();
     c.clear(slicePoint, 71);
-    BitSet d = (BitSet)parentb.clone();
+    BitSet d = (BitSet)parentb.chromosome.clone();
     d.clear(0, slicePoint);
 
     //Combine start of p1 with end of p2
