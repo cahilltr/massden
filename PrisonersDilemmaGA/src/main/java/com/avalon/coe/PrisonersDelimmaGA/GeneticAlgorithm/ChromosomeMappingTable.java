@@ -30,7 +30,7 @@ public class ChromosomeMappingTable {
     for(int n = 0; n <64; n++)
     {
       s = Integer.toString(n,2);
-      StringUtils.leftPad(s, 6, '0');
+      s = StringUtils.leftPad(s, 6, '0');
 
       BitSet temp = new BitSet(6);
       for(int i = 0; i < 6; i++)

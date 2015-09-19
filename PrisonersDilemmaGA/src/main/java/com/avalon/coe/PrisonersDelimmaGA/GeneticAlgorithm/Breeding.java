@@ -1,5 +1,6 @@
 package com.avalon.coe.PrisonersDelimmaGA.GeneticAlgorithm;
 
+import java.util.BitSet;
 import java.util.Random;
 
 /**
@@ -27,13 +28,9 @@ public class Breeding {
     Chromosome[] newChromosomes = new Chromosome[this.population];
     if (chromosomesOrig[0] == null) {
       for (int i = 0; i < this.population; i++) {
-        newChromosomes[i] = new Chromosome(this.chromosomeSize);
+        newChromosomes[i] = new Chromosome(this.chromosomeSize, true);
       }
-      return newChromosomes;
     } else {
-      //TODO breed
-      //TODO select 2 parents for 2 offspring
-
       int newPopsize = 0;
       while (newPopsize < this.population) {
         Chromosome c1 = chromosomesOrig[selectRoulette()];
@@ -47,18 +44,27 @@ public class Breeding {
           newChromosomes[newPopsize] = chromosomes[0];
           newChromosomes[newPopsize + 1] = chromosomes[1];
         } else {
-
+          Chromosome new1 = new Chromosome((BitSet)c1.getChromosome().clone());
+          new1.mutate(this.mutateProb);
+          newChromosomes[newPopsize] = new1;
+          Chromosome new2 = new Chromosome((BitSet)c2.getChromosome().clone());
+          new2.mutate(this.mutateProb);
+          newChromosomes[newPopsize + 1] = new2;
         }
-
         newPopsize += 2;
       }
     }
-    return chromosomesOrig;
+
+    for (int i = 0; i < newChromosomes.length; i++) {
+      System.out.println(newChromosomes[i].toString());
+    }
+    return newChromosomes;
   }
 
   /**
    * Roulette wheel selection
    * Fitness Proportionate Selection
+   * TODO wiki link
    */
   private int selectRoulette() {
     double t1, fitSum = 0;

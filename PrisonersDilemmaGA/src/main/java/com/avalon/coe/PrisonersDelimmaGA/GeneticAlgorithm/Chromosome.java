@@ -22,8 +22,11 @@ public class Chromosome {
     this.size = chromosome.length();
   }
 
-  public Chromosome(int size) {
+  public Chromosome(int size, boolean generateChromosome) {
     this.size = size;
+    if (generateChromosome) {
+      generateInitalChromosome();
+    }
   }
 
   public void generateInitalChromosome() {
