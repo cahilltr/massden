@@ -22,10 +22,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "setup.sh"
 
   config.vm.define "master" do |master|
-    master.vm.box = "chef/centos-6.5"
+    master.vm.box = "bento/centos-6.7"
     master.vm.hostname = "cluster.master"
     master.vm.network "private_network", ip: "192.168.110.10"
     master.vm.network "forwarded_port", guest: 8983, host: 8983
+    master.vm.network "forwarded_port", guest: 7574, host: 7574
     master.hostmanager.aliases = %w(cluster)
   end
 
