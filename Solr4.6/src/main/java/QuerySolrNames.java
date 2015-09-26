@@ -17,6 +17,8 @@ import java.util.Random;
 
 /**
  * Used to query Solr Names
+ * java -cp Solr46.jar QuerySolrNames -solrCollection http://cluster:8983/solr/collection1,http://cluster:7574/solr/collection1,
+ * http://cluster:8984/solr/collection1 -querySize 1000
  */
 public class QuerySolrNames {
 
