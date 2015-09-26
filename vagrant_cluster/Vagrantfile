@@ -43,8 +43,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node2.hostmanager.aliases = %w(cluster)
   end
 
+  config.vm.define "node3" do |node3|
+    node3.vm.box = "chef/centos-6.5"
+    node3.vm.hostname = "cluster.node3"
+    node3.vm.network "private_network", ip: "192.168.110.40"
+    node3.hostmanager.aliases = %w(cluster)
+  end
+
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--memory", "3072"]
   end
 
 end
