@@ -22,36 +22,37 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "setup.sh"
 
   config.vm.define "master" do |master|
-    master.vm.box = "chef/centos-6.5"
-    master.vm.hostname = "cluster.master"
+    master.vm.box = "risdenk/centos-6.7-noselinux"
+    master.vm.hostname = "master.cluster"
     master.vm.network "private_network", ip: "192.168.110.10"
     master.vm.network "forwarded_port", guest: 8983, host: 8983
+    master.vm.network "forwarded_port", guest: 7180, host:7180
     master.hostmanager.aliases = %w(cluster)
   end
 
   config.vm.define "node1" do |node1|
-    node1.vm.box = "chef/centos-6.5"
-    node1.vm.hostname = "cluster.node1"
+    node1.vm.box = "risdenk/centos-6.7-noselinux"
+    node1.vm.hostname = "node1.cluster"
     node1.vm.network "private_network", ip: "192.168.110.20"
     node1.hostmanager.aliases = %w(cluster)
   end
 
   config.vm.define "node2" do |node2|
-    node2.vm.box = "chef/centos-6.5"
-    node2.vm.hostname = "cluster.node2"
+    node2.vm.box = "risdenk/centos-6.7-noselinux"
+    node2.vm.hostname = "node2.cluster"
     node2.vm.network "private_network", ip: "192.168.110.30"
     node2.hostmanager.aliases = %w(cluster)
   end
 
   config.vm.define "node3" do |node3|
-    node3.vm.box = "chef/centos-6.5"
-    node3.vm.hostname = "cluster.node3"
+    node3.vm.box = "risdenk/centos-6.7-noselinux"
+    node3.vm.hostname = "node3.cluster"
     node3.vm.network "private_network", ip: "192.168.110.40"
     node3.hostmanager.aliases = %w(cluster)
   end
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "3072"]
+    vb.customize ["modifyvm", :id, "--memory", "3328"]
   end
 
 end

@@ -10,7 +10,11 @@ sudo echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
 sudo echo "echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag" >> /etc/rc.local
 sudo echo "echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled" >> /etc/rc.local
 
-sudo yum -y install wget ntp java-1.7.0-openjdk java-1.7.0-openjdk-devel
+#sudo yum -y install wget ntp java-1.7.0-openjdk java-1.7.0-openjdk-devel
+sudo yum -y install wget ntp
+
+sudo swapoff -a
+sudo echo 10 > /proc/sys/vm/swappiness
 
 sudo service iptables stop
 sudo chkconfig iptables off
