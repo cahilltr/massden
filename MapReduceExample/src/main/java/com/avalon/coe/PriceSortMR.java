@@ -26,6 +26,7 @@ import static java.lang.Double.parseDouble;
 /**
  * This MR job recreates the query "select * from products where price > 10000 order by salary desc"
  * The product data table is from Cloudera's MySQL table 'products' that is on their Sandbox
+ * Uses the TotalOrderPartitioner to do ordering.
  */
 public class PriceSortMR {
   private final static Logger logger = LoggerFactory.getLogger(PriceSortMR.class);
