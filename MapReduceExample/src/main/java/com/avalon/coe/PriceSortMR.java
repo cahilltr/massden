@@ -83,6 +83,7 @@ public class PriceSortMR {
       System.exit(255);
     }
     Configuration conf = new Configuration();
+
     try {
       conf.setDouble("price.lessThan", Double.parseDouble(args[2]));
       Job job = Job.getInstance(conf, "PriceSort");
