@@ -1,17 +1,22 @@
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.impl.LBHttpSolrServer;
 import org.apache.solr.client.solrj.impl.XMLResponseParser;
 import org.apache.solr.client.solrj.response.SolrPingResponse;
 import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.common.params.UpdateParams;
 
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by cahillt on 9/23/15.
@@ -59,35 +64,9 @@ public class PopulateSolrOnly {
         lastNames.add(line);
       }
 
-//      LBHttpSolrServer lbHttpSolrServer = new LBHttpSolrServer(solrConnection.split(","));
-
-//      int count = 0;
-//
-//      2609277063 phone
-//      123456789 SSN
-
-
-//      for (String fName : firstNames) {
-//        for (String lName : lastNames) {
-//          SolrInputDocument solrInputDocument = new SolrInputDocument();
-//          String id = fName + lName;
-//          solrInputDocument.addField("id", id);
-//          solrInputDocument.addField("first_t", fName);
-//          solrInputDocument.addField("last_t", lName);
-//          lbHttpSolrServer.add(solrInputDocument);
-//          count++;
-//          if (count == 5000) {
-//            System.out.println(id);
-//            lbHttpSolrServer.commit();
-//            count = 0;
-//          }
-//        }
-//        lbHttpSolrServer.commit();
-//      }
-
       List<Thread> threads = new ArrayList<>();
       int lasti = 0;
-      for (int i = 10000; i < lastNames.size(); i += 10000) {
+      for (int i = 5000; i < lastNames.size(); i += 5000) {
         List<String> subLast = lastNames.subList(lasti, i);
         lasti = i;
 

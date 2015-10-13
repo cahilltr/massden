@@ -3,10 +3,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServerException;
-import org.apache.solr.client.solrj.impl.BinaryRequestWriter;
-import org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer;
-import org.apache.solr.client.solrj.impl.LBHttpSolrServer;
-import org.apache.solr.client.solrj.impl.XMLResponseParser;
+import org.apache.solr.client.solrj.impl.*;
 import org.apache.solr.client.solrj.response.QueryResponse;
 
 import java.io.*;
@@ -71,8 +68,7 @@ public class QuerySolrNames {
     System.out.println(solrConnection);
 
     LBHttpSolrServer lbHttpSolrServer = new LBHttpSolrServer(solrConnection.split(","));
-//http://localhost:8983/solr/collection1/select?shards=localhost:8983/solr/collection1,localhost:7574/solr/collection1&indent=true&q=*:*&wt=json&rows=10&debug=true
-//http://localhost:8983/solr/collection1/select?shards=localhost:8983/solr/collection1,localhost:7574/solr/collection1,localhost:8984/solr/collection1&indent=true&q=*:*&wt=json&rows=10&debug=true
+
     String solrNodes = solrConnection.replace("http://", "");
     Random random = new Random();
     int count = 0;
@@ -91,7 +87,7 @@ public class QuerySolrNames {
             SolrQuery query = new SolrQuery("person_name_txt: " + StringUtils.join(names, " OR "));
             query.add("shards", solrNodes);
             QueryResponse qr = lbHttpSolrServer.query(query, SolrRequest.METHOD.POST);
-            lbHttpSolrServer.commit(false, false);
+            lbHttpSolrServer.commit();
             System.out.println("Response Time: " + qr.getElapsedTime());
             names.clear();
             count = 0;

@@ -5,13 +5,14 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.LBHttpSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
- * Created by cahillt on 9/25/15.
+ * Thread for querying Solr
  */
 public class QuerySolrThread extends Thread implements Runnable {
 
@@ -38,7 +39,6 @@ public class QuerySolrThread extends Thread implements Runnable {
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
-//http://localhost:8983/solr/collection1/select?shards=localhost:8983/solr/collection1,localhost:7574/solr/collection1&indent=true&q=*:*&wt=json&rows=10&debug=true
 
     Random random = new Random();
     int count = 0;
@@ -56,11 +56,14 @@ public class QuerySolrThread extends Thread implements Runnable {
           try {
             SolrQuery query = new SolrQuery("person_name_txt: " + StringUtils.join(names, " OR "));
             query.add("shards", this.solrConnection);
+            query.add("timeAllowed", "30");
+            assert lbHttpSolrServer != null;
             QueryResponse qr = lbHttpSolrServer.query(query, SolrRequest.METHOD.POST);
+            lbHttpSolrServer.commit();
             System.out.println("Response Time: " + qr.getElapsedTime());
             names.clear();
             count = 0;
-          } catch (SolrServerException e) {
+          } catch (SolrServerException | IOException e) {
             e.printStackTrace();
           }
         }

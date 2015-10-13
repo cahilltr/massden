@@ -1,14 +1,16 @@
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.ConcurrentUpdateSolrServer;
 import org.apache.solr.client.solrj.impl.LBHttpSolrServer;
 import org.apache.solr.common.SolrInputDocument;
+import org.apache.solr.common.params.*;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Thread for creating data into Solr
+ * Assume AutoCommit is enabled.
  */
 public class PopulateThread extends Thread implements Runnable {
 
@@ -29,6 +31,11 @@ public class PopulateThread extends Thread implements Runnable {
   public void run() {
     try {
       LBHttpSolrServer lbHttpSolrServer = new LBHttpSolrServer(this.solrConnect.split(","));
+//      ConcurrentUpdateSolrServer concurrentUpdateSolrServer = new ConcurrentUpdateSolrServer(this.solrConnect.split(",")[0], 100, 1);
+      Set<String> paramses = new HashSet<>();
+      paramses.add(UpdateParams.OPEN_SEARCHER +"=false");
+      paramses.add(UpdateParams.WAIT_SEARCHER +"=false");
+      lbHttpSolrServer.setQueryParams(paramses);
       Random r = new Random();
       int count = 0;
       for (String fName : fNames) {
@@ -48,16 +55,19 @@ public class PopulateThread extends Thread implements Runnable {
             solrInputDocument.addField("person_ssn_ss", ssn - 1000);
           }
           String address = Math.abs(r.nextInt()) + " " + addresses[r.nextInt(addresses.length - 1)];
-          solrInputDocument.addField("address_ss", address);
+          solrInputDocument.addField("address_txt", address);
+          if (r.nextDouble() > .8) {
+            String address2 = Math.abs(r.nextInt()) + " " + addresses[r.nextInt(addresses.length - 1)];
+            solrInputDocument.addField("address_txt", address2);
+          }
 
           try {
-            lbHttpSolrServer.add(solrInputDocument);
+            lbHttpSolrServer.add(solrInputDocument, 60000);
 
             count++;
             if (count == 10000) {
+              //assume
               System.out.println(id);
-              lbHttpSolrServer.commit();
-              count = 0;
             }
           } catch (SolrServerException e) {
             e.printStackTrace();
