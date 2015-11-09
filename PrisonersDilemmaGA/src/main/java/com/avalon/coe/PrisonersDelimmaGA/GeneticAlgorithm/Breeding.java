@@ -56,7 +56,7 @@ public class Breeding {
     }
 
     for (int i = 0; i < newChromosomes.length; i++) {
-      System.out.println(newChromosomes[i].toString());
+      System.out.println(newChromosomes[i].toString() + ":" + newChromosomes[i].toString().length());
     }
     return newChromosomes;
   }

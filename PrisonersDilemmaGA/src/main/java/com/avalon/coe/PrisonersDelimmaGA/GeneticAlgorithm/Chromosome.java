@@ -17,9 +17,9 @@ public class Chromosome {
   private int score = -1;
   private int gameScore = -1;
 
-  public Chromosome(BitSet chromosome) {
-    this.chromosome = chromosome;
-    this.size = chromosome.length();
+  public Chromosome(BitSet chromo) {
+    this.chromosome = chromo;
+    this.size = chromo.length();
   }
 
   public Chromosome(int size, boolean generateChromosome) {
