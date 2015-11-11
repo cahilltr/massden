@@ -53,6 +53,9 @@ public class StateSimulatedLoadThread extends Thread implements Runnable  {
       if (createAppointment(this.as.createAppointment(), id)) {
         count--;
       }
+      if (count % 100 == 0) {
+        System.out.println(this.getId() + " " + count);
+      }
     }
   }
 
