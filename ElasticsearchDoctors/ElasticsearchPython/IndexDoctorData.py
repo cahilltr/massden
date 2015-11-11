@@ -71,18 +71,18 @@ def handleCSV(csvFile):
 def createJSONBody(df, indexName, type):
     counted = 0
     try:
-        # location = geolocator.geocode("175 5th Avenue NYC")
         body = ""
         for index,row in df.iterrows():
             data = {}
-            street = ""
-            city = ""
-            zip = ""
-            state = ""
+            # print index, row
             for col in usedCols:
                 if isinstance(row[col], (int, long, float, complex)):
                     if not math.isnan(row[col]):
-                        data[colsDict[col]] = row[col]
+                        if col == "Zip Code":
+                            zipCode = int(str(row[col])[0:5])
+                            data[colsDict[col]] = zipCode
+                        else:
+                            data[colsDict[col]] = row[col]
                 elif col == "Line 1 Street Address":
                     street = row[col]
                     data[colsDict[col]] = street
@@ -92,15 +92,13 @@ def createJSONBody(df, indexName, type):
                 elif col == "State":
                     state = row[col]
                     data[colsDict[col]] = state
-                elif col == "Zip Code":
-                    zip = row[col]
-                    data[colsDict[col]] = zip
                 else:
                     data[colsDict[col]] = row[col]
             jsonBody = json.dumps(data)
             body += '{ "index": { "_index": "%s", "_type": "%s", "_id": %s }}' % (indexName, type, index) + "\n" + jsonBody + "\n"
             counted += 1
-            print counted
+            if counted % 100 == 0:
+                print counted
         return body
     except:
         exc_type, exc_obj, exc_tb = sys.exc_info()
