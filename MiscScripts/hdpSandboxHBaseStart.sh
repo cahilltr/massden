@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #Stop Oozie
-curl -k -u admin:admin -H "X-Requested-By:ambari" -i -X PUT -d '{"RequestInfo":{"context":"Install OOZIE_SERVER"},"Body":{"HostRoles":{"state":"INSTALLED"}}}' http://127.0.0.1:8080/api/1/clusters/Sandbox/hosts/sandbox.hortonworks.com/host_components/OOZIE_SERVER
+curl -k -u admin:admin -H "X-Requested-By:ambari" -i -X PUT -d '{"ServiceInfo":{"state":"INSTALLED"}}' http://127.0.0.1:8080/api/v1/clusters/Sandbox/services/OOZIE/
 
 #Stop Atlas
 curl -k -u admin:admin -H "X-Requested-By:ambari" -i -X PUT -d '{"ServiceInfo":{"state":"INSTALLED"}}' http://127.0.0.1:8080/api/v1/clusters/Sandbox/services/ATLAS/
