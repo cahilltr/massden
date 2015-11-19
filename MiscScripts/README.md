@@ -3,6 +3,9 @@
 ##addyearfromfilenametoendofline.sh
 Takes a year from the file name and adds the year to the end of each line.  The "-i" of sed is the flag to edit the file in place. "BASH_REMATCH[1]" is the the first subpattern assigned from the regex.
 
+##createCSVWithCommasInAField.py
+Python script to create a CSV with fields 0 and 2 having only letters and numbers and field 1 having punctuation in it.
+
 ##dateToSQLDate.py
 Reads a csv from https://archive.ics.uci.edu/ml/datasets/ISTANBUL+STOCK+EXCHANGE and changes the dates via Pandas Dataframes.
 
