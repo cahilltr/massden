@@ -47,8 +47,8 @@ def putRow(x, tableName):
         CF = columnFamily[col]
         columnName = colsDict[col]
         value = x[col]
-    command = "echo \"put '%s','%s','%s:%s','%s'\" | hbase shell" % (tableName,rk,CF,columnName, value)
-    os.system(command)
+        command = "echo \"put '%s','%s','%s:%s','%s'\" | hbase shell" % (tableName,rk,CF,columnName, value)
+        os.system(command)
 
 dataFile = raw_input("Path to CSV: ")
 tableName = raw_input("Table Name: ")
