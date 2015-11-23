@@ -15,11 +15,20 @@ Python script to read a CSV file of https://data.medicare.gov/data/physician-com
 ##hdpSandboxHBaseStart.sh
 Uses Ambari's REST API to stop Oozie, Atlas, and Hive and starts HBase.  Only tested on HDP 2.3 Sandbox.
 
+##insertStockDataToPhoenix.py
+Inserts Stock data from Pandas get_data_yahoo into Phoenix/HBase via JayDeBeAPI.  Note that the commit() from the connection is important as it pushs the inserts in.  Also, no semicolon is used for the "upsert".
+
 ##phoenixDoctors.sql
 Sample create tables of creating a Phoenix table over an existing HBase table with a lowercase table name, lowercase column families, and lowercase columns.  Note that there are also 2 column families in the existing HBase table (personal and medical).  Note the quotes only need to be used if the table name, column family, or column is lowercase.  Also, the field defined in the sql is columnFamily.column.
 
 ##pyPhoenixJDBC.py
 Simple connection script for Python to Phoenix and then puts the rows and columns into a pandas DataFrame. Connection code from https://gist.github.com/randerzander/3fd189409cab970156b3 using JayDeBeApi.
 
+##PySparkToPhoenix.py
+Simple script to connect Phoenix to Spark via Python.  This is a Python version of https://phoenix.apache.org/phoenix_spark.html - Load as a DataFrame using the Data Source API.
+
 ##pythonUpgradeScript.sh
 Script for upgrading to Python 2.7 while keeping Python 2.6 in place.
+
+##stocksYahoo.sql
+An SQL script to create a table for the stock data from yahoo (and pandas get_data_yahoo service).  Built sepcifically for Apache Phoenix.
