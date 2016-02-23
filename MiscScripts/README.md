@@ -6,6 +6,9 @@ Takes a year from the file name and adds the year to the end of each line.  The 
 ##createCSVWithCommasInAField.py
 Python script to create a CSV with fields 0 and 2 having only letters and numbers and field 1 having punctuation in it.
 
+##createFilesForFlume.py
+Python script to create a file every 2 minutes using the same code as createCSVWithCommasInAField.py.  Note that file_paths is set to "./". Change the to alter what path the files are written too.
+
 ##dateToSQLDate.py
 Reads a csv from https://archive.ics.uci.edu/ml/datasets/ISTANBUL+STOCK+EXCHANGE and changes the dates via Pandas Dataframes.
 
