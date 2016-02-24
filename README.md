@@ -21,3 +21,7 @@ Scans All of an HBase table to be indexed into Solr
 Simulated Annealing
 -------------
 Current work on a Simulated Annealing Example
+
+Spark MLLib
+-----------
+Work with the Spark MLLib Library. Currently working with Spark 1.6.0
