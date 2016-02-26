@@ -17,9 +17,9 @@ import org.apache.spark.mllib.linalg.Vectors
   * Combine Results and the College attended.
   */
 object DecisionTreeFootball {
+  val log = LogManager.getLogger(this.getClass)
 
   def main (args: Array[String]) {
-    val log = LogManager.getLogger(this.getClass)
 
     val properties = new Properties()
 
@@ -80,6 +80,8 @@ object DecisionTreeFootball {
       .drop("last_name")
       .drop("full_name")
       .withColumn("long_term", findYearsPlayed(col("year_end"), col("year_start")))
+
+    
 
     // year,name,firstname,lastname,position,heightfeet,heightinches,heightinchestotal,
     // weight,arms,hands,fortyyd,twentyyd,tenyd,twentyss,threecone,vertical,broad,bench,round,
