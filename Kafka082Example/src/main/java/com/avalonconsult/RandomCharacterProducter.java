@@ -14,14 +14,13 @@ import java.util.Properties;
 public class RandomCharacterProducter {
 
   public static void main(String[] args) {
-
     if (args.length < 2) {
       System.out.println("Not enough arguments");
       System.exit(1);
     }
 
     String topic = args[0];
-    int port = Integer.parseInt(args[1]);
+    String[] ports = args[1].split(",");
 
     int numMessages = -1;
     if (args.length >= 3) {
@@ -30,8 +29,14 @@ public class RandomCharacterProducter {
 
     Properties props = new Properties();
     props.put("serializer.class", "kafka.serializer.StringEncoder");
-    System.out.println("127.0.0.1:" + port);
-    props.put("metadata.broker.list", "localhost:" + port);
+    String brokerList = "";
+    for (String port1 : ports) {
+      brokerList += "localhost:" + port1 + ",";
+    }
+
+    brokerList = brokerList.substring(0, brokerList.length() - 1);
+    System.out.println("Broker List: " + brokerList);
+    props.put("metadata.broker.list", brokerList);
     ProducerConfig config = new ProducerConfig(props);
     Producer<String, String> producer = new Producer<>(config);
 

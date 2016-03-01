@@ -17,7 +17,7 @@ import java.util.Properties;
  * Created by cahillt on 2/26/16.
  * High Level Consumer
  */
-public class HighLevelKafkaConsumer {
+public class HighLevelKafkaConsumerSingleThread {
 
 
   public static void main(String[] args) {
