@@ -8,7 +8,7 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by cahillt on 2/29/16.
- * Mysql Connector Per Thread
+ * Per Thread runner
  */
 public class MultiRunnable implements Runnable {
 

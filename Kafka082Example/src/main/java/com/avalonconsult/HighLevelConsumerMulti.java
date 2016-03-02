@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by cahillt on 2/29/16.
- * High Level Consumer for Insert into Mysql Table
+ * High Level Consumer with multiple threads
  */
 public class HighLevelConsumerMulti {
 

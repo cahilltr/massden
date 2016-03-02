@@ -4,8 +4,10 @@ import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.Properties;
+import java.util.Timer;
 
 /**
  * Created by cahillt on 2/26/16.
@@ -41,7 +43,8 @@ public class RandomCharacterProducter {
     Producer<String, String> producer = new Producer<>(config);
 
     int amountProduced = 0;
-
+    StopWatch stopWatch = new StopWatch();
+    stopWatch.start();
     while (numMessages >= 0 || numMessages == -1) {
       String dataString = RandomStringUtils.randomAlphabetic(250);
       KeyedMessage<String, String> data = new KeyedMessage<>(topic, dataString);
@@ -51,9 +54,13 @@ public class RandomCharacterProducter {
       }
       amountProduced++;
       if (amountProduced % 1000 == 0 ) {
-        System.out.println("Messages Produced:" + amountProduced);
+        stopWatch.stop();
+        System.out.println("Messages Produced:" + amountProduced + " Time To Produce: " + stopWatch.getTime());
+        stopWatch.reset();
+        stopWatch.start();
       }
     }
+    stopWatch.stop();
   }
 
 }
