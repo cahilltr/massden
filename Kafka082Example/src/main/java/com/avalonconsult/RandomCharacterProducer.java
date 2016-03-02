@@ -13,7 +13,7 @@ import java.util.Timer;
  * Created by cahillt on 2/26/16.
  * Simple Producer For Testing
  */
-public class RandomCharacterProducter {
+public class RandomCharacterProducer {
 
   public static void main(String[] args) {
     if (args.length < 2) {
