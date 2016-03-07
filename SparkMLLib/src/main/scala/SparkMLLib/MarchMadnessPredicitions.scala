@@ -1,5 +1,6 @@
 package SparkMLLib
 
+import org.apache.spark.sql.Row
 import org.apache.spark.sql.functions._
 import org.apache.spark.{SparkContext, SparkConf}
 
@@ -60,7 +61,7 @@ object MarchMadnessPredicitions {
     //Season,Daynum,Wteam,Wscore,Lteam,Lscore,Wloc,Numot,Wfgm,Wfga,Wfgm3,Wfga3,Wftm,Wfta,Wor,Wdr,Wast,Wto,Wstl,Wblk,Wpf,
     // Lfgm,Lfga,Lfgm3,Lfga3,Lftm,Lfta,Lor,Ldr,Last,Lto,Lstl,Lblk,Lpf
     //Shooting Efficency - eFG% = (FG + 0.5 x 3FG) / FGA
-    val shootingEfficency = udf((fgm: Int, tptfgm: Int, fgma: Int) => (fgm + (0.5 * tptfgm))/ fgma)
+    val shootingEfficiency = udf((fgm: Int, fgm3: Int, fga: Int, fga3: Int) => (fgm + (0.5 * fgm3))/ (fga + fga3))
 
     //Turnover rate - TO% = turnovers/possessions
     val turnoverRate = udf((to:Int, possessions:Int) => to/possessions)
@@ -71,6 +72,21 @@ object MarchMadnessPredicitions {
     //free throw conversion - FTM/FGA
     val freeThrowConversion = udf((ftm: Int, fga: Int) => ftm/fga)
 
+    val teamsPrep = teamsAgg
+      .withColumn("shootingEfficiency", shootingEfficiency(col("fgm"), col("fgm3"), col("fga"), col("fga3")))
+      .withColumn("offRebounding", offRebounding(col("or"), col("oppdr")))
+      .withColumn("freeThrowConversion", freeThrowConversion(col("ftm"), col("fta")))
 
+    println(teamsPrep.count())
+
+
+    val getTourneyParings =
+
+  }
+
+  def compareTeams(team1:Array[Float], team2:Array[Float], weights:Array[Float]) : Boolean => {
+
+
+    false
   }
 }
