@@ -5,7 +5,11 @@ import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.time.StopWatch;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Timer;
 
@@ -39,16 +43,26 @@ public class RandomCharacterProducer {
     brokerList = brokerList.substring(0, brokerList.length() - 1);
     System.out.println("Broker List: " + brokerList);
     props.put("metadata.broker.list", brokerList);
+//    New Producer API needs
+    props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    props.put("bootstrap.servers", brokerList); //This is the same as the metadata.broker.list
     ProducerConfig config = new ProducerConfig(props);
-    Producer<String, String> producer = new Producer<>(config);
+    //Old Producer API
+//    Producer<String, String> producer = new Producer<>(config);
+
+    //New producer API
+    KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
     int amountProduced = 0;
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
     while (numMessages >= 0 || numMessages == -1) {
-      String dataString = RandomStringUtils.randomAlphabetic(250);
-      KeyedMessage<String, String> data = new KeyedMessage<>(topic, dataString);
-      producer.send(data);
+//      Old Producer API
+//      String dataString = RandomStringUtils.randomAlphabetic(250);
+//      KeyedMessage<String, String> data = new KeyedMessage<>(topic, dataString);
+//      producer.send(data);
+      producer.send(new ProducerRecord(topic, RandomStringUtils.randomAlphabetic(250)));
       if (numMessages != -1) {
         numMessages--;
       }
