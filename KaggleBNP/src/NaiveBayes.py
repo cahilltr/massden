@@ -2,7 +2,6 @@ from pandas import DataFrame
 import pandas as pd
 from sklearn.preprocessing import Imputer
 from sklearn.naive_bayes import BernoulliNB, GaussianNB
-import numpy as np
 
 
 # http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.Imputer.html
@@ -19,43 +18,30 @@ def check_mapping_or_add(my_col, x):
         cat_var_mapping[my_col][x] = count
         return count
 
+
 def train_gaussian(data, target, run_type):
     gnb = GaussianNB()
     model = gnb.fit(data, target)
     y_pred_train = model.predict(data)
     print(run_type + ": Number of mislabeled points out of a total %d points : %d" % (
-        len(train_values), (train_target != y_pred_train).sum()))
+        train_size, (train_target != y_pred_train).sum()))
 
-def train_bernoulli(data, target, run_type):
-    clf = BernoulliNB()
+
+def train_bernoulli(data, target, run_type, alpha=1):
+    clf = BernoulliNB(alpha=alpha)
     clf.fit(data, target)
     y_pred_train = clf.predict(data)
     print(run_type + ": Number of mislabeled points out of a total %d points : %d" % (
-        len(train_values), (train_target != y_pred_train).sum()))
-
-def binarize(columnName, df, features=None):
-    df[columnName] = df[columnName].astype(str)
-    if(features is None):
-        features = np.unique(df[columnName].values)
-    print(features)
-    for x in features:
-        df[columnName+'_' + x] = df[columnName].map(lambda y:
-                                                    1 if y == x else 0)
-    df.drop(columnName, inplace=True, axis=1)
-    return df, features
+        train_size, (train_target != y_pred_train).sum()))
 
 
 trainDF = DataFrame.from_csv('/Users/cahillt/Downloads/bnp/train.csv')
 testDF = DataFrame.from_csv('/Users/cahillt/Downloads/bnp/test.csv')
 
+train_size = len(trainDF)
+
 for col in trainDF:
     print col, trainDF[col].dtypes
-
-# Create Binary fields
-# for col in trainDF[2:]:
-#     if trainDF[col].dtype == 'object':
-#         trainDF, bin_features = binarize(col, trainDF)
-#         testDF, _ = binarize(col, test, binfeatures)
 
 # Map categorical variables to integer variables.
 cat_var_mapping = {}
@@ -95,57 +81,61 @@ for key, value in column_percentages.iteritems():
     if value > 0.25:
         drop_columns.append(key)
 
-
 # All Data
 # Most Frequent
 imp = Imputer(missing_values='NaN', strategy='most_frequent', axis=0)
-train_values = imp.fit_transform(trainDF.values)
-train_gaussian(train_values, train_target, "Gaussian, Most Frequent")
-train_bernoulli(train_values, train_target, "Bernoulli, Most Frequent")
+train_values_mf = imp.fit_transform(trainDF.values)
+train_gaussian(train_values_mf, train_target, "Gaussian, Most Frequent")
+for a in [0.5, 1, 2]:
+    train_bernoulli(train_values_mf, train_target, "Bernoulli, Most Frequent, alpha=" + str(a), a)
 
 # Mean
 imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
-train_values = imp.fit_transform(trainDF.values)
-train_gaussian(train_values, train_target, "Gaussian, Mean")
-train_bernoulli(train_values, train_target, "Bernoulli, Mean")
+train_values_mean = imp.fit_transform(trainDF.values)
+train_gaussian(train_values_mean, train_target, "Gaussian, Mean")
+for a in [0.5, 1, 2]:
+    train_bernoulli(train_values_mean, train_target, "Bernoulli, Mean, alpha=" + str(a), a)
 
 # Median
 imp = Imputer(missing_values='NaN', strategy='median', axis=0)
-train_values = imp.fit_transform(trainDF.values)
-train_gaussian(train_values, train_target, "Gaussian, Median")
-train_bernoulli(train_values, train_target, "Bernoulli, Median")
-
+train_values_median = imp.fit_transform(trainDF.values)
+train_gaussian(train_values_median, train_target, "Gaussian, Median")
+for a in [0.5, 1, 2]:
+    train_bernoulli(train_values_median, train_target, "Bernoulli, Median, alpha=" + str(a), a)
 
 # Drop bad columns
 train_values_dropped_columns = trainDF.drop(drop_columns, axis=1, inplace=False).values
 
 # Most Frequent
 imp = Imputer(missing_values='NaN', strategy='most_frequent', axis=0)
-train_values = imp.fit_transform(train_values_dropped_columns)
-train_gaussian(train_values, train_target, "Gaussian, Most Frequent, Dropped Columns")
-train_bernoulli(train_values, train_target, "Bernoulli, Most Frequent, Dropped Columns")
+train_values_dropped_mf = imp.fit_transform(train_values_dropped_columns)
+train_gaussian(train_values_dropped_mf, train_target, "Gaussian, Most Frequent, Dropped Columns")
+for a in [0.5, 1, 2]:
+    train_bernoulli(train_values_dropped_mf, train_target, "Bernoulli, Most Frequent, Dropped Columns, alpha=" + str(a), a)
 
 # Mean
 imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
-train_values = imp.fit_transform(train_values_dropped_columns)
-train_gaussian(train_values, train_target, "Gaussian, Mean, Dropped Columns")
-train_bernoulli(train_values, train_target, "Bernoulli, Mean, Dropped Columns")
+train_values_dropped_mean = imp.fit_transform(train_values_dropped_columns)
+train_gaussian(train_values_dropped_mean, train_target, "Gaussian, Mean, Dropped Columns")
+for a in [0.5, 1, 2]:
+    train_bernoulli(train_values_dropped_mean, train_target, "Bernoulli, Mean, Dropped Columns, alpha=" + str(a), a)
 
 # Median
 imp = Imputer(missing_values='NaN', strategy='median', axis=0)
-train_values = imp.fit_transform(train_values_dropped_columns)
-train_gaussian(train_values, train_target, "Gaussian, Median, Dropped Columns")
-train_bernoulli(train_values, train_target, "Bernoulli, Median, Dropped Columns")
+train_values_dropped_median = imp.fit_transform(train_values_dropped_columns)
+train_gaussian(train_values_dropped_median, train_target, "Gaussian, Median, Dropped Columns")
+for a in [0.5, 1, 2]:
+    train_bernoulli(train_values_dropped_median, train_target, "Bernoulli, Median, Dropped Columns, alpha=" + str(a), a)
 
 # Zeros
 # All Columns
-train_values = zerosDF.values
-train_gaussian(train_values, train_target, "Gaussian, Zeros")
-train_bernoulli(train_values, train_target, "Bernoulli, Zeros")
+train_values_zeros = zerosDF.values
+train_gaussian(train_values_zeros, train_target, "Gaussian, Zeros")
+for a in [0.5, 1, 2]:
+    train_bernoulli(train_values_zeros, train_target, "Bernoulli, Zeros, alpha=" + str(a), a)
 
 # Drop bad columns
 train_zeros_values_dropped_columns = zerosDF.drop(drop_columns, axis=1, inplace=False).values
-train_gaussian(train_values, train_target, "Gaussian, Zeros, Dropped Columns")
-train_bernoulli(train_values, train_target, "Bernoulli, Zeros, Dropped Columns")
-
-# Binarization
+train_gaussian(train_zeros_values_dropped_columns, train_target, "Gaussian, Zeros, Dropped Columns")
+for a in [0.5, 1, 2]:
+    train_bernoulli(train_zeros_values_dropped_columns, train_target, "Bernoulli, Zeros, Dropped Columns, alpha=" + str(a), a)

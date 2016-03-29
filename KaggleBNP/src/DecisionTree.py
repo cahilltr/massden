@@ -3,6 +3,11 @@ from pandas import DataFrame
 import pandas as pd
 from sklearn.preprocessing import Imputer
 from sklearn.tree import DecisionTreeClassifier
+from pandas.tools.plotting import parallel_coordinates
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
+
 
 def check_mapping_or_add(my_col, x):
     if x in cat_var_mapping[my_col]:
@@ -17,6 +22,10 @@ testDF = DataFrame.from_csv('/Users/cahillt/Downloads/bnp/test.csv')
 
 for col in trainDF:
     print col, trainDF[col].dtypes
+
+
+
+
 
 # Map categorical variables to integer variables.
 cat_var_mapping = {}
@@ -42,7 +51,7 @@ train_target = trainDF['target'].values
 trainDF.drop('target', axis=1, inplace=True)
 
 # Fill With Zeros and repeat
-#zerosDF = trainDF.fillna(value=0)
+zerosDF = trainDF.fillna(value=-1)
 
 imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
 train_values = imp.fit_transform(trainDF.values)
@@ -52,19 +61,19 @@ predicted_labels = clf.predict(train_values)
 
 wrong_count = 0
 for predicted_label, actual in zip(predicted_labels, train_target):
-    if (predicted_label != actual):
+    if predicted_label != actual:
         wrong_count += 1
     print('Model: {}; truth: {}'.format(predicted_label, actual))
 
 print wrong_count, len(train_target)
 
+stuff = clf.score(train_values, train_target)
 
-imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
-test_values = imp.fit_transform(testDF.values)
+# imp = Imputer(missing_values='NaN', strategy='mean', axis=0)
+# test_values = imp.fit_transform(testDF.values)
 
-test_predicted = clf.predict(test_values)
-test_predicted_prob = clf.predict_proba(test_values)
-print clf.n_classes_, clf.classes_
-print len(test_predicted)
-print test_predicted_prob[0]
 
+
+# test_predicted = clf.predict(test_values)
+# test_predicted_prob = clf.predict_proba(test_values)
+# print clf.n_classes_, clf.classes_
