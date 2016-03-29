@@ -1,0 +1,40 @@
+Seattle, Washington|47.6062095,-122.3320708
+Crystal Lake, Illinois|42.2411344,-88.31619649999999
+Roseville, California|38.7521235,-121.2880059
+Tampa, Florida|27.950575,-82.4571776
+Raleigh, North Carolina|35.7795897,-78.6381787
+Hendersonville, Tennessee|36.3047735,-86.6199957
+Fort Worth, Texas|32.7554883,-97.3307658
+Portsmouth, Ohio|38.7317431,-82.9976742
+Cedar Rapids, Iowa|41.9778795,-91.6656232
+Norfolk, Virginia|36.8507689,-76.28587259999999
+Pinedale, Wyoming|42.8678809,-109.8633501
+Kings Park, New York|40.88620900000001,-73.2573369
+New York, New York|40.7127837,-74.0059413
+Princeton, New Jersey|40.3572976,-74.6672226
+Viera East, Florida|28.2857932,-80.72871769999999
+Charlottesville, Virginia|38.0293059,-78.47667810000002
+Salt Lake City, Utah|40.7607793,-111.8910474
+Jefferson Township, New Jersey|41.0029893,-74.5580454
+Hamburg township, Michigan|42.4641313,-83.8480204
+Huntington, New York|40.8681539,-73.425676
+Ketchikan, Alaska|55.34222219999999,-131.6461111
+Hayward, California|37.6688205,-122.0807964
+Reno, Nevada|39.5296329,-119.8138027
+Corvallis, Oregon|44.5645659,-123.2620435
+Boston, Massachusetts|42.3600825,-71.0588801
+Newtown, Pennsylvania|40.2283371,-74.9322596
+Philadelphia, Pennsylvania|39.9525839,-75.1652215
+Glassboro, New Jersey|39.70289229999999,-75.1118422
+Johns Creek, Georgia|34.0289259,-84.198579
+Estes Park, Colorado|40.3772059,-105.5216651
+Centreville, Virginia|38.8403909,-77.42887689999999
+Lake Elmo, Minnesota|44.9957998,-92.8793768
+Nampa, Idaho|43.5407172,-116.5634624
+San Francisco, California|37.7749295,-122.4194155
+Woodbridge, Virginia|38.6581722,-77.2497049
+South San Francisco, California|37.654656,-122.4077498
+Houston, Texas|29.7604267,-95.3698028
+Urbandale, Iowa|41.6266555,-93.71216559999999
+Sacramento, California|38.5815719,-121.4943996
+Elmhurst, Illinois|41.8994744,-87.9403418

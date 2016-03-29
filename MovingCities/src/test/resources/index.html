@@ -1,0 +1,374 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xmlns:x2="http://www.w3.org/2002/06/xhtml2">
+<head>
+<script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement("script");
+        gads.async = true;
+        gads.type = "text/javascript";
+        var useSSL = "https:" == document.location.protocol;
+        gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+        var node = document.getElementsByTagName("script")[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+<meta http-equiv="Content-Language" content="en" /><title>
+	Cost of Living Comparison
+</title><link rel="STYLESHEET" type="text/css" href="../styles.css" /><link rel="shortcut icon" href="http://www.bestplaces.net/images/favicon.ico" />
+<script language="javascript" src="../js/common.js"></script>
+<script language="javascript">
+    var hiddenFromID = 'mainContent_hiddenFrom';
+    var hiddenToID = 'mainContent_hiddenTo';
+    var txtSalaryID = 'mainContent_txtSalary';
+
+    function setCode(hiddenID, codeval) {
+        var hiddenObj = $(hiddenID);
+        hiddenObj.value = codeval;
+        var aspnetForm = document.forms['aspnetForm'];
+        aspnetForm.onsubmit = goComparison;
+    }
+    function setFromCode(source, args) {
+        setCode(hiddenFromID, args.get_value());
+    }
+    function setToCode(source, args) {
+        setCode(hiddenToID, args.get_value());
+    }
+    function goComparison() {
+        var fcode = $(hiddenFromID).value;
+        var tcode = $(hiddenToID).value;
+
+        if (fcode != '' && tcode != '') {
+            var salary = $(txtSalaryID).value;
+            salary = salary.replace(',', '').replace('$', '');
+            window.location.href = "./" + fcode + "/" + tcode + "/" + salary;
+            return false;
+        }
+        return true;
+    }
+</script>
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script type="text/javascript">
+      var availableTags
+      $(function () {
+          serviceCall()
+          $("#tags").autocomplete({
+              source: availableTags
+          });
+      });
+      function serviceCall() {
+          $.ajax({
+              type: "POST",
+              url: 'PlaceSearch.asmx/GetPlace',
+              data: "{'data':'" + document.getElementById('tags').value + "'}",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function (msg) {
+
+                  availableTags = msg.d.split('"');
+
+                  $("#tags").autocomplete({
+                      source: availableTags
+                  });
+
+              },
+              error: function (e) {
+                  //$("#divResult").html("WebService unreachable");
+              }
+          });
+      }
+
+  </script>
+
+      <script type="text/javascript">
+          function pageLoad() {
+              var mpe = $find("MPE");
+              mpe.add_shown(onShown);
+              var mpe = $find("MPE1");
+              mpe.add_shown(onShown);
+
+          }
+          function onShown() {
+              var background = $find("MPE")._backgroundElement;
+              background.onclick = function () { $find("MPE").hide(); }
+              var background = $find("MPE1")._backgroundElement;
+              background.onclick = function () { $find("MPE1").hide(); }
+
+          }
+    </script>
+
+<script language="javascript" type="text/javascript">
+        function clearIf(objinput, smatch)
+        {
+          if (objinput.value == smatch)
+          {
+            objinput.value = '';
+          }
+        }
+
+</script>
+     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet" /><link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.bestplaces.net/bestplaces.xml" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+<script type="text/javascript">
+    function initialize() {
+        var options = {
+            types: ['(cities)'],
+            componentRestrictions: { country: "us" }
+        };
+        var input = document.getElementById('txtSearch');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<!-- Begin comScore Tag -->
+<script>
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "21065183" });
+  (function() {
+    var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+    s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+    el.parentNode.insertBefore(s, el);
+  })();
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/p?c1=2&c2=21065183&cv=2.0&cj=1" />
+</noscript>
+<!-- End comScore Tag -->
+
+</head>
+
+<body id='sub'>
+
+<div id='container'>
+     <form method="post" action="" id="form2">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTYwNzc0OTY0MA9kFgJmD2QWAgIED2QWEAIHDxYCHgRUZXh0BVw8c3BhbiBjbGFzcz0nZ3JlZW4nPldlbGNvbWUhPC9zcGFuPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwO3wmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgUGxlYXNlIGQCCQ8PFgIeB1Zpc2libGVoZGQCCw8WAh8ABRwgTmV3IHRvIEJlc3RQbGFjZXM/IFNpZ24gdXAgZAINDw8WAh8BaGRkAhAPDxYEHgtOYXZpZ2F0ZVVybAU5aHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9Mb2dvdXQuYXNweD9nbz0vY29zdC1vZi1saXZpbmcvHwFoZGQCMA9kFgQCAQ8PFgIfAWhkZAIDDxYCHwAFmQY8IS0tIC8xMTA4NjE4MjAvY29tcGFyZWNvbF9hdGYgdG9wIGxlZnQgMTYweDYwMC0tPjxkaXYgaWQ9ImRpdi1ncHQtYWQtMTQzMjE0NjAwMDc1OS0wIj48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+Z29vZ2xldGFnLmNtZC5wdXNoKGZ1bmN0aW9uKCkge2dvb2dsZXRhZy5kZWZpbmVTbG90KCcvMTEwODYxODIwL2NvbXBhcmVjb2xfYXRmJywgWzE2MCwgNjAwXSwgJ2Rpdi1ncHQtYWQtMTQzMjE0NjAwMDc1OS0wJykuc2V0VGFyZ2V0aW5nKCdwb3MnLCBbJ2xlZnQnXSkuYWRkU2VydmljZShnb29nbGV0YWcucHViYWRzKCkpO2dvb2dsZXRhZy5lbmFibGVTZXJ2aWNlcygpO2dvb2dsZXRhZy5kaXNwbGF5KCdkaXYtZ3B0LWFkLTE0MzIxNDYwMDA3NTktMCcpO30pOzwvc2NyaXB0PjwvZGl2PjwhLS0gLzExMDg2MTgyMC9jb21wYXJlY29sX2J0ZiBib3R0b20gbGVmdCAxNjB4NjAwLS0+PGRpdiBpZD0iZGl2LWdwdC1hZC0xNDMyMTQ2MDAwNzU5LTIiPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz5nb29nbGV0YWcuY21kLnB1c2goZnVuY3Rpb24oKSB7Z29vZ2xldGFnLmRlZmluZVNsb3QoJy8xMTA4NjE4MjAvY29tcGFyZWNvbF9idGYnLCBbMTYwLCA2MDBdLCAnZGl2LWdwdC1hZC0xNDMyMTQ2MDAwNzU5LTInKS5zZXRUYXJnZXRpbmcoJ3BvcycsIFsnbGVmdCddKS5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7Z29vZ2xldGFnLmVuYWJsZVNlcnZpY2VzKCk7Z29vZ2xldGFnLmRpc3BsYXkoJ2Rpdi1ncHQtYWQtMTQzMjE0NjAwMDc1OS0yJyk7fSk7PC9zY3JpcHQ+PC9kaXY+ZAIyD2QWAgIBDxYCHwAF1xQ8IS0tIC8xMTA4NjE4MjAvY29tcGFyZWNvbF9hdGYgdG9wIHJpZ2h0IDE2MHg2MDAtLT48ZGl2IGlkPSJkaXYtZ3B0LWFkLTE0MzIxNDYwMDA3NTktMSI+PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnPmdvb2dsZXRhZy5jbWQucHVzaChmdW5jdGlvbigpIHtnb29nbGV0YWcuZGVmaW5lU2xvdCgnLzExMDg2MTgyMC9jb21wYXJlY29sX2F0ZicsIFsxNjAsIDYwMF0sICdkaXYtZ3B0LWFkLTE0MzIxNDYwMDA3NTktMScpLnNldFRhcmdldGluZygncG9zJywgWydyaWdodCddKS5hZGRTZXJ2aWNlKGdvb2dsZXRhZy5wdWJhZHMoKSk7Z29vZ2xldGFnLmVuYWJsZVNlcnZpY2VzKCk7Z29vZ2xldGFnLmRpc3BsYXkoJ2Rpdi1ncHQtYWQtMTQzMjE0NjAwMDc1OS0xJyk7fSk7PC9zY3JpcHQ+PC9kaXY+PGJyLz48YnIvPjxkaXYgY2xhc3M9J3JhaWxib3gnPjxiPjxjZW50ZXI+QmVzdCBQbGFjZXMgPGJyPlRvcCBMaW5rczwvY2VudGVyPjwvYj48cD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nLyc+Q29tcGFyZSBDb3N0IG9mIExpdmluZzwvYT48L3A+PHA+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9zY2hvb2xzLyc+RmluZCBTY2hvb2wgSW5mb3JtYXRpb248L2E+PC9wPjxwPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2xpbWF0ZS8nPldvcmxkd2lkZSBDbGltYXRlIFByb2ZpbGVzPC9hPjwvcD48cD48Yj5Ub3AgTWV0cm8gQXJlYXM8L2I+PC9wPjxvbD48bGk+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9tZXRyby9uZXdfeW9yay9uZXdfeW9yay1ub3J0aGVybl9uZXdfamVyc2V5LWxvbmdfaXNsYW5kJz5OZXcgWW9yazwvYT48L2xpPjxsaT48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L21ldHJvL2NhbGlmb3JuaWEvbG9zX2FuZ2VsZXMtbG9uZ19iZWFjaC1zYW50YV9hbmEnPkxvcyBBbmdlbGVzPC9hPjwvbGk+PGxpPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvbWV0cm8vaWxsaW5vaXMvY2hpY2Fnby1uYXBlcnZpbGxlLWpvbGlldCc+Q2hpY2FnbzwvYT48L2xpPjxsaT48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L21ldHJvL3RleGFzL2RhbGxhcy1mb3J0X3dvcnRoLWFybGluZ3Rvbic+RGFsbGFzPC9hPjwvbGk+PGxpPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvbWV0cm8vcGVubnN5bHZhbmlhL3BoaWxhZGVscGhpYS1jYW1kZW4td2lsbWluZ3Rvbic+UGhpbGFkZWxwaGlhPC9hPjwvbGk+PGxpPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvbWV0cm8vdGV4YXMvaG91c3Rvbi1zdWdhcl9sYW5kLWJheXRvd24nPkhvdXN0b248L2E+PC9saT48bGk+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9tZXRyby9kaXN0cmljdF9vZl9jb2x1bWJpYS93YXNoaW5ndG9uLWFybGluZ3Rvbi1hbGV4YW5kcmlhJz5XYXNoaW5ndG9uLCBEQzwvYT48L2xpPjxsaT48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L21ldHJvL2Zsb3JpZGEvbWlhbWktZm9ydF9sYXVkZXJkYWxlLW1pYW1pX2JlYWNoJz5NaWFtaTwvYT48L2xpPjxsaT48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L21ldHJvL2dlb3JnaWEvYXRsYW50YS1zYW5keV9zcHJpbmdzLW1hcmlldHRhJz5BdGxhbnRhPC9hPjwvbGk+PGxpPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvbWV0cm8vbWFzc2FjaHVzZXR0cy9ib3N0b24tY2FtYnJpZGdlLXF1aW5jeSc+Qm9zdG9uPC9hPjwvbGk+PC9vbD48cD48Yj5JbnRlcmVzdGluZyBGYWN0czwvYj48L3A+PHA+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9zdGF0ZS9kZWxhd2FyZS8nPlN0YXRlIHdpdGggdGhlIExlYXN0IE1hcnJpZWQgUG9wdWxhdGlvbjwvYT48L3A+PHA+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0X29mX2xpdmluZy9jaXR5L25ld195b3JrL3NhZ2Fwb25hY2snPkNpdHkgd2l0aCB0aGUgSGlnaGVzdCBDb3N0IG9mIExpdmluZzwvYT48L3A+PHA+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L3RleGFzL2xhcmVkbyc+TW9zdCBDb21mb3J0YWJsZSBXZWF0aGVyIGluIHRoZSBVU0E8L2E+PC9wPjxwPjxiPlRvcCBDb21wYXJpc29uczwvYj48L3A+PHA+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb21wYXJlLWNpdGllcy9zYWx0X2xha2VfY2l0eV91dC9waG9lbml4X2F6L3Blb3BsZSc+U2FsdCBMYWtlIENpdHkgdG8gUGhvZW5peDwvYT48YnI+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb21wYXJlLWNpdGllcy9zYWx0X2xha2VfY2l0eV91dC9waG9lbml4X2F6L2Nvc3RvZmxpdmluZyc+LSBDb3N0IG9mIExpdmluZzwvYT48YnI+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb21wYXJlLWNpdGllcy9zYWx0X2xha2VfY2l0eV91dC9waG9lbml4X2F6L2Vjb25vbXknPi0gRWNvbm9teTwvYT48YnI+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb21wYXJlLWNpdGllcy9zYWx0X2xha2VfY2l0eV91dC9waG9lbml4X2F6L2hvdXNpbmcnPi0gSG91c2luZzwvYT48L3A+PC9kaXY+ZAI4D2QWBAIHDxYCHwFnFgYCBQ8QDxYCHwFoZGQWAGQCDw8QDxYCHwFoZGQWAGQCGQ8WAh8ABeI4PGhyPjxoND5Nb3N0IFJlY2VudCBTZWFyY2hlcyBvbiBDb3N0IG9mIExpdmluZzwvaDQ+PHRhYmxlIGNsYXNzPSdkYXRhJyBjZWxsc3BhY2luZz0nMCcgY2VsbHBhZGRpbmc9JzMnIHJ1bGVzPSdjb2xzJyBib3JkZXI9JzEnIHN0eWxlPSdiYWNrZ3JvdW5kLWNvbG9yOldoaXRlO2hlaWdodDo2OXB4O3dpZHRoOjEwMCU7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyc+PHRyIHN0eWxlPSdjb2xvcjojZmZmO2JhY2tncm91bmQtY29sb3I6IzMwNjJhNzsnPjx0ZD5DdXJyZW50IENpdHk8L3RkPjx0ZD5Db21wYXJpc29uIENpdHk8L3RkPjx0ZD48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOldoaXRlOyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9WaXJnaW5pYS9Ob3Jmb2xrJz5Ob3Jmb2xrLCBWaXJnaW5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvTWlubmVzb3RhL0xha2UtRWxtbyc+TGFrZSBFbG1vLCBNaW5uZXNvdGE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9ub3Jmb2xrLXZhL2xha2UtZWxtby1tbi81MDAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOiNFREVDRTk7Jz48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L0lkYWhvL05hbXBhJz5OYW1wYSwgSWRhaG88L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L1V0YWgvU2FsdC1MYWtlLUNpdHknPlNhbHQgTGFrZSBDaXR5LCBVdGFoPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY29zdC1vZi1saXZpbmcvbmFtcGEtaWQvc2FsdC1sYWtlLWNpdHktdXQvNDcwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjpXaGl0ZTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvTmV3LUplcnNleS9QcmluY2V0b24nPlByaW5jZXRvbiwgTmV3IEplcnNleTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvR2VvcmdpYS9Kb2hucy1DcmVlayc+Sm9obnMgQ3JlZWssIEdlb3JnaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9wcmluY2V0b24tbmovam9obnMtY3JlZWstZ2EvMTA1MDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6I0VERUNFOTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvTm9ydGgtQ2Fyb2xpbmEvUmFsZWlnaCc+UmFsZWlnaCwgTm9ydGggQ2Fyb2xpbmE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L01hc3NhY2h1c2V0dHMvQm9zdG9uJz5Cb3N0b24sIE1hc3NhY2h1c2V0dHM8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9yYWxlaWdoLW5jL2Jvc3Rvbi1tYS84MzAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOldoaXRlOyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9OZXctSmVyc2V5L0plZmZlcnNvbi1Ub3duc2hpcCc+SmVmZmVyc29uIFRvd25zaGlwLCBOZXcgSmVyc2V5PC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9NaWNoaWdhbi9IYW1idXJnLXRvd25zaGlwJz5IYW1idXJnIHRvd25zaGlwLCBNaWNoaWdhbjwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2plZmZlcnNvbi10b3duc2hpcC1uai9oYW1idXJnLXRvd25zaGlwLW1pLzUwMDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6I0VERUNFOTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvQ2FsaWZvcm5pYS9Sb3NldmlsbGUnPlJvc2V2aWxsZSwgQ2FsaWZvcm5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvVmlyZ2luaWEvQ2VudHJldmlsbGUnPkNlbnRyZXZpbGxlLCBWaXJnaW5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL3Jvc2V2aWxsZS1jYS9jZW50cmV2aWxsZS12YS84MjAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOldoaXRlOyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9JbGxpbm9pcy9DcnlzdGFsLUxha2UnPkNyeXN0YWwgTGFrZSwgSWxsaW5vaXM8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L0NhbGlmb3JuaWEvSGF5d2FyZCc+SGF5d2FyZCwgQ2FsaWZvcm5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2NyeXN0YWwtbGFrZS1pbC9oYXl3YXJkLWNhLzEyMDAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOiNFREVDRTk7Jz48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L1RleGFzL0hvdXN0b24nPkhvdXN0b24sIFRleGFzPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9DYWxpZm9ybmlhL1NvdXRoLVNhbi1GcmFuY2lzY28nPlNvdXRoIFNhbiBGcmFuY2lzY28sIENhbGlmb3JuaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9ob3VzdG9uLXR4L3NvdXRoLXNhbi1mcmFuY2lzY28tY2EvdW5kZWZpbmVkJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6V2hpdGU7Jz48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L05ldy1Zb3JrL0tpbmdzLVBhcmsnPktpbmdzIFBhcmssIE5ldyBZb3JrPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9GbG9yaWRhL1ZpZXJhLUVhc3QnPlZpZXJhIEVhc3QsIEZsb3JpZGE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9raW5ncy1wYXJrLW55L3ZpZXJhLWVhc3QtZmwvNzUwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjojRURFQ0U5Oyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9DYWxpZm9ybmlhL1NhY3JhbWVudG8nPlNhY3JhbWVudG8sIENhbGlmb3JuaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L05ldmFkYS9SZW5vJz5SZW5vLCBOZXZhZGE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9zYWNyYW1lbnRvLWNhL3Jlbm8tbnYvNTAwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjpXaGl0ZTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvVmlyZ2luaWEvV29vZGJyaWRnZSc+V29vZGJyaWRnZSwgVmlyZ2luaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L1ZpcmdpbmlhL0NoYXJsb3R0ZXN2aWxsZSc+Q2hhcmxvdHRlc3ZpbGxlLCBWaXJnaW5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL3dvb2RicmlkZ2UtdmEvY2hhcmxvdHRlc3ZpbGxlLXZhLzcwMDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6I0VERUNFOTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvVGV4YXMvRm9ydC1Xb3J0aCc+Rm9ydCBXb3J0aCwgVGV4YXM8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L09oaW8vUG9ydHNtb3V0aCc+UG9ydHNtb3V0aCwgT2hpbzwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2ZvcnQtd29ydGgtdHgvcG9ydHNtb3V0aC1vaC81NzAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOldoaXRlOyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9BbGFza2EvS2V0Y2hpa2FuJz5LZXRjaGlrYW4sIEFsYXNrYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvV2FzaGluZ3Rvbi9TZWF0dGxlJz5TZWF0dGxlLCBXYXNoaW5ndG9uPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY29zdC1vZi1saXZpbmcva2V0Y2hpa2FuLWFrL3NlYXR0bGUtd2EvNTAwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjojRURFQ0U5Oyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9PcmVnb24vQ29ydmFsbGlzJz5Db3J2YWxsaXMsIE9yZWdvbjwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvV3lvbWluZy9QaW5lZGFsZSc+UGluZWRhbGUsIFd5b21pbmc8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9jb3J2YWxsaXMtb3IvcGluZWRhbGUtd3kvNzY1MDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjpXaGl0ZTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvTmV3LVlvcmsvSHVudGluZ3Rvbic+SHVudGluZ3RvbiwgTmV3IFlvcms8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L1Rlbm5lc3NlZS9IZW5kZXJzb252aWxsZSc+SGVuZGVyc29udmlsbGUsIFRlbm5lc3NlZTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2h1bnRpbmd0b24tbnkvaGVuZGVyc29udmlsbGUtdG4vODUwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjojRURFQ0U5Oyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9QZW5uc3lsdmFuaWEvTmV3dG93bic+TmV3dG93biwgUGVubnN5bHZhbmlhPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9OZXctSmVyc2V5L0dsYXNzYm9ybyc+R2xhc3Nib3JvLCBOZXcgSmVyc2V5PC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY29zdC1vZi1saXZpbmcvbmV3dG93bi1wYS9nbGFzc2Jvcm8tbmovOTAwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjpXaGl0ZTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvSW93YS9DZWRhci1SYXBpZHMnPkNlZGFyIFJhcGlkcywgSW93YTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvSW93YS9VcmJhbmRhbGUnPlVyYmFuZGFsZSwgSW93YTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2NlZGFyLXJhcGlkcy1pYS91cmJhbmRhbGUtaWEvNDQwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjojRURFQ0U5Oyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9JbGxpbm9pcy9FbG1odXJzdCc+RWxtaHVyc3QsIElsbGlub2lzPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9GbG9yaWRhL1RhbXBhJz5UYW1wYSwgRmxvcmlkYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2VsbWh1cnN0LWlsL3RhbXBhLWZsLzcwMDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6V2hpdGU7Jz48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L0NvbG9yYWRvL0VzdGVzLVBhcmsnPkVzdGVzIFBhcmssIENvbG9yYWRvPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9DYWxpZm9ybmlhL1Nhbi1GcmFuY2lzY28nPlNhbiBGcmFuY2lzY28sIENhbGlmb3JuaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9lc3Rlcy1wYXJrLWNvL3Nhbi1mcmFuY2lzY28tY2EvMTUwMDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6I0VERUNFOTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvUGVubnN5bHZhbmlhL1BoaWxhZGVscGhpYSc+UGhpbGFkZWxwaGlhLCBQZW5uc3lsdmFuaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L05ldy1Zb3JrL05ldy1Zb3JrJz5OZXcgWW9yaywgTmV3IFlvcms8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9waGlsYWRlbHBoaWEtcGEvbmV3LXlvcmstbnkvOTYwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjwvdGFibGU+ZAIJDxYCHwFoFgQCCw88KwALAGQCFw8WAh8ABeI4PGhyPjxoND5Nb3N0IFJlY2VudCBTZWFyY2hlcyBvbiBDb3N0IG9mIExpdmluZzwvaDQ+PHRhYmxlIGNsYXNzPSdkYXRhJyBjZWxsc3BhY2luZz0nMCcgY2VsbHBhZGRpbmc9JzMnIHJ1bGVzPSdjb2xzJyBib3JkZXI9JzEnIHN0eWxlPSdiYWNrZ3JvdW5kLWNvbG9yOldoaXRlO2hlaWdodDo2OXB4O3dpZHRoOjEwMCU7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlOyc+PHRyIHN0eWxlPSdjb2xvcjojZmZmO2JhY2tncm91bmQtY29sb3I6IzMwNjJhNzsnPjx0ZD5DdXJyZW50IENpdHk8L3RkPjx0ZD5Db21wYXJpc29uIENpdHk8L3RkPjx0ZD48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOldoaXRlOyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9WaXJnaW5pYS9Ob3Jmb2xrJz5Ob3Jmb2xrLCBWaXJnaW5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvTWlubmVzb3RhL0xha2UtRWxtbyc+TGFrZSBFbG1vLCBNaW5uZXNvdGE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9ub3Jmb2xrLXZhL2xha2UtZWxtby1tbi81MDAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOiNFREVDRTk7Jz48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L0lkYWhvL05hbXBhJz5OYW1wYSwgSWRhaG88L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L1V0YWgvU2FsdC1MYWtlLUNpdHknPlNhbHQgTGFrZSBDaXR5LCBVdGFoPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY29zdC1vZi1saXZpbmcvbmFtcGEtaWQvc2FsdC1sYWtlLWNpdHktdXQvNDcwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjpXaGl0ZTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvTmV3LUplcnNleS9QcmluY2V0b24nPlByaW5jZXRvbiwgTmV3IEplcnNleTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvR2VvcmdpYS9Kb2hucy1DcmVlayc+Sm9obnMgQ3JlZWssIEdlb3JnaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9wcmluY2V0b24tbmovam9obnMtY3JlZWstZ2EvMTA1MDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6I0VERUNFOTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvTm9ydGgtQ2Fyb2xpbmEvUmFsZWlnaCc+UmFsZWlnaCwgTm9ydGggQ2Fyb2xpbmE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L01hc3NhY2h1c2V0dHMvQm9zdG9uJz5Cb3N0b24sIE1hc3NhY2h1c2V0dHM8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9yYWxlaWdoLW5jL2Jvc3Rvbi1tYS84MzAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOldoaXRlOyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9OZXctSmVyc2V5L0plZmZlcnNvbi1Ub3duc2hpcCc+SmVmZmVyc29uIFRvd25zaGlwLCBOZXcgSmVyc2V5PC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9NaWNoaWdhbi9IYW1idXJnLXRvd25zaGlwJz5IYW1idXJnIHRvd25zaGlwLCBNaWNoaWdhbjwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2plZmZlcnNvbi10b3duc2hpcC1uai9oYW1idXJnLXRvd25zaGlwLW1pLzUwMDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6I0VERUNFOTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvQ2FsaWZvcm5pYS9Sb3NldmlsbGUnPlJvc2V2aWxsZSwgQ2FsaWZvcm5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvVmlyZ2luaWEvQ2VudHJldmlsbGUnPkNlbnRyZXZpbGxlLCBWaXJnaW5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL3Jvc2V2aWxsZS1jYS9jZW50cmV2aWxsZS12YS84MjAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOldoaXRlOyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9JbGxpbm9pcy9DcnlzdGFsLUxha2UnPkNyeXN0YWwgTGFrZSwgSWxsaW5vaXM8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L0NhbGlmb3JuaWEvSGF5d2FyZCc+SGF5d2FyZCwgQ2FsaWZvcm5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2NyeXN0YWwtbGFrZS1pbC9oYXl3YXJkLWNhLzEyMDAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOiNFREVDRTk7Jz48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L1RleGFzL0hvdXN0b24nPkhvdXN0b24sIFRleGFzPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9DYWxpZm9ybmlhL1NvdXRoLVNhbi1GcmFuY2lzY28nPlNvdXRoIFNhbiBGcmFuY2lzY28sIENhbGlmb3JuaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9ob3VzdG9uLXR4L3NvdXRoLXNhbi1mcmFuY2lzY28tY2EvdW5kZWZpbmVkJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6V2hpdGU7Jz48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L05ldy1Zb3JrL0tpbmdzLVBhcmsnPktpbmdzIFBhcmssIE5ldyBZb3JrPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9GbG9yaWRhL1ZpZXJhLUVhc3QnPlZpZXJhIEVhc3QsIEZsb3JpZGE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9raW5ncy1wYXJrLW55L3ZpZXJhLWVhc3QtZmwvNzUwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjojRURFQ0U5Oyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9DYWxpZm9ybmlhL1NhY3JhbWVudG8nPlNhY3JhbWVudG8sIENhbGlmb3JuaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L05ldmFkYS9SZW5vJz5SZW5vLCBOZXZhZGE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9zYWNyYW1lbnRvLWNhL3Jlbm8tbnYvNTAwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjpXaGl0ZTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvVmlyZ2luaWEvV29vZGJyaWRnZSc+V29vZGJyaWRnZSwgVmlyZ2luaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L1ZpcmdpbmlhL0NoYXJsb3R0ZXN2aWxsZSc+Q2hhcmxvdHRlc3ZpbGxlLCBWaXJnaW5pYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL3dvb2RicmlkZ2UtdmEvY2hhcmxvdHRlc3ZpbGxlLXZhLzcwMDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6I0VERUNFOTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvVGV4YXMvRm9ydC1Xb3J0aCc+Rm9ydCBXb3J0aCwgVGV4YXM8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L09oaW8vUG9ydHNtb3V0aCc+UG9ydHNtb3V0aCwgT2hpbzwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2ZvcnQtd29ydGgtdHgvcG9ydHNtb3V0aC1vaC81NzAwMCc+Q29tcGFyZTwvYT48L3RkPjwvdHI+PHRyIHN0eWxlPSdjb2xvcjpCbGFjaztiYWNrZ3JvdW5kLWNvbG9yOldoaXRlOyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9BbGFza2EvS2V0Y2hpa2FuJz5LZXRjaGlrYW4sIEFsYXNrYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvV2FzaGluZ3Rvbi9TZWF0dGxlJz5TZWF0dGxlLCBXYXNoaW5ndG9uPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY29zdC1vZi1saXZpbmcva2V0Y2hpa2FuLWFrL3NlYXR0bGUtd2EvNTAwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjojRURFQ0U5Oyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9PcmVnb24vQ29ydmFsbGlzJz5Db3J2YWxsaXMsIE9yZWdvbjwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvV3lvbWluZy9QaW5lZGFsZSc+UGluZWRhbGUsIFd5b21pbmc8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9jb3J2YWxsaXMtb3IvcGluZWRhbGUtd3kvNzY1MDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjpXaGl0ZTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvTmV3LVlvcmsvSHVudGluZ3Rvbic+SHVudGluZ3RvbiwgTmV3IFlvcms8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L1Rlbm5lc3NlZS9IZW5kZXJzb252aWxsZSc+SGVuZGVyc29udmlsbGUsIFRlbm5lc3NlZTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2h1bnRpbmd0b24tbnkvaGVuZGVyc29udmlsbGUtdG4vODUwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjojRURFQ0U5Oyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9QZW5uc3lsdmFuaWEvTmV3dG93bic+TmV3dG93biwgUGVubnN5bHZhbmlhPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9OZXctSmVyc2V5L0dsYXNzYm9ybyc+R2xhc3Nib3JvLCBOZXcgSmVyc2V5PC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY29zdC1vZi1saXZpbmcvbmV3dG93bi1wYS9nbGFzc2Jvcm8tbmovOTAwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjpXaGl0ZTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvSW93YS9DZWRhci1SYXBpZHMnPkNlZGFyIFJhcGlkcywgSW93YTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvSW93YS9VcmJhbmRhbGUnPlVyYmFuZGFsZSwgSW93YTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2NlZGFyLXJhcGlkcy1pYS91cmJhbmRhbGUtaWEvNDQwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjx0ciBzdHlsZT0nY29sb3I6QmxhY2s7YmFja2dyb3VuZC1jb2xvcjojRURFQ0U5Oyc+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9JbGxpbm9pcy9FbG1odXJzdCc+RWxtaHVyc3QsIElsbGlub2lzPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9GbG9yaWRhL1RhbXBhJz5UYW1wYSwgRmxvcmlkYTwvYT48L3RkPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2Nvc3Qtb2YtbGl2aW5nL2VsbWh1cnN0LWlsL3RhbXBhLWZsLzcwMDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6V2hpdGU7Jz48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L0NvbG9yYWRvL0VzdGVzLVBhcmsnPkVzdGVzIFBhcmssIENvbG9yYWRvPC9hPjwvdGQ+PHRkPjxhIGhyZWY9J2h0dHA6Ly93d3cuYmVzdHBsYWNlcy5uZXQvY2l0eS9DYWxpZm9ybmlhL1Nhbi1GcmFuY2lzY28nPlNhbiBGcmFuY2lzY28sIENhbGlmb3JuaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9lc3Rlcy1wYXJrLWNvL3Nhbi1mcmFuY2lzY28tY2EvMTUwMDAwJz5Db21wYXJlPC9hPjwvdGQ+PC90cj48dHIgc3R5bGU9J2NvbG9yOkJsYWNrO2JhY2tncm91bmQtY29sb3I6I0VERUNFOTsnPjx0ZD48YSBocmVmPSdodHRwOi8vd3d3LmJlc3RwbGFjZXMubmV0L2NpdHkvUGVubnN5bHZhbmlhL1BoaWxhZGVscGhpYSc+UGhpbGFkZWxwaGlhLCBQZW5uc3lsdmFuaWE8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jaXR5L05ldy1Zb3JrL05ldy1Zb3JrJz5OZXcgWW9yaywgTmV3IFlvcms8L2E+PC90ZD48dGQ+PGEgaHJlZj0naHR0cDovL3d3dy5iZXN0cGxhY2VzLm5ldC9jb3N0LW9mLWxpdmluZy9waGlsYWRlbHBoaWEtcGEvbmV3LXlvcmstbnkvOTYwMDAnPkNvbXBhcmU8L2E+PC90ZD48L3RyPjwvdGFibGU+ZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAQUSY3RsMDAkc2VhcmNoQnV0dG9uHPl+sw3psoIQGiuQ58FvyspA9UKlNqo7itsfRjaoum0=" />
+
+
+<script src="/ScriptResource.axd?d=S3qlC74xO1vfE_nJZ4Gw-hBrBdz5ckFzkGmdzgUHmqUz34-MZbISIRT_iuVSIRGtbWYIgalwtLlgDLaT2llqSj7eNGm18TdgnnLxqLE-N4AM0i4vNC8NR_qNHnDyHmr50&amp;t=734d43f5" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="3E056E1D" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAmetFg+fH3ry3pg97GFKvzj4+3WpZQNb82rzs2KnT3rh4UHWROE4ErBdnKaOGeOfBWBoNYMPnkIbI81gPf9NuMyejcc9XVff3FpiG+9cuEld04T8r33DWkSjEgUPc1v75dhjpDTlMGYEjORYAV+R8AqS5MepZjWZLwizLdexmSgfg3TlBJzKsTLaLUk/NShtSZ/Y6HDbFWQDqj1UAuhvfjxXy2aebN4xE6ur/IJmIo9xg==" />
+    <div id='header'>
+       
+            
+	<a id="HyperLink16" rel="nofollow" href="../"><img id="headerlogo" hspace="30" border="0" src="../images/bertlogo.png" width="200" /></a>
+	<div id='headerMap'>
+        <a id="HyperLink19" rel="nofollow" href="http://www.bestplaces.net/find/"><img id="headerMap1" hspace="30" border="0" src="../images/map.gif" /></a>
+	</div>
+    	<div id='headerText'>
+				<h6><span class='green'>Welcome!</span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; Please <div id="divLogin" style="display:inline-block;"><a href='http://www.bestplaces.net/login.aspx'>sign in</a></div>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; New to BestPlaces? Sign up <div id="divSignup" style="display:inline-block;"><a href='http://www.bestplaces.net/signup.aspx'>here</a></div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a id="hlkAbout" rel="nofollow" href="http://www.bestplaces.net/docs/Members.aspx">About membership.</a></h6>
+
+
+           <span id="Msg"><font color="Red"></font></span>
+		</div>
+		<div id='headerNav'>
+			<ul>
+				<li><a id="HyperLink18" rel="nofollow" href="http://www.bestplaces.net/realestate/">Real Estate</a></li>
+				<!--<li><a id="HyperLink23" rel="nofollow" href="http://www.bestplaces.net/mortgage/">Mortgages</a></li>-->
+				<li><a id="HyperLink1" href="http://www.bestplaces.net/schools/">Compare Schools</a></li>
+				<li><a id="HyperLink4" href="http://www.bestplaces.net/compare-cities/">Compare Cities</a></li>
+				<li><a id="HyperLink25" href="http://www.bestplaces.net/climate/">Compare Climates</a></li>
+				<li><a id="HyperLink3" href="http://www.bertsperling.com/">Blog<br/></a></li>
+				<li><a id="HyperLink20" href="http://www.bestplaces.net/tools/">Lists</a></li>
+                <li><a id="HyperLink26" href="http://www.bestplaces.net/crime/">Compare Crime Rates</a></li>
+				<li><a id="HyperLink9" href="http://www.bestplaces.net/cost-of-living/">Compare Cost Of Living</a></li>
+                <li><a id="HyperLink2" href="http://www.bestplaces.net/fybp/">Best Places to Live</a></li>
+				<li class='last'><a id="HyperLink27" href="http://www.bestplaces.net/docs/studies/">Studies</a></li>
+			</ul>
+		</div>
+	</div>
+  
+    <div id='subHeader'>
+                        <table width="100%"><tr><td><p>&nbsp;&nbsp;&nbsp;&nbsp;Search for any place in the USA:<input name="ctl00$txtSearch" type="text" value="Enter a City, Town, Or Zip" id="txtSearch" onfocus="clearIf(this, &#39;Enter a City, Town, Or Zip&#39;);" />
+                         <input type="image" name="ctl00$searchButton" id="searchButton" src="http://www.bestplaces.net/images/btn_search.gif" src="" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$searchButton&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" />
+                                                    </p>
+              </td><td>
+
+            
+            
+           <div class="g-plusone"></div><div class="g-plus" data-action="share" data-annotation="bubble"></div></td></tr></table>
+    </div>
+   
+
+	
+<ul id="breadcrumb">
+	<li id="first"><a href="../Default.aspx" rel="nofollow">Home</a> > </li>
+	<li id="breadCrumb_liCOLUnlinked">Compare Cost of Living</li>
+	
+    
+</ul>
+
+
+	<div id='mainBody'>
+		<div id='mainBodyLeft'>
+			<div id='mainBodyLeftNest'>
+			
+				<div style="margin:  10px 0px 0px 8px;">
+				
+				<!-- /110861820/comparecol_atf top left 160x600--><div id="div-gpt-ad-1432146000759-0"><script type='text/javascript'>googletag.cmd.push(function() {googletag.defineSlot('/110861820/comparecol_atf', [160, 600], 'div-gpt-ad-1432146000759-0').setTargeting('pos', ['left']).addService(googletag.pubads());googletag.enableServices();googletag.display('div-gpt-ad-1432146000759-0');});</script></div><!-- /110861820/comparecol_btf bottom left 160x600--><div id="div-gpt-ad-1432146000759-2"><script type='text/javascript'>googletag.cmd.push(function() {googletag.defineSlot('/110861820/comparecol_btf', [160, 600], 'div-gpt-ad-1432146000759-2').setTargeting('pos', ['left']).addService(googletag.pubads());googletag.enableServices();googletag.display('div-gpt-ad-1432146000759-2');});</script></div>
+               
+				</div>			
+		    
+			</div>
+		</div>
+
+		<div id='mainBodyRight'>
+			<div id='mainBodyRightNest'>
+			
+                <div style="margin: 10px 0px 0px -8px;">
+                    <!-- /110861820/comparecol_atf top right 160x600--><div id="div-gpt-ad-1432146000759-1"><script type='text/javascript'>googletag.cmd.push(function() {googletag.defineSlot('/110861820/comparecol_atf', [160, 600], 'div-gpt-ad-1432146000759-1').setTargeting('pos', ['right']).addService(googletag.pubads());googletag.enableServices();googletag.display('div-gpt-ad-1432146000759-1');});</script></div><br/><br/><div class='railbox'><b><center>Best Places <br>Top Links</center></b><p><a href='http://www.bestplaces.net/cost-of-living/'>Compare Cost of Living</a></p><p><a href='http://www.bestplaces.net/schools/'>Find School Information</a></p><p><a href='http://www.bestplaces.net/climate/'>Worldwide Climate Profiles</a></p><p><b>Top Metro Areas</b></p><ol><li><a href='http://www.bestplaces.net/metro/new_york/new_york-northern_new_jersey-long_island'>New York</a></li><li><a href='http://www.bestplaces.net/metro/california/los_angeles-long_beach-santa_ana'>Los Angeles</a></li><li><a href='http://www.bestplaces.net/metro/illinois/chicago-naperville-joliet'>Chicago</a></li><li><a href='http://www.bestplaces.net/metro/texas/dallas-fort_worth-arlington'>Dallas</a></li><li><a href='http://www.bestplaces.net/metro/pennsylvania/philadelphia-camden-wilmington'>Philadelphia</a></li><li><a href='http://www.bestplaces.net/metro/texas/houston-sugar_land-baytown'>Houston</a></li><li><a href='http://www.bestplaces.net/metro/district_of_columbia/washington-arlington-alexandria'>Washington, DC</a></li><li><a href='http://www.bestplaces.net/metro/florida/miami-fort_lauderdale-miami_beach'>Miami</a></li><li><a href='http://www.bestplaces.net/metro/georgia/atlanta-sandy_springs-marietta'>Atlanta</a></li><li><a href='http://www.bestplaces.net/metro/massachusetts/boston-cambridge-quincy'>Boston</a></li></ol><p><b>Interesting Facts</b></p><p><a href='http://www.bestplaces.net/state/delaware/'>State with the Least Married Population</a></p><p><a href='http://www.bestplaces.net/cost_of_living/city/new_york/sagaponack'>City with the Highest Cost of Living</a></p><p><a href='http://www.bestplaces.net/city/texas/laredo'>Most Comfortable Weather in the USA</a></p><p><b>Top Comparisons</b></p><p><a href='http://www.bestplaces.net/compare-cities/salt_lake_city_ut/phoenix_az/people'>Salt Lake City to Phoenix</a><br><a href='http://www.bestplaces.net/compare-cities/salt_lake_city_ut/phoenix_az/costofliving'>- Cost of Living</a><br><a href='http://www.bestplaces.net/compare-cities/salt_lake_city_ut/phoenix_az/economy'>- Economy</a><br><a href='http://www.bestplaces.net/compare-cities/salt_lake_city_ut/phoenix_az/housing'>- Housing</a></p></div>
+                </div>
+			
+			</div>
+		</div>
+
+		<div id='mainBodyMid'>
+       <script type="text/javascript">
+           var RecaptchaOptions = {
+               theme: 'custom',
+               custom_theme_widget: 'recaptcha_widget'
+           };
+ </script>
+		
+			<div id='mainBodyMidNest'>
+			    
+			    
+                
+    <h1 id="mainContent_heading">Compare Cost of Living</h1>
+                    
+    
+     <div id="mainContent_GoogleAd"><br/><!-- /110861820/comparecol_atf Top 468x60-->
+<div id="div-gpt-ad-1432146000759-5">
+  <script type='text/javascript'>
+    googletag.cmd.push(function() {
+      googletag.defineSlot('/110861820/comparecol_atf', [468, 60], 'div-gpt-ad-1432146000759-5').addService(googletag.pubads());
+      googletag.enableServices();
+      googletag.display('div-gpt-ad-1432146000759-5');
+  });
+  </script>
+</div>
+<br/>
+                </div>
+<div id="mainContent_entrypage">
+    <p class="tagline">In three simple steps we'll provide a <strong>cost of living comparison</strong>. Just tell us your current city, where you'd like to move and enter a salary amount. </p>
+    <p class="tagline">The comparison includes food, housing, utilities, transportation and health cost of living numbers.</p>
+    <p class="tagline">You can enter your salary and our built-in Salary Calculator will determine how much more (or less) you need to maintain your same standard of living.</p>
+                <table><tr><td>
+                <em>1.</em>Where do you live now?<br/>
+                <label for="txtCityFrom">Current city</label>
+                <div id="containerCityFrom">
+                
+                    <input name="ctl00$mainContent$txtCityFrom" type="text" id="mainContent_txtCityFrom" autocomplete="off" />
+                    
+                    <input type="hidden" name="ctl00$mainContent$hiddenFrom" id="mainContent_hiddenFrom" />
+
+                    
+                    &nbsp;
+                    <span id="mainContent_lblCityFrom"></span>
+                </div></td><td>
+                <em>2.</em>Where are you comparing?<br/>
+                <label for="txtCityTo">Comparison city</label>
+                <div id="containerCityTo">
+                    <input name="ctl00$mainContent$txtCityTo" type="text" id="mainContent_txtCityTo" AutoComplete="off" />
+                    
+                    <input type="hidden" name="ctl00$mainContent$hiddenTo" id="mainContent_hiddenTo" />
+
+                    
+                    &nbsp;
+                    <span id="mainContent_lblCityTo"></span>
+                </div></td></tr><tr><td>
+                <em>3.</em>How much do you make? (optional)<br/>
+                <label for="txtSalary">Annual income</label><br/>
+                <input name="ctl00$mainContent$txtSalary" type="text" value="$50,000" id="mainContent_txtSalary" />
+                </td><td><br/><br/>
+        <input type="submit" name="ctl00$mainContent$butSubmit" value="Compare" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$mainContent$butSubmit&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="mainContent_butSubmit" /></td></tr></table><br/>
+
+
+   
+    <hr><h4>Most Recent Searches on Cost of Living</h4><table class='data' cellspacing='0' cellpadding='3' rules='cols' border='1' style='background-color:White;height:69px;width:100%;border-collapse:collapse;'><tr style='color:#fff;background-color:#3062a7;'><td>Current City</td><td>Comparison City</td><td></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/Virginia/Norfolk'>Norfolk, Virginia</a></td><td><a href='http://www.bestplaces.net/city/Minnesota/Lake-Elmo'>Lake Elmo, Minnesota</a></td><td><a href='http://www.bestplaces.net/cost-of-living/norfolk-va/lake-elmo-mn/50000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/Idaho/Nampa'>Nampa, Idaho</a></td><td><a href='http://www.bestplaces.net/city/Utah/Salt-Lake-City'>Salt Lake City, Utah</a></td><td><a href='http://www.bestplaces.net/cost-of-living/nampa-id/salt-lake-city-ut/47000'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/New-Jersey/Princeton'>Princeton, New Jersey</a></td><td><a href='http://www.bestplaces.net/city/Georgia/Johns-Creek'>Johns Creek, Georgia</a></td><td><a href='http://www.bestplaces.net/cost-of-living/princeton-nj/johns-creek-ga/105000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/North-Carolina/Raleigh'>Raleigh, North Carolina</a></td><td><a href='http://www.bestplaces.net/city/Massachusetts/Boston'>Boston, Massachusetts</a></td><td><a href='http://www.bestplaces.net/cost-of-living/raleigh-nc/boston-ma/83000'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/New-Jersey/Jefferson-Township'>Jefferson Township, New Jersey</a></td><td><a href='http://www.bestplaces.net/city/Michigan/Hamburg-township'>Hamburg township, Michigan</a></td><td><a href='http://www.bestplaces.net/cost-of-living/jefferson-township-nj/hamburg-township-mi/50000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/California/Roseville'>Roseville, California</a></td><td><a href='http://www.bestplaces.net/city/Virginia/Centreville'>Centreville, Virginia</a></td><td><a href='http://www.bestplaces.net/cost-of-living/roseville-ca/centreville-va/82000'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/Illinois/Crystal-Lake'>Crystal Lake, Illinois</a></td><td><a href='http://www.bestplaces.net/city/California/Hayward'>Hayward, California</a></td><td><a href='http://www.bestplaces.net/cost-of-living/crystal-lake-il/hayward-ca/120000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/Texas/Houston'>Houston, Texas</a></td><td><a href='http://www.bestplaces.net/city/California/South-San-Francisco'>South San Francisco, California</a></td><td><a href='http://www.bestplaces.net/cost-of-living/houston-tx/south-san-francisco-ca/undefined'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/New-York/Kings-Park'>Kings Park, New York</a></td><td><a href='http://www.bestplaces.net/city/Florida/Viera-East'>Viera East, Florida</a></td><td><a href='http://www.bestplaces.net/cost-of-living/kings-park-ny/viera-east-fl/75000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/California/Sacramento'>Sacramento, California</a></td><td><a href='http://www.bestplaces.net/city/Nevada/Reno'>Reno, Nevada</a></td><td><a href='http://www.bestplaces.net/cost-of-living/sacramento-ca/reno-nv/50000'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/Virginia/Woodbridge'>Woodbridge, Virginia</a></td><td><a href='http://www.bestplaces.net/city/Virginia/Charlottesville'>Charlottesville, Virginia</a></td><td><a href='http://www.bestplaces.net/cost-of-living/woodbridge-va/charlottesville-va/70000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/Texas/Fort-Worth'>Fort Worth, Texas</a></td><td><a href='http://www.bestplaces.net/city/Ohio/Portsmouth'>Portsmouth, Ohio</a></td><td><a href='http://www.bestplaces.net/cost-of-living/fort-worth-tx/portsmouth-oh/57000'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/Alaska/Ketchikan'>Ketchikan, Alaska</a></td><td><a href='http://www.bestplaces.net/city/Washington/Seattle'>Seattle, Washington</a></td><td><a href='http://www.bestplaces.net/cost-of-living/ketchikan-ak/seattle-wa/50000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/Oregon/Corvallis'>Corvallis, Oregon</a></td><td><a href='http://www.bestplaces.net/city/Wyoming/Pinedale'>Pinedale, Wyoming</a></td><td><a href='http://www.bestplaces.net/cost-of-living/corvallis-or/pinedale-wy/76500'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/New-York/Huntington'>Huntington, New York</a></td><td><a href='http://www.bestplaces.net/city/Tennessee/Hendersonville'>Hendersonville, Tennessee</a></td><td><a href='http://www.bestplaces.net/cost-of-living/huntington-ny/hendersonville-tn/85000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/Pennsylvania/Newtown'>Newtown, Pennsylvania</a></td><td><a href='http://www.bestplaces.net/city/New-Jersey/Glassboro'>Glassboro, New Jersey</a></td><td><a href='http://www.bestplaces.net/cost-of-living/newtown-pa/glassboro-nj/90000'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/Iowa/Cedar-Rapids'>Cedar Rapids, Iowa</a></td><td><a href='http://www.bestplaces.net/city/Iowa/Urbandale'>Urbandale, Iowa</a></td><td><a href='http://www.bestplaces.net/cost-of-living/cedar-rapids-ia/urbandale-ia/44000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/Illinois/Elmhurst'>Elmhurst, Illinois</a></td><td><a href='http://www.bestplaces.net/city/Florida/Tampa'>Tampa, Florida</a></td><td><a href='http://www.bestplaces.net/cost-of-living/elmhurst-il/tampa-fl/70000'>Compare</a></td></tr><tr style='color:Black;background-color:White;'><td><a href='http://www.bestplaces.net/city/Colorado/Estes-Park'>Estes Park, Colorado</a></td><td><a href='http://www.bestplaces.net/city/California/San-Francisco'>San Francisco, California</a></td><td><a href='http://www.bestplaces.net/cost-of-living/estes-park-co/san-francisco-ca/150000'>Compare</a></td></tr><tr style='color:Black;background-color:#EDECE9;'><td><a href='http://www.bestplaces.net/city/Pennsylvania/Philadelphia'>Philadelphia, Pennsylvania</a></td><td><a href='http://www.bestplaces.net/city/New-York/New-York'>New York, New York</a></td><td><a href='http://www.bestplaces.net/cost-of-living/philadelphia-pa/new-york-ny/96000'>Compare</a></td></tr></table>
+</div>
+
+    
+
+<br/>
+			</div>
+            &nbsp;
+			<div class='clear'>&nbsp;</div>
+	
+            
+		</div>
+<center>
+    
+</center>
+<br/>
+</div>
+<div id='footer'>
+        
+		<ul>
+			<li><a id="HyperLink6" rel="nofollow" href="../docs/DataSource.aspx">About Our Data</a></li>
+			<li><a id="HyperLink7" rel="nofollow" href="../docs/About.aspx">About Sperling's</a></li>
+			<li><a id="HyperLink8" rel="nofollow" href="../docs/Partner.aspx">Become a Partner</a></li>
+			<li><a id="HyperLink10" rel="nofollow" href="../docs/Contact.aspx">Contact</a></li>
+			<li><a id="HyperLink11" rel="nofollow" href="../docs/Copyright.aspx">Copyright</a></li>
+			<li><a id="HyperLink12" rel="nofollow" href="../docs/Disclaimer.aspx">Disclaimer</a></li>
+			<li><a id="HyperLink13" rel="nofollow" href="../docs/PrivacyPolicy.aspx">Privacy Policy</a></li>
+			<li><a id="HyperLink15" rel="nofollow" href="../docs/Sponsorship.aspx">Sponsorship</a></li>
+			<li class='last'><a id="HyperLink14" rel="nofollow" href="../docs/Media.aspx">Press Signup</a></li>
+		</ul>
+    
+        <ul class="social">
+            <li><a href="https://www.facebook.com/Sperlings.Best.Places"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/bertsperling"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="http://www.linkedin.com/company/sperlings-best-places"><i class="fa fa-linkedin-square"></i></a></li>
+            <li class='last'><a href="https://plus.google.com/u/0/+BestplacesNet1/posts"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+                                	
+		<table width="100%"><tr align="center"><td><font color="white" style="font-size :xx-small;"><a href="http://www.bestplaces.net" style="color:White; text-decoration:none">2014 &copy; Best Places to Live & Retire</a>, <a href="http://www.bestplaces.net/realestate" style="color:White; text-decoration:none">Homes for Sale</a></font></td></tr></table>
+	</div>
+         </form>
+</div>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-56ZQ3X"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-56ZQ3X');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Quantcast Tag -->
+<script type="text/javascript">
+    var _qevents = _qevents || [];
+
+    (function () {
+        var elem = document.createElement('script');
+        elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+        elem.async = true;
+        elem.type = "text/javascript";
+        var scpt = document.getElementsByTagName('script')[0];
+        scpt.parentNode.insertBefore(elem, scpt);
+    })();
+
+    _qevents.push({
+        qacct: "p-e0RhSy58eBqgQ"
+    });
+</script>
+
+<noscript>
+<div style="display:none;">
+<img src="//pixel.quantserve.com/pixel/p-e0RhSy58eBqgQ.gif" border="0" height="1" width="1" alt="Quantcast"/>
+</div>
+</noscript>
+<!-- End Quantcast tag -->
+<script type="text/javascript" src="http://ads.pro-market.net/ads/scripts/site-133118.js"></script> 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54ecd05d130f3fe1" async="async"></script>
+
+</body>
+</html>
