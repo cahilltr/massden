@@ -18,6 +18,10 @@ HBaseMapReduceScanSolr
 -------------
 Scans All of an HBase table to be indexed into Solr
 
+JMXExamples
+-----------
+Some small examples of JMX
+
 Simulated Annealing
 -------------
 Current work on a Simulated Annealing Example
