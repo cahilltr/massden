@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * Test for retrieving data
  * There is a bug if test is ran on a weekend.
  */
-public class getDataCallableTest {
+public class GetDataCallableTest {
 
   private final String SYMBOL = "IBM";
   private final int DAYS_BACK = 1;

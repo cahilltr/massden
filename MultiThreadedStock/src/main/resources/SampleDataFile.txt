@@ -1,0 +1,25 @@
+--------------------------------------------
+symbol:AA|name:Alcoa Inc. Common Stock|currency:USD|stockExchange:NYQ|payDate:2016-02-03|exDate:2016-02-03|annualYield:0.12|annualYieldPercent:1.28|marketCap:1.266E10|eps:0.0|pe:0.0|peg:2.85|epsEstimateCurrentYear:0.33|epsEstimateNextQuarter:0.08|epsEstimateNextYear:0.52|priceToBook:1.04|priceToSales:0.55|bookValuePerShare:9.15|revenue:2.253E10|EBITDA:3.14E9|oneYearTargetPrice:0.0|
+date:2016-03-07|low:10.07|high:9.61|open:9.66|close:10.04|adjClose:10.04|volume:41542400|
+date:2016-03-08|low:9.9|high:9.29|open:9.77|close:9.33|adjClose:9.33|volume:37791000|
+date:2016-03-09|low:9.52|high:9.12|open:9.43|close:9.42|adjClose:9.42|volume:21765900|
+date:2016-03-10|low:9.63|high:9.22|open:9.38|close:9.59|adjClose:9.59|volume:24924300|
+date:2016-03-11|low:9.85|high:9.45|open:9.71|close:9.52|adjClose:9.52|volume:23346400|
+date:2016-03-14|low:9.8|high:9.36|open:9.41|close:9.67|adjClose:9.67|volume:21664200|
+date:2016-03-15|low:9.52|high:9.11|open:9.5|close:9.16|adjClose:9.16|volume:31413700|
+date:2016-03-16|low:9.77|high:9.1|open:9.19|close:9.74|adjClose:9.74|volume:33941400|
+date:2016-03-17|low:10.0|high:9.73|open:9.86|close:9.94|adjClose:9.94|volume:39227200|
+date:2016-03-18|low:10.22|high:9.8|open:10.0|close:10.03|adjClose:10.03|volume:33522400|
+date:2016-03-21|low:10.04|high:9.71|open:9.94|close:9.89|adjClose:9.89|volume:19085000|
+date:2016-03-22|low:9.96|high:9.68|open:9.76|close:9.85|adjClose:9.85|volume:19823600|
+date:2016-03-23|low:9.8|high:9.25|open:9.69|close:9.32|adjClose:9.32|volume:25371400|
+date:2016-03-24|low:9.61|high:9.04|open:9.18|close:9.57|adjClose:9.57|volume:20720100|
+date:2016-03-28|low:9.84|high:9.47|open:9.67|close:9.7|adjClose:9.7|volume:16042900|
+date:2016-03-29|low:9.75|high:9.37|open:9.55|close:9.72|adjClose:9.72|volume:24581600|
+date:2016-03-30|low:9.87|high:9.63|open:9.83|close:9.68|adjClose:9.68|volume:18448800|
+date:2016-03-31|low:9.86|high:9.53|open:9.7|close:9.58|adjClose:9.58|volume:19912100|
+date:2016-04-01|low:9.64|high:9.35|open:9.44|close:9.63|adjClose:9.63|volume:17540800|
+date:2016-04-04|low:9.77|high:9.37|open:9.58|close:9.4|adjClose:9.4|volume:19943900|
+date:2016-04-05|low:9.55|high:9.26|open:9.29|close:9.41|adjClose:9.41|volume:14662900|
+date:2016-04-06|low:9.54|high:9.26|open:9.42|close:9.5|adjClose:9.5|volume:16807800|
+--------------------------------------------
