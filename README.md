@@ -22,6 +22,10 @@ JMXExamples
 -----------
 Some small examples of JMX
 
+KaggleBNP
+-----------
+Work on the Kaggle competition: https://www.kaggle.com/c/bnp-paribas-cardif-claims-management
+
 Simulated Annealing
 -------------
 Current work on a Simulated Annealing Example
