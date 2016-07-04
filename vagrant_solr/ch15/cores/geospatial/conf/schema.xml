@@ -19,7 +19,7 @@
       <fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType"
               distErrPct="0.025"
               maxDistErr="0.000009"
-              units="degrees" />
+              distanceUnits="miles" />
 
   </types>
 
