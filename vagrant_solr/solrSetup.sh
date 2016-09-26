@@ -23,15 +23,16 @@ sudo setenforce 0
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 
 # Setup Solr
-if [ -f /vagrant/solr-6.1.0.tgz ]; then
-	cp /vagrant/solr-6.1.0.tgz /opt/
+if [ -f /vagrant/solr-6.2.1.tgz ]; then
+	cp /vagrant/solr-6.2.1.tgz /opt/
 else
-	wget http://apache.mirrors.tds.net/lucene/solr/6.1.0/solr-6.1.0.tgz
-	sudo mv solr-6.1.0.tgz /opt/
+        wget http://archive.apache.org/dist/lucene/solr/6.2.1/solr-6.2.1.tgz
+#wget http://apache.mirrors.tds.net/lucene/solr/6.1.0/solr-6.1.0.tgz
+	sudo mv solr-6.2.1.tgz /opt/
 fi
 cd /opt/
-sudo tar zxvf solr-6.1.0.tgz
-mv /opt/solr-6.1.0 /opt/solr
+sudo tar zxvf solr-6.2.1.tgz
+mv /opt/solr-6.2.1 /opt/solr
 
 cd /opt/solr/
 
