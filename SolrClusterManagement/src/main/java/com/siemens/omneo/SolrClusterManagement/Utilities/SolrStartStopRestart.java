@@ -4,97 +4,64 @@ import com.jcraft.jsch.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
+
+//Currently only handles a username and password variation of command and does not support Sudo
 
 public class SolrStartStopRestart {
 
-    public static boolean startSolrInstance(String host, int solrPort, String installDir, String user, int sshPort) throws JSchException, IOException {
+    public static boolean startSolrInstance(String host, int solrPort, String installDir, String user, String password,
+                                            int sshPort) throws JSchException, IOException {
 
         JSch jSch = new JSch();
 
         Session session = jSch.getSession(user, host, sshPort);
 
-//        UserInfo userInfo = new UserInfo() {
-//            @Override
-//            public String getPassphrase() {
-//                return "vagrant";
-//            }
-//
-//            @Override
-//            public String getPassword() {
-//                return "vagrant";
-//            }
-//
-//            @Override
-//            public boolean promptPassword(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean promptPassphrase(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean promptYesNo(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void showMessage(String s) {
-//
-//            }
-//        };
-
-        java.util.Properties config = new java.util.Properties();
-        config.put("StrictHostKeyChecking", "no");
+        Properties config = System.getProperties();
+        if (!config.containsKey("StrictHostKeyChecking"))
+            config.put("StrictHostKeyChecking", "no");
         session.setConfig(config);
 
-//        session.setUserInfo(userInfo);
-        session.setPassword("vagrant");
+        session.setPassword(password);
         session.connect();
 
-        Channel channel = session.openChannel("exec");
-        String command = "sudo " + installDir + "/bin/solr start -p " + solrPort;
-        ((ChannelExec)channel).setCommand(command);
-        ((ChannelExec)channel).setErrStream(System.err);
+        String command = installDir + "/bin/solr start -p " + solrPort;
+        executeCommand(session,command);
 
-        handleChannelCommunication(channel);
-
-        channel.disconnect();
         session.disconnect();
 
         return true;
     }
 
-    public static boolean stopSolrInstance(String host, int solrPort, String installDir, String user, int sshPort,
-                                           String solrStopKey) throws JSchException, IOException {
+    public static boolean stopSolrInstance(String host, int solrPort, String installDir, String user, String password,
+                                           int sshPort, String solrStopKey) throws JSchException, IOException {
 
         JSch jSch = new JSch();
-
         Session session = jSch.getSession(user, host, sshPort);
 
-
-        java.util.Properties config = new java.util.Properties();
-        config.put("StrictHostKeyChecking", "no");
+        Properties config = System.getProperties();
+        if (!config.containsKey("StrictHostKeyChecking"))
+            config.put("StrictHostKeyChecking", "no");
         session.setConfig(config);
 
-//        session.setUserInfo(userInfo);
-        session.setPassword("vagrant");
+        session.setPassword(password);
         session.connect();
 
-        Channel channel = session.openChannel("exec");
-        String command = "sudo " + installDir + "/bin/solr stop -p " + solrPort + " -k " + solrStopKey;
-        ((ChannelExec)channel).setCommand(command);
-        ((ChannelExec)channel).setErrStream(System.err);
+        String command = installDir + "/bin/solr stop -p " + solrPort + " -k " + solrStopKey;
 
-        handleChannelCommunication(channel);
 
-        channel.disconnect();
+        executeCommand(session, command);
+
         session.disconnect();
         return true;
     }
 
-    private static void handleChannelCommunication(Channel channel) throws JSchException, IOException {
+    //TODO understand this better
+    private static void executeCommand(Session session, String command) throws JSchException, IOException {
+        Channel channel = session.openChannel("exec");
+        ((ChannelExec)channel).setCommand(command);
+        ((ChannelExec)channel).setErrStream(System.err);
+
         InputStream in = channel.getInputStream();
         channel.connect();
 
@@ -107,7 +74,7 @@ public class SolrStartStopRestart {
             }
             if(channel.isClosed()){
                 if(in.available()>0) continue;
-                System.out.println("exit-status: "+channel.getExitStatus());
+                System.out.println("exit-status: " + channel.getExitStatus());
                 break;
             }
             try{Thread.sleep(1000);}catch(Exception ee){}
