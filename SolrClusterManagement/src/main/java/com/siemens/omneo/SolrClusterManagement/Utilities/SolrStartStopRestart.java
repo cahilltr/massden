@@ -1,4 +1,4 @@
-package com.siemens.omneo.SolrClusterManagement.Utilities;
+package com.siemens.omneo.solrclustermanagement.utilities;
 
 import com.jcraft.jsch.*;
 
@@ -7,12 +7,12 @@ import java.io.InputStream;
 import java.util.Properties;
 
 //Currently only handles a username and password variation of command and does not support Sudo
-
+//TODO logging
 public class SolrStartStopRestart {
 
-    public static boolean startSolrInstance(String host, int solrPort, String installDir, String user, String password,
-                                            int sshPort) throws JSchException, IOException {
-
+    //TODO fix the return true
+    public static boolean startSolrInstance(String host, int solrPort, String solrInstallDir, String user, String password,
+                                            int sshPort, String startUpOptions, String memory) throws JSchException, IOException {
         JSch jSch = new JSch();
 
         Session session = jSch.getSession(user, host, sshPort);
@@ -25,7 +25,9 @@ public class SolrStartStopRestart {
         session.setPassword(password);
         session.connect();
 
-        String command = installDir + "/bin/solr start -p " + solrPort;
+        String command = solrInstallDir + "/bin/solr start -p " + solrPort;
+        command  += (!startUpOptions.isEmpty() ? " -a \"" + startUpOptions + "\"" : "");
+        command  += (!memory.isEmpty() ? " -m \"" + memory + "\"" : "");
         executeCommand(session,command);
 
         session.disconnect();
@@ -33,7 +35,8 @@ public class SolrStartStopRestart {
         return true;
     }
 
-    public static boolean stopSolrInstance(String host, int solrPort, String installDir, String user, String password,
+    //TODO fix the return true
+    public static boolean stopSolrInstance(String host, int solrPort, String solrInstallDir, String user, String password,
                                            int sshPort, String solrStopKey) throws JSchException, IOException {
 
         JSch jSch = new JSch();
@@ -47,10 +50,34 @@ public class SolrStartStopRestart {
         session.setPassword(password);
         session.connect();
 
-        String command = installDir + "/bin/solr stop -p " + solrPort + " -k " + solrStopKey;
+        String command = solrInstallDir + "/bin/solr stop -p " + solrPort + " -k " + solrStopKey;
 
 
         executeCommand(session, command);
+
+        session.disconnect();
+        return true;
+    }
+
+    //TODO fix the return true
+    public static boolean restartSolrIntance(String host, int solrPort, String solrInstallDir, String user, String password,
+                                             int sshPort, String startUpOptions, String memory) throws IOException, JSchException {
+        JSch jSch = new JSch();
+
+        Session session = jSch.getSession(user, host, sshPort);
+
+        Properties config = System.getProperties();
+        if (!config.containsKey("StrictHostKeyChecking"))
+            config.put("StrictHostKeyChecking", "no");
+        session.setConfig(config);
+
+        session.setPassword(password);
+        session.connect();
+
+        String command = solrInstallDir + "/bin/solr start -p " + solrPort;
+        command  += (!startUpOptions.isEmpty() ? " -a \"" + startUpOptions + "\"" : "");
+        command  += (!memory.isEmpty() ? " -m \"" + memory + "\"" : "");
+        executeCommand(session,command);
 
         session.disconnect();
         return true;
