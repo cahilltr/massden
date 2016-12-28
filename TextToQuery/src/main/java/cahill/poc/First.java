@@ -50,8 +50,9 @@ public class First {
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
                 // this is the POS tag of the token
                 String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-                // this is the NER label of the token
+                // this is the NER label of the token - can return if a term is a date
                 String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+                System.out.println();
             }
 
             // this is the parse tree of the current sentence
