@@ -37,4 +37,6 @@ ambari-server setup -s
 
 ambari-server start
 
+sudo yum install -y ambari-agent
 
+ambari-agent start
