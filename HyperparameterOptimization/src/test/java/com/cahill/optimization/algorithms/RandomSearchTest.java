@@ -2,14 +2,10 @@ package com.cahill.optimization.algorithms;
 
 import com.cahill.ml.CrossValidationResults;
 import com.cahill.ml.MLAlgorithm;
+import com.cahill.optimization.Parameter;
 import org.junit.Test;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
-import static org.junit.Assert.*;
+import java.util.*;
 
 
 public class RandomSearchTest {
@@ -17,10 +13,10 @@ public class RandomSearchTest {
 
     @Test
     public void run() throws Exception {
-        Map<String, Double> paramsMap = new HashMap<>();
-        paramsMap.put("p1", 0.0);
-        paramsMap.put("p2", 0.0);
-        RandomSearch randomSearch = new RandomSearch(new myAlg(), new HashMap<>(), paramsMap, new HashMap<>());
+        List<Parameter> paramsList = new ArrayList<>();
+        paramsList.add(new Parameter("p1", 1.0, 5.0, 3.0));
+        paramsList.add(new Parameter("p2", 100.0, 500.0, 300.0));
+        RandomSearch randomSearch = new RandomSearch(new myAlg(), new HashMap<>(), paramsList, new ArrayList<Parameter>());
 
         randomSearch.run();
     }
@@ -29,7 +25,7 @@ public class RandomSearchTest {
     private class myAlg implements MLAlgorithm {
 
         @Override
-        public CrossValidationResults run(Map<String, Double> params) {
+        public CrossValidationResults run(List<Parameter> params) {
             Random rand = new Random();
             CrossValidationResults results = new CrossValidationResults();
             results.setFalseNegatives(rand.nextDouble());

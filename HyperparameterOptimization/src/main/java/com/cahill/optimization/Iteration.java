@@ -2,19 +2,19 @@ package com.cahill.optimization;
 
 import com.cahill.ml.CrossValidationResults;
 
-import java.util.Map;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Iteration {
 
     private double score;
     private CrossValidationResults results;
-    private Map<String, Double> params;
+    private List<Parameter> params;
 
-    public Iteration(CrossValidationResults canidateResult, Map<String, Double> canidate, double canidateScore) {
+    public Iteration(CrossValidationResults canidateResult, List<Parameter> candidate, double canidateScore) {
         this.results = canidateResult;
         this.score = canidateScore;
-        this.params = canidate;
+        this.params = candidate;
     }
 
     public double getScore() {
@@ -33,11 +33,11 @@ public class Iteration {
         this.results = results;
     }
 
-    public Map<String, Double> getParams() {
+    public List<Parameter> getParams() {
         return params;
     }
 
-    public void setParams(Map<String, Double> params) {
+    public void setParams(List<Parameter> params) {
         this.params = params;
     }
 
@@ -46,9 +46,13 @@ public class Iteration {
         String myString = "Score: " + score + System.lineSeparator();
         myString += "Results: " + System.lineSeparator() + results.toString(true);
         myString += "Parameters:" + System.lineSeparator();
-        myString += params.entrySet()
-                .stream()
-                .map(e -> "\tParameter " + e.getKey() + "=" + e.getValue())
+//        myString += params.entrySet()
+//                .stream()
+//                .map(e -> "\tParameter " + e.getKey() + "=" + e.getValue())
+//                .collect(Collectors.joining(System.lineSeparator()));
+
+        myString += params.stream()
+                .map(Parameter::toString)
                 .collect(Collectors.joining(System.lineSeparator()));
 
         return myString;

@@ -2,24 +2,20 @@ package com.cahill;
 
 import com.cahill.ml.MLAlgorithm;
 import com.cahill.optimization.OptimizationAlgorithm;
+import com.cahill.optimization.Parameter;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.AbstractMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.cahill.ml.MLAlgorithm.FINAL_PARAMETER_ID;
-import static com.cahill.ml.MLAlgorithm.ML_ALGORITHM;
-import static com.cahill.ml.MLAlgorithm.PARAMETER_ID;
+import static com.cahill.ml.MLAlgorithm.*;
 import static com.cahill.optimization.OptimizationAlgorithm.OPTIMIZATION_ALGORITHM;
 import static com.cahill.optimization.OptimizationAlgorithm.OPTIMIZATION_ALGORITHM_PARAMS;
 
 public class HyperparameterOptimization {
-
 
 
     public static void main(String[] args) throws IOException, NoSuchMethodException, ClassNotFoundException,
@@ -34,16 +30,16 @@ public class HyperparameterOptimization {
         props.load(new FileReader(propertiesFile));
 
         //Set inital parameters
-        Map<String, Double> parameters = getParameters(props, PARAMETER_ID);
+        List<Parameter> parameters = getMLParameters(props, PARAMETER_ID);
         //Define parameters that cannot be changed
-        Map<String, Double> immutableParams = getParameters(props, FINAL_PARAMETER_ID);
+        List<Parameter> immutableParams = getMLParameters(props, FINAL_PARAMETER_ID);
         //Select ML Algorithm
         String mlAlgorithmName = props.getProperty(ML_ALGORITHM);
         MLAlgorithm mlAlgorithm = getMLClass(mlAlgorithmName);
 
         //select optimization algorithm and get optimizationParams
         String optimizationAlgorithmClass = props.getProperty(OPTIMIZATION_ALGORITHM);
-        Map<String, Double> optimizationParams = getParameters(props, OPTIMIZATION_ALGORITHM_PARAMS);
+        Map<String, Double> optimizationParams = getOptimizeParameters(props, OPTIMIZATION_ALGORITHM_PARAMS);
 
         OptimizationAlgorithm optimizationAlgorithm = getOptimizationClass(optimizationAlgorithmClass, optimizationParams, mlAlgorithm);
 
@@ -57,13 +53,38 @@ public class HyperparameterOptimization {
     }
 
 
-    private Map<String, Double> getParameters(Properties props, String type) {
+    private Map<String, Double> getOptimizeParameters(Properties props, String type) {
+        return props.stringPropertyNames()
+            .stream()
+            .filter(k -> k.startsWith(type))
+            .map(k -> new AbstractMap.SimpleEntry<String, Double>(k, Double.parseDouble(props.getProperty(k))))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    private List<Parameter> getMLParameters(Properties props, String type) {
         return props.stringPropertyNames()
                 .stream()
                 .filter(k -> k.startsWith(type))
-                .map(k -> new AbstractMap.SimpleEntry<String, Double>(k, Double.parseDouble(props.getProperty(k))))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .map(k -> {
+                    Parameter p;
+                    String value = props.getProperty(k);
+                    String[] values = value.split(",");
+                    if (values.length == 1) {
+                        Double paramValue = Double.parseDouble(values[0]);
+                        p = new Parameter(k, paramValue, paramValue, paramValue);
+                        p.setFinal(true);
+                    } else if (value.length() == 3) {
+                        p = new Parameter(k, Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
+                        p.setFinal(false);
+                    } else {
+                        p = null;
+                    }
+                    return p;
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
+
 
     private MLAlgorithm getMLClass(String className) throws NoSuchMethodException,
         ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException {
