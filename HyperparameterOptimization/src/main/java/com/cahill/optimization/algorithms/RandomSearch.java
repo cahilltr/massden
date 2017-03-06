@@ -38,12 +38,6 @@ public class RandomSearch extends OptimizationAlgorithm {
         writeOutResults();
     }
 
-    private double costFunction(CrossValidationResults results) {
-        double falseResults = results.getFalseNegatives() + results.getFalsePositives();
-        double positiveResults = results.getTrueNegatives() + results.getTruePositives();
-        return (positiveResults * .7) - (falseResults * .3);
-    }
-
     private List<Parameter> generateCandidate(List<Parameter> params) {
         List<Parameter> paramsList = params.stream()
                 .map(p -> new Parameter(p.getName(), p.getMin(), p.getMax(), RandomUtils.nextDouble(p.getMin(), p.getMax())))
@@ -54,13 +48,5 @@ public class RandomSearch extends OptimizationAlgorithm {
 
     protected Parameter generateNewParameter(Parameter p) {
         return new Parameter(p.getName(), p.getMin(), p.getMax(), RandomUtils.nextDouble(p.getMin(), p.getMax()));
-    }
-
-    private void writeOutResults() {
-        String output = "Best iteration was: " + this.bestIteration.toString() + System.lineSeparator();
-        output += this.iterationList.stream()
-                .map(i -> "Iteration " + this.iterationList.indexOf(i) + System.lineSeparator() + i.toString())
-                .collect(Collectors.joining(System.lineSeparator()));
-        System.out.println(output);
     }
 }

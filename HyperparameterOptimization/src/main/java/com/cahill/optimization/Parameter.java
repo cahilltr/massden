@@ -7,7 +7,7 @@ public class Parameter {
   private double max;
   private double runningValue = 0;
   private double step = 0;
-  private boolean isFinal;
+  private boolean isFinal = false;
 
   public Parameter(String name, double min, double max, double runningValue, double step) {
     this.runningValue = runningValue;

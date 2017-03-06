@@ -1,8 +1,10 @@
 package com.cahill.optimization;
 
+import com.cahill.ml.CrossValidationResults;
 import com.cahill.ml.MLAlgorithm;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class OptimizationAlgorithm {
 
@@ -37,4 +39,19 @@ public abstract class OptimizationAlgorithm {
     public Iteration getBestIteration() {
         return bestIteration;
     }
+
+    protected void writeOutResults() {
+        String output = "Best iteration was: " + this.bestIteration.toString() + System.lineSeparator();
+        output += this.iterationList.stream()
+                .map(i -> "Iteration " + this.iterationList.indexOf(i) + System.lineSeparator() + i.toString())
+                .collect(Collectors.joining(System.lineSeparator()));
+        System.out.println(output);
+    }
+
+    protected double costFunction(CrossValidationResults results) {
+        double falseResults = results.getFalseNegatives() + results.getFalsePositives();
+        double positiveResults = results.getTrueNegatives() + results.getTruePositives();
+        return (positiveResults * .7) - (falseResults * .3);
+    }
+
 }
