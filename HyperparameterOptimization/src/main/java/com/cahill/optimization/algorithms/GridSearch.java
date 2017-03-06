@@ -15,9 +15,12 @@ public class GridSearch extends OptimizationAlgorithm {
 
     private List<List<Parameter>> grid;
 
-    public GridSearch(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams, List<Parameter> hyperparams, List<Parameter> immutableHyperparams) {
+    public GridSearch(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams, List<Parameter> hyperparams,
+                      List<Parameter> immutableHyperparams) throws Exception {
         super(mlAlgorithm, optimizationParams, hyperparams, immutableHyperparams);
         this.grid = generateParameterGrid();
+        if (this.grid.isEmpty())
+            throw new Exception("The Grid for grid search is empty. Be sure that the Step value of the parameters is set");
     }
 
     @Override
@@ -26,7 +29,6 @@ public class GridSearch extends OptimizationAlgorithm {
         candidate.addAll(this.immutableHyperparams);
         Iteration bestCandidate = new Iteration(new CrossValidationResults(), candidate, -100.00);
 
-        List<List<Parameter>> remainingCandidates = this.grid.stream().skip(1).collect(Collectors.toList());
         int gridSize = this.grid.size();
         for (int i = 1; i < gridSize; i++) {
             CrossValidationResults candidateResult = mlAlgorithm.run(candidate);
@@ -52,7 +54,7 @@ public class GridSearch extends OptimizationAlgorithm {
                     Parameter paramChanged = new Parameter(p.getName(), p.getMin(), p.getMax(), val, p.getStep());
                     List<Parameter> candidate = candidateFrame.stream().collect(Collectors.toList()); //Create a copy of the list
                     candidate.add(paramChanged);
-
+                    candidate.addAll(this.immutableHyperparams);
                     gridList.add(candidate);
                 }
             }
