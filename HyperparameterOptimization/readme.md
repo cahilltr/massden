@@ -13,7 +13,12 @@ The goal will be to make this as generic as possible and to provide a "testing h
 ### Random Search
 The random search algorithm runs a random search over the mutable hyperparameters. Parameters are randomly generated between their min and max values.  The first iteration will be ran using the running value.  The step attribute will be ignored if given to the paramter.
 
-## Grid Search
+### Grid Search
+The grid search algorithm runs a grid search over the mutable hyperparameters and utilities the step feature of parameters.  New candidates are generated as per their step between their min and max allowable values.
+
+### Simulated Annealing Search
+
+
 
 ## Running
 

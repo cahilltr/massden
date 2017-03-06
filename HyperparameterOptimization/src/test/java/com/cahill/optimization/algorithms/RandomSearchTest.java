@@ -38,6 +38,5 @@ public class RandomSearchTest {
         assertTrue(maxValue >= generatedParameter.getRunningValue() && generatedParameter.getRunningValue() >= minValue);
         assertEquals(minValue, generatedParameter.getMin(), 0.0);
         assertEquals(maxValue, generatedParameter.getMax(), 0.0);
-
     }
 }
