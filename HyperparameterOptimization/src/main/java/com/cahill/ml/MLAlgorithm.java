@@ -11,5 +11,5 @@ public interface MLAlgorithm {
     String ML_ALGORITHM = "ml.algorithm";
 
     //This should handle loading and splitting of data, training, and Cross Validation
-    public abstract CrossValidationResults run(List<Parameter> params);
+    public CrossValidationResults run(List<Parameter> params);
 }

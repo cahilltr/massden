@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 
 public class RandomSearch extends OptimizationAlgorithm {
 
-    //TODO post processing
-
     RandomSearch(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams, List<Parameter> hyperparams,
                  List<Parameter> immutableHyperparams) {
         super(mlAlgorithm, optimizationParams, hyperparams, immutableHyperparams);
@@ -52,6 +50,10 @@ public class RandomSearch extends OptimizationAlgorithm {
                 .collect(Collectors.toList());
         paramsList.addAll(this.immutableHyperparams);
         return paramsList;
+    }
+
+    protected Parameter generateNewParameter(Parameter p) {
+        return new Parameter(p.getName(), p.getMin(), p.getMax(), RandomUtils.nextDouble(p.getMin(), p.getMax()));
     }
 
     private void writeOutResults() {

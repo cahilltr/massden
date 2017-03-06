@@ -41,7 +41,7 @@ public class HyperparameterOptimization {
         String optimizationAlgorithmClass = props.getProperty(OPTIMIZATION_ALGORITHM);
         Map<String, Double> optimizationParams = getOptimizeParameters(props, OPTIMIZATION_ALGORITHM_PARAMS);
 
-        OptimizationAlgorithm optimizationAlgorithm = getOptimizationClass(optimizationAlgorithmClass, optimizationParams, mlAlgorithm);
+        OptimizationAlgorithm optimizationAlgorithm = getOptimizationClass(optimizationAlgorithmClass, optimizationParams, mlAlgorithm, parameters, immutableParams);
 
         //Use input optimizationParams as first pass
 //        String output = mlAlgorithm.run(); //counts as iteration
@@ -69,12 +69,16 @@ public class HyperparameterOptimization {
                     Parameter p;
                     String value = props.getProperty(k);
                     String[] values = value.split(",");
-                    if (values.length == 1) {
+                    int valuesLength = values.length;
+                    if (valuesLength == 1) {
                         Double paramValue = Double.parseDouble(values[0]);
                         p = new Parameter(k, paramValue, paramValue, paramValue);
                         p.setFinal(true);
-                    } else if (value.length() == 3) {
+                    } else if (valuesLength == 3) { //min,max,runningvalue
                         p = new Parameter(k, Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
+                        p.setFinal(false);
+                    } else if (valuesLength == 4) { //Includes step value
+                        p = new Parameter(k, Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]), Double.parseDouble(values[3]));
                         p.setFinal(false);
                     } else {
                         p = null;
@@ -93,10 +97,12 @@ public class HyperparameterOptimization {
         return (MLAlgorithm) ctor.newInstance();
     }
 
-    private OptimizationAlgorithm getOptimizationClass(String optimizationAlgorithmClass, Map<String, Double> optimizationParams, MLAlgorithm mlAlgorithm) throws NoSuchMethodException,
+    private OptimizationAlgorithm getOptimizationClass(String optimizationAlgorithmClass, Map<String, Double> optimizationParams,
+                                                       MLAlgorithm mlAlgorithm, List<Parameter> hyperparams,
+                                                       List<Parameter> immutableHyperParams) throws NoSuchMethodException,
             ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<?> clazz = Class.forName(optimizationAlgorithmClass);
         Constructor<?> ctor = clazz.getConstructor(Map.class, MLAlgorithm.class);
-        return (OptimizationAlgorithm) ctor.newInstance(optimizationParams, mlAlgorithm);
+        return (OptimizationAlgorithm) ctor.newInstance(optimizationParams, mlAlgorithm, hyperparams, immutableHyperParams);
     }
 }

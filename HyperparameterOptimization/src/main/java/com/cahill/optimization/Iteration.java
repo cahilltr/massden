@@ -46,11 +46,6 @@ public class Iteration {
         String myString = "Score: " + score + System.lineSeparator();
         myString += "Results: " + System.lineSeparator() + results.toString(true);
         myString += "Parameters:" + System.lineSeparator();
-//        myString += params.entrySet()
-//                .stream()
-//                .map(e -> "\tParameter " + e.getKey() + "=" + e.getValue())
-//                .collect(Collectors.joining(System.lineSeparator()));
-
         myString += params.stream()
                 .map(Parameter::toString)
                 .collect(Collectors.joining(System.lineSeparator()));

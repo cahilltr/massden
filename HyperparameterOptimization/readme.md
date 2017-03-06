@@ -8,13 +8,19 @@ The goal will be to make this as generic as possible and to provide a "testing h
 1. ~~Param limits (min/max)~~
 
 
+## Optimization Algorithms
+
+### Random Search
+The random search algorithm runs a random search over the mutable hyperparameters. Parameters are randomly generated between their min and max values.  The first iteration will be ran using the running value.  The step attribute will be ignored if given to the paramter.
+
+
 ## Running
 
 
 ## Notes
 
-Params are specified min,max,runningValue
-- i.e. parameter.myparam=0,5,3
+Params are specified min,max,runningValue,step(optional)
+- i.e. parameter.myparam=0,5,3,1
 
-final params are specified runningValue
+Final params are specified runningValue
 final.parameter.myparamfinal=3

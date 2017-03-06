@@ -7,33 +7,37 @@ import org.junit.Test;
 
 import java.util.*;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 
 public class RandomSearchTest {
 
 
     @Test
-    public void run() throws Exception {
+    public void testRun() throws Exception {
         List<Parameter> paramsList = new ArrayList<>();
         paramsList.add(new Parameter("p1", 1.0, 5.0, 3.0));
         paramsList.add(new Parameter("p2", 100.0, 500.0, 300.0));
-        RandomSearch randomSearch = new RandomSearch(new myAlg(), new HashMap<>(), paramsList, new ArrayList<Parameter>());
+        List<Parameter> immutableParamsList = new ArrayList<>();
+        immutableParamsList.add(new Parameter("immutableP1", 0, 0, 0));
+        RandomSearch randomSearch = new RandomSearch(new TestAlgorithm(), new HashMap<>(), paramsList, immutableParamsList);
 
         randomSearch.run();
     }
 
+    @Test
+    public void testGenerateNewParameter() throws Exception {
+        double minValue = 1.0;
+        double maxValue = 100.0;
+        Parameter p = new Parameter("test", minValue, maxValue, 10);
 
-    private class myAlg implements MLAlgorithm {
+        RandomSearch randomSearch = new RandomSearch(new TestAlgorithm(), new HashMap<>(), new ArrayList<>(), new ArrayList<>());
+        Parameter generatedParameter = randomSearch.generateNewParameter(p);
 
-        @Override
-        public CrossValidationResults run(List<Parameter> params) {
-            Random rand = new Random();
-            CrossValidationResults results = new CrossValidationResults();
-            results.setFalseNegatives(rand.nextDouble());
-            results.setFalsePositives(rand.nextDouble());
-            results.setTrueNegatives(rand.nextDouble());
-            results.setTruePositives(rand.nextDouble());
-            results.setResults(new HashMap<>());
-            return results;
-        }
+        assertTrue(maxValue >= generatedParameter.getRunningValue() && generatedParameter.getRunningValue() >= minValue);
+        assertEquals(minValue, generatedParameter.getMin(), 0.0);
+        assertEquals(maxValue, generatedParameter.getMax(), 0.0);
+
     }
 }
