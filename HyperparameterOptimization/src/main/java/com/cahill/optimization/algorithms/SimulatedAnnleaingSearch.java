@@ -30,12 +30,12 @@ public class SimulatedAnnleaingSearch extends OptimizationAlgorithm{
         startingTemperature = optimizationParams.containsKey(startingTempParam) ? optimizationParams.get(startingTempParam) : startingTemperature;
     }
 
-    //TODO test me
     @Override
     public void run() {
         List<Parameter> candidate = new ArrayList<>(this.hyperparams);
         candidate.addAll(this.immutableHyperparams);
-        Iteration bestCandidate = new Iteration(new CrossValidationResults(), candidate, -100.00);
+        Iteration currentCandidate = new Iteration(new CrossValidationResults(), candidate, -100.00);
+        this.bestIteration = currentCandidate;
 
         int iterationId = 1;
         double temperature = this.startingTemperature;
@@ -47,13 +47,14 @@ public class SimulatedAnnleaingSearch extends OptimizationAlgorithm{
             iterationList.add(candidateIteration);
 
             temperature = getTemperature(iterationId, temperature); //get new temperature
-            double deltaE = candidateScore - bestCandidate.getScore(); //get delta of scores (https://github.com/aimacode/aima-java/blob/AIMA3e/aima-core/src/main/java/aima/core/search/local/SimulatedAnnealingSearch.java)
-            bestCandidate = shouldAccept(temperature, deltaE) ? candidateIteration : bestCandidate;
+            double deltaE = candidateScore - currentCandidate.getScore(); //get delta of scores (https://github.com/aimacode/aima-java/blob/AIMA3e/aima-core/src/main/java/aima/core/search/local/SimulatedAnnealingSearch.java)
+            currentCandidate = shouldAccept(temperature, deltaE) ? candidateIteration : currentCandidate;
+            if (this.bestIteration.getScore() < currentCandidate.getScore())
+                this.bestIteration = currentCandidate;
 
             iterationId++;
             candidate = generateCandidate(this.hyperparams);
         }
-        this.bestIteration = bestCandidate;
         writeOutResults();
     }
 
@@ -73,8 +74,7 @@ public class SimulatedAnnleaingSearch extends OptimizationAlgorithm{
     //https://github.com/aimacode/aima-java/blob/AIMA3e/aima-core/src/main/java/aima/core/search/local/SimulatedAnnealingSearch.java
     private boolean shouldAccept(double temperature, double deltaE) {
         return (deltaE > 0.0)
-                || (new Random().nextDouble() <= probabilityOfAcceptance(
-                temperature, deltaE));
+                || (new Random().nextDouble() <= probabilityOfAcceptance(temperature, deltaE));
     }
 
     private List<Parameter> generateCandidate(List<Parameter> params) {

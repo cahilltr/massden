@@ -22,11 +22,11 @@ public class SimulatedAnnleaingSearchTest {
         HashMap<String, Double> optMap = new HashMap<>();
         optMap.put(OPTIMIZATION_ALGORITHM_PARAMS + "iterations", 1000.0);
 
-        SimulatedAnnleaingSearch simulatedAnnleaingSearch = new SimulatedAnnleaingSearch(new TestAlgorithm(), optMap, paramsList, immutableParamsList);
+        SimulatedAnnleaingSearch simulatedAnnleaingSearch = new SimulatedAnnleaingSearch(new TestAlgorithm(), optMap,
+                paramsList, immutableParamsList);
 
         simulatedAnnleaingSearch.run();
     }
-
 
     @Test
     public void generateNewParameter() throws Exception {

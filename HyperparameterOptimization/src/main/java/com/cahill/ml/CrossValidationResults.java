@@ -65,7 +65,7 @@ public class CrossValidationResults {
         myString += tabString + "True Positive: " + truePositives + System.lineSeparator();
         myString += tabString + "True Negative: " + trueNegatives + System.lineSeparator();
 
-        if (!results.isEmpty()) {
+        if (results != null && !results.isEmpty()) {
             myString += results.entrySet()
                     .stream()
                     .map(e -> tabString + e.getKey()  + ": " + e.getValue())
