@@ -49,9 +49,7 @@ public abstract class OptimizationAlgorithm {
     }
 
     protected double costFunction(CrossValidationResults results) {
-        double falseResults = results.getFalseNegatives() + results.getFalsePositives();
-        double positiveResults = results.getTrueNegatives() + results.getTruePositives();
-        return (positiveResults * .7) - (falseResults * .3);
+        return results.rocArea();
     }
 
 }

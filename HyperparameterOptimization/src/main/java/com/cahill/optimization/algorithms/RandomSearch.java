@@ -22,7 +22,7 @@ public class RandomSearch extends OptimizationAlgorithm {
         //Use inital parameters as first solution
         List<Parameter> candidate = new ArrayList<>(this.hyperparams);
         candidate.addAll(this.immutableHyperparams);
-        Iteration bestCandidate = new Iteration(new CrossValidationResults(), candidate, -100.00);
+        Iteration bestCandidate = new Iteration(new CrossValidationResults(new int[]{0}), candidate, -100.00);
 
         for (int i = 0; i < this.iterations; i++) {
             CrossValidationResults candidateResult = mlAlgorithm.run(candidate);

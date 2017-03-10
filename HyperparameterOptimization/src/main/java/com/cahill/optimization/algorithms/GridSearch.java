@@ -27,7 +27,7 @@ public class GridSearch extends OptimizationAlgorithm {
     public void run() {
         List<Parameter> candidate = grid.get(0);
         candidate.addAll(this.immutableHyperparams);
-        Iteration bestCandidate = new Iteration(new CrossValidationResults(), candidate, -100.00);
+        Iteration bestCandidate = new Iteration(new CrossValidationResults(new int[]{0}), candidate, -100.00);
 
         int gridSize = this.grid.size();
         for (int i = 1; i < gridSize; i++) {

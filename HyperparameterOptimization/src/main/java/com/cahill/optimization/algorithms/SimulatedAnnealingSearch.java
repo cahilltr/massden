@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class SimulatedAnnleaingSearch extends OptimizationAlgorithm{
+public class SimulatedAnnealingSearch extends OptimizationAlgorithm{
 
     private double coolingRate = 0.045;
     private static final String COOLING_RATE = "coolingRate";
@@ -21,7 +21,7 @@ public class SimulatedAnnleaingSearch extends OptimizationAlgorithm{
     private double startingTemperature = 1000;
     private static final String STARTING_TEMP = "startingTemperature";
 
-    public SimulatedAnnleaingSearch(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams, List<Parameter> hyperparams, List<Parameter> immutableHyperparams) {
+    public SimulatedAnnealingSearch(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams, List<Parameter> hyperparams, List<Parameter> immutableHyperparams) {
         super(mlAlgorithm, optimizationParams, hyperparams, immutableHyperparams);
         String coolingRateParam = OPTIMIZATION_ALGORITHM_PARAMS + COOLING_RATE;
         coolingRate = optimizationParams.containsKey(coolingRateParam) ? optimizationParams.get(coolingRateParam) : coolingRate;
@@ -34,7 +34,7 @@ public class SimulatedAnnleaingSearch extends OptimizationAlgorithm{
     public void run() {
         List<Parameter> candidate = new ArrayList<>(this.hyperparams);
         candidate.addAll(this.immutableHyperparams);
-        Iteration currentCandidate = new Iteration(new CrossValidationResults(), candidate, -100.00);
+        Iteration currentCandidate = new Iteration(new CrossValidationResults(new int[]{0}), candidate, -100.00);
         this.bestIteration = currentCandidate;
 
         int iterationId = 1;

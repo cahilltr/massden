@@ -22,7 +22,7 @@ public class SimulatedAnnleaingSearchTest {
         HashMap<String, Double> optMap = new HashMap<>();
         optMap.put(OPTIMIZATION_ALGORITHM_PARAMS + "iterations", 1000.0);
 
-        SimulatedAnnleaingSearch simulatedAnnleaingSearch = new SimulatedAnnleaingSearch(new TestAlgorithm(), optMap,
+        SimulatedAnnealingSearch simulatedAnnleaingSearch = new SimulatedAnnealingSearch(new TestAlgorithm(), optMap,
                 paramsList, immutableParamsList);
 
         simulatedAnnleaingSearch.run();
@@ -34,7 +34,7 @@ public class SimulatedAnnleaingSearchTest {
         double maxValue = 100.0;
         Parameter p = new Parameter("test", minValue, maxValue, 10);
 
-        SimulatedAnnleaingSearch simulatedAnnleaingSearch = new SimulatedAnnleaingSearch(new TestAlgorithm(), new HashMap<>(), new ArrayList<>(), new ArrayList<>());
+        SimulatedAnnealingSearch simulatedAnnleaingSearch = new SimulatedAnnealingSearch(new TestAlgorithm(), new HashMap<>(), new ArrayList<>(), new ArrayList<>());
         Parameter generatedParameter = simulatedAnnleaingSearch.generateNewParameter(p);
 
         assertTrue(maxValue >= generatedParameter.getRunningValue() && generatedParameter.getRunningValue() >= minValue);
