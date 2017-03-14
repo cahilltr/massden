@@ -11,7 +11,8 @@ import java.util.Map;
 //http://www.cleveralgorithms.com/nature-inspired/physical/extremal_optimization.html
 public class ExtremalOptimization extends OptimizationAlgorithm {
 
-    public ExtremalOptimization(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams, List<Parameter> hyperparams, List<Parameter> immutableHyperparams) {
+    public ExtremalOptimization(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams,
+                                List<Parameter> hyperparams, List<Parameter> immutableHyperparams) {
         super(mlAlgorithm, optimizationParams, hyperparams, immutableHyperparams);
     }
 

@@ -3,6 +3,7 @@ package com.cahill.ml;
 import com.cahill.optimization.Parameter;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MLAlgorithm {
 
@@ -11,5 +12,5 @@ public interface MLAlgorithm {
     String ML_ALGORITHM = "ml.algorithm";
 
     //This should handle loading and splitting of data, training, and Cross Validation
-    public CrossValidationResults run(List<Parameter> params);
+    public CrossValidationResults run(Map<String, Parameter> params);
 }

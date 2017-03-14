@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -46,12 +47,12 @@ public class GridSearchTest {
         immutableParams.add(new Parameter("p2", 1, 5, 2));
 
         GridSearch gridSearch = new GridSearch(new TestAlgorithm(),new HashMap<>(), hyperParams, immutableParams);
-        List<List<Parameter>> grid = gridSearch.generateParameterGrid();
+        List<Map<String, Parameter>> grid = gridSearch.generateParameterGrid();
 
         assertEquals(3, grid.size());
-        for (List<Parameter> candidate : grid) {
+        for (Map<String, Parameter> candidate : grid) {
             assertEquals(2, candidate.size());
-            for (Parameter p : candidate) {
+            for (Parameter p : candidate.values()) {
                 assertEquals(5, p.getMax(), 0);
                 assertEquals(1, p.getMin(), 0);
                 double val = p.getRunningValue();
@@ -73,12 +74,12 @@ public class GridSearchTest {
         immutableParams.add(new Parameter("p2", 1, 5, 2));
 
         GridSearch gridSearch = new GridSearch(new TestAlgorithm(),new HashMap<>(), hyperParams, immutableParams);
-        List<List<Parameter>> grid = gridSearch.generateParameterGrid();
+        List<Map<String, Parameter>> grid = gridSearch.generateParameterGrid();
 
         assertEquals(2, grid.size());
-        for (List<Parameter> candidate : grid) {
+        for (Map<String, Parameter> candidate : grid) {
             assertEquals(2, candidate.size());
-            for (Parameter p : candidate) {
+            for (Parameter p : candidate.values()) {
                 assertEquals(5, p.getMax(), 0);
                 assertEquals(1, p.getMin(), 0);
                 double val = p.getRunningValue();

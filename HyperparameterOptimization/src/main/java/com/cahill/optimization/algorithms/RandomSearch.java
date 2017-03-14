@@ -20,14 +20,14 @@ public class RandomSearch extends OptimizationAlgorithm {
     @Override
     public void run() {
         //Use inital parameters as first solution
-        List<Parameter> candidate = new ArrayList<>(this.hyperparams);
-        candidate.addAll(this.immutableHyperparams);
-        Iteration bestCandidate = new Iteration(new CrossValidationResults(new int[]{0}), candidate, -100.00);
+        Map<String, Parameter> candidate = this.hyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
+        candidate.putAll(this.immutableHyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
+        Iteration bestCandidate = new Iteration(new CrossValidationResults(new int[]{0}), new ArrayList<>(candidate.values()), -100.00);
 
         for (int i = 0; i < this.iterations; i++) {
             CrossValidationResults candidateResult = mlAlgorithm.run(candidate);
             double candidateScore = costFunction(candidateResult);
-            Iteration candidateIteration = new Iteration(candidateResult, candidate, candidateScore);
+            Iteration candidateIteration = new Iteration(candidateResult, new ArrayList<>(candidate.values()), candidateScore);
             iterationList.add(candidateIteration);
             if (candidateScore > bestCandidate.getScore()) { //Highest Value wins
                 bestCandidate = candidateIteration;
@@ -38,12 +38,15 @@ public class RandomSearch extends OptimizationAlgorithm {
         writeOutResults();
     }
 
-    private List<Parameter> generateCandidate(List<Parameter> params) {
-        List<Parameter> paramsList = params.stream()
+    private Map<String, Parameter> generateCandidate(List<Parameter> params) {
+        Map<String, Parameter> paramsMap = params.stream()
                 .map(p -> new Parameter(p.getName(), p.getMin(), p.getMax(), RandomUtils.nextDouble(p.getMin(), p.getMax())))
-                .collect(Collectors.toList());
-        paramsList.addAll(this.immutableHyperparams);
-        return paramsList;
+                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
+                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
+        paramsMap.putAll(this.immutableHyperparams.stream()
+                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
+                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
+        return paramsMap;
     }
 
     protected Parameter generateNewParameter(Parameter p) {

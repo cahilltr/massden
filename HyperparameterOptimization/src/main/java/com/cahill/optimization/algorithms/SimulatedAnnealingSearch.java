@@ -7,10 +7,7 @@ import com.cahill.optimization.OptimizationAlgorithm;
 import com.cahill.optimization.Parameter;
 import org.apache.commons.lang3.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SimulatedAnnealingSearch extends OptimizationAlgorithm{
@@ -32,9 +29,9 @@ public class SimulatedAnnealingSearch extends OptimizationAlgorithm{
 
     @Override
     public void run() {
-        List<Parameter> candidate = new ArrayList<>(this.hyperparams);
-        candidate.addAll(this.immutableHyperparams);
-        Iteration currentCandidate = new Iteration(new CrossValidationResults(new int[]{0}), candidate, -100.00);
+        Map<String, Parameter> candidate = this.hyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
+        candidate.putAll(this.immutableHyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
+        Iteration currentCandidate = new Iteration(new CrossValidationResults(new int[]{0}), new ArrayList<>(candidate.values()), -100.00);
         this.bestIteration = currentCandidate;
 
         int iterationId = 1;
@@ -43,7 +40,7 @@ public class SimulatedAnnealingSearch extends OptimizationAlgorithm{
         while(temperature > 0.0) {
             CrossValidationResults candidateResult = mlAlgorithm.run(candidate);
             double candidateScore = costFunction(candidateResult);
-            Iteration candidateIteration = new Iteration(candidateResult, candidate, candidateScore);
+            Iteration candidateIteration = new Iteration(candidateResult, new ArrayList<>(candidate.values()), candidateScore);
             iterationList.add(candidateIteration);
 
             temperature = getTemperature(iterationId, temperature); //get new temperature
@@ -77,12 +74,15 @@ public class SimulatedAnnealingSearch extends OptimizationAlgorithm{
                 || (new Random().nextDouble() <= probabilityOfAcceptance(temperature, deltaE));
     }
 
-    private List<Parameter> generateCandidate(List<Parameter> params) {
-        List<Parameter> paramsList = params.stream()
+    private Map<String, Parameter> generateCandidate(List<Parameter> params) {
+        Map<String, Parameter> parameterMap = params.stream()
                 .map(p -> new Parameter(p.getName(), p.getMin(), p.getMax(), RandomUtils.nextDouble(p.getMin(), p.getMax())))
-                .collect(Collectors.toList());
-        paramsList.addAll(this.immutableHyperparams);
-        return paramsList;
+                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
+                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
+        parameterMap.putAll(this.immutableHyperparams.stream()
+                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
+                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
+        return parameterMap;
     }
 
     protected Parameter generateNewParameter(Parameter p) {
