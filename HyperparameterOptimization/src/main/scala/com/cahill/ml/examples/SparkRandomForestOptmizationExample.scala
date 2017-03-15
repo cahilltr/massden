@@ -72,9 +72,9 @@ object SparkRandomForestOptmizationExample extends MLAlgorithm {
   def getFilesFromResources: Array[String] = {
     val base = "examples/SparkRandomForestData/"
     val classLoader = this.getClass.getClassLoader
-    Array(classLoader.getResource(base + "1year.aarf"), classLoader.getResource(base + "2year.aarf"),
-      classLoader.getResource(base + "3year.aarf"), classLoader.getResource(base + "4year.aarf"),
-      classLoader.getResource(base + "5year.aarf"))
+    Array(classLoader.getResource(base + "1year.aarf").getFile, classLoader.getResource(base + "2year.aarf").getFile,
+      classLoader.getResource(base + "3year.aarf").getFile, classLoader.getResource(base + "4year.aarf").getFile,
+      classLoader.getResource(base + "5year.aarf").getFile)
   }
 
 }
