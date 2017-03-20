@@ -13,7 +13,9 @@ import org.apache.spark.mllib.tree.RandomForest
 
 import scala.io.Source
 
-object SparkRandomForestOptmizationExample extends MLAlgorithm {
+class SparkRandomForestOptmizationExample extends MLAlgorithm {
+
+
 
   override def run(params: util.Map[String, Parameter]): CrossValidationResults = {
 
@@ -25,13 +27,13 @@ object SparkRandomForestOptmizationExample extends MLAlgorithm {
     val (trainingData, testData) = (splits(0), splits(1))
 
     //se parameters here
-    val numClasses = if (params.containsKey("")) params.get("").getRunningValue.toInt else 2
+    val numClasses = if (params.containsKey("numClasses")) params.get("numClasses").getRunningValue.toInt else 2
     val categoricalFeaturesInfo = Map[Int, Int]()
-    val numTrees = if (params.containsKey("")) params.get("").getRunningValue.toInt else 3 //default should be more in practice
+    val numTrees = if (params.containsKey("numTrees")) params.get("numTrees").getRunningValue.toInt else 3 //default should be more in practice
     val featureSubsetStrategy = "auto" // Let the algorithm choose.
     val impurity = "variance"
-    val maxDepth = if (params.containsKey("")) params.get("").getRunningValue.toInt else 4
-    val maxBins = if (params.containsKey("")) params.get("").getRunningValue.toInt else 32
+    val maxDepth = if (params.containsKey("maxDepth")) params.get("maxDepth").getRunningValue.toInt else 4
+    val maxBins = if (params.containsKey("maxBins")) params.get("maxBins").getRunningValue.toInt else 32
 
     val model = RandomForest.trainRegressor(trainingData,categoricalFeaturesInfo,numTrees,featureSubsetStrategy,impurity,maxDepth,maxBins,100)
 
@@ -43,7 +45,9 @@ object SparkRandomForestOptmizationExample extends MLAlgorithm {
     val rankedPredicitions = labelsAndPredictions.sortBy(s => s._2, ascending = false).map(r => r._1).map(d => d.toInt).collect()
 
 
-    new CrossValidationResults(rankedPredicitions)
+    val results = new CrossValidationResults(rankedPredicitions)
+    sc.stop()
+    results
   }
 
   //Handle multipe files and return a single Seq[LabeledPoint]
@@ -53,7 +57,11 @@ object SparkRandomForestOptmizationExample extends MLAlgorithm {
 
   //throw out unneeded data (anything that starts with "@")
   def parseARFF(file:String) : Seq[LabeledPoint] = {
-    Source.fromFile(new File(file)).getLines().filter(s => !s.startsWith("@")).map(lineToLabeledPoint).toSeq
+    Source.fromFile(new File(file))
+      .getLines()
+      .filter(s => !s.startsWith("@"))
+      .filter(s => !s.isEmpty)
+      .map(lineToLabeledPoint).toSeq
   }
 
   def lineToLabeledPoint(line:String) : LabeledPoint = {
@@ -72,9 +80,9 @@ object SparkRandomForestOptmizationExample extends MLAlgorithm {
   def getFilesFromResources: Array[String] = {
     val base = "examples/SparkRandomForestData/"
     val classLoader = this.getClass.getClassLoader
-    Array(classLoader.getResource(base + "1year.aarf").getFile, classLoader.getResource(base + "2year.aarf").getFile,
-      classLoader.getResource(base + "3year.aarf").getFile, classLoader.getResource(base + "4year.aarf").getFile,
-      classLoader.getResource(base + "5year.aarf").getFile)
+    Array(classLoader.getResource(base + "1year.arff").getFile, classLoader.getResource(base + "2year.arff").getFile,
+      classLoader.getResource(base + "3year.arff").getFile, classLoader.getResource(base + "4year.arff").getFile,
+      classLoader.getResource(base + "5year.arff").getFile)
   }
 
 }

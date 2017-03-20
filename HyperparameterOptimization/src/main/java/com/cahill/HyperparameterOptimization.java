@@ -102,7 +102,7 @@ public class HyperparameterOptimization {
                                                        List<Parameter> immutableHyperParams) throws NoSuchMethodException,
             ClassNotFoundException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<?> clazz = Class.forName(optimizationAlgorithmClass);
-        Constructor<?> ctor = clazz.getConstructor(Map.class, MLAlgorithm.class);
-        return (OptimizationAlgorithm) ctor.newInstance(optimizationParams, mlAlgorithm, hyperparams, immutableHyperParams);
+        Constructor<?> ctor = clazz.getConstructor(MLAlgorithm.class, Map.class, List.class, List.class);
+        return (OptimizationAlgorithm) ctor.newInstance(mlAlgorithm, optimizationParams, hyperparams, immutableHyperParams);
     }
 }

@@ -4,9 +4,6 @@ Based on the [blog](https://blog.acolyer.org/2017/03/01/optimisation-and-trainin
 
 The goal will be to make this as generic as possible and to provide a "testing harness" to allow anyone to use run hyperparameter optimization.
 
-## TODO
-1. ~~Param limits (min/max)~~
-
 
 ## Optimization Algorithms
 
@@ -22,9 +19,26 @@ The grid search algorithm runs a grid search over the mutable hyperparameters an
 
 ## Running
 
+## Basic Parameters
+- optimization.algorithm.class: Class of optimization algorithm to run i.e. com.cahill.optimization.algorithms.GridSearch
+- optimization.algorithm.param. : This is the start of parameters that the Optimization Algorithm will use.  i.e. optimization.algorithm.param.iterations would set the number of iterations
+- ml.algorithm: Class of ML Algorithm to use
+- final.parameter. : This is the start of a parameter that the ML algorithm will use, but the optimization algorithm will not change i.e. final.parameter.impurity=variance
+- parameter. : This is the start of a parameter that the ML algorithm will use and be altered by the optmization algorithm
+
+## Limitations
+- Currently, only numeric datatypes can be optimized by the Optimiation Algorithms.
 
 ## SparkRandomForestData
 This data is gotten from [Polish Companies Bankruptcy data](http://archive.ics.uci.edu/ml/datasets/Polish+companies+bankruptcy+data).
+
+### Sample Properties
+optimization.algorithm.class=com.cahill.optimization.algorithms.GridSearch
+ml.algorithm=com.cahill.ml.examples.SparkRandomForestOptmizationExample
+final.parameter.numClasses=2
+parameter.numTrees=3,10,3,1
+parameter.maxDepth=4,10,4,1
+parameter.maxBins=10,32,10,2
 
 ### Running
 TODO input how to make this run
