@@ -4,7 +4,6 @@ import com.cahill.ml.CrossValidationResults;
 import com.cahill.ml.MLAlgorithm;
 import com.cahill.optimization.Parameter;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;

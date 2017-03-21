@@ -2,7 +2,6 @@ package com.cahill.ml;
 
 import com.cahill.optimization.Parameter;
 
-import java.util.List;
 import java.util.Map;
 
 public interface MLAlgorithm {
