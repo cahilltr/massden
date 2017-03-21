@@ -49,7 +49,7 @@ public class RandomSearch extends OptimizationAlgorithm {
         return paramsMap;
     }
 
-    protected Parameter generateNewParameter(Parameter p) {
+    Parameter generateNewParameter(Parameter p) {
         return new Parameter(p.getName(), p.getMin(), p.getMax(), RandomUtils.nextDouble(p.getMin(), p.getMax()));
     }
 }

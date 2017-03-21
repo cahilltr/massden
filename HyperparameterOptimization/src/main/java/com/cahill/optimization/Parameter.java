@@ -30,6 +30,23 @@ public class Parameter {
     this.min = min;
   }
 
+  void validateMaxAndMin() throws Exception {
+    if (this.min > this.max)
+      throw new Exception("Min value: " + this.min + "  cannot be greater than the max value: " + this.max);
+
+    if (this.max < this.min)
+      throw new Exception("Max value: " + this.max + "  cannot be less than the min value: " + this.min);
+  }
+
+  void validateRunningValue() {
+    if (this.runningValue < this.min)
+      this.runningValue = this.min;
+
+    if (this.runningValue > this.max)
+      this.runningValue = this.max;
+  }
+
+
   public String getName() {
     return name;
   }
