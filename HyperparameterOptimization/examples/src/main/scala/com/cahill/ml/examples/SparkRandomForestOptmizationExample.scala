@@ -15,8 +15,6 @@ import scala.io.Source
 
 class SparkRandomForestOptmizationExample extends MLAlgorithm {
 
-
-
   override def run(params: util.Map[String, Parameter]): CrossValidationResults = {
 
     val conf = new SparkConf().setAppName("Random_Forrest_Optimization").setMaster("local[*]")
@@ -79,7 +77,9 @@ class SparkRandomForestOptmizationExample extends MLAlgorithm {
 
   def getFilesFromResources: Array[String] = {
     val base = "examples/SparkRandomForestData/"
-    val classLoader = this.getClass.getClassLoader
+//    val classLoader = Thread.currentThread().getContextClassLoader
+    val classLoader = SparkRandomForestOptmizationExample.super.getClass.getClassLoader;
+    System.out.println("Look Here: " + new File(classLoader.getResource(base).getFile()).exists())
     Array(classLoader.getResource(base + "1year.arff").getFile, classLoader.getResource(base + "2year.arff").getFile,
       classLoader.getResource(base + "3year.arff").getFile, classLoader.getResource(base + "4year.arff").getFile,
       classLoader.getResource(base + "5year.arff").getFile)

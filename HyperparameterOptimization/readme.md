@@ -51,7 +51,7 @@ parameter.maxBins=10,32,10,2
 Run HyperparameterOptimization with a single argument being a properties file with at least ml.algorithm and optimization.algorithm.class specified.
 
 ### Example
-TODO java example here
-TODO java example with outside ML and optimization implementation(s) here
+java -cp examples/target/examples-1.0-SNAPSHOT-jar-with-dependencies.jar com.cahill.HyperparameterOptimization ~/optimization.properties
+
 
 ## Notes
