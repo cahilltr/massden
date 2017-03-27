@@ -27,11 +27,17 @@ The simulated annealing search runs the simulated annealing algorithm over the m
 - parameter. : This is the start of a parameter that the ML algorithm will use and be altered by the optmization algorithm
 
 ### Specifiying Parameters
-Params are specified min,max,runningValue,step(optional)
+Numeric Params are specified min,max,runningValue,step(optional)
 - i.e. parameter.myparam=0,5,3,1
 
-Final params are specified runningValue
-final.parameter.myparamfinal=3
+Categorical Params are specified (semicolon separated values), runningValue
+- i.e. parameter.myCategoricalParam=("sadf"; "321"; "900"),"900"
+
+Numeric Final params are specified runningValue
+- i.e. final.parameter.myparamfinal=3
+
+Categorical Final params are specified runningValue
+- i.e. final.parameter.myCategoricalParam=(3)
 
 ## Limitations
 - Currently, only numeric datatypes can be optimized by the Optimiation Algorithms.
@@ -55,3 +61,4 @@ java -cp examples/target/examples-1.0-SNAPSHOT-jar-with-dependencies.jar com.cah
 
 
 ## Notes
+The user is responsible for saving results as they feel appropriate.

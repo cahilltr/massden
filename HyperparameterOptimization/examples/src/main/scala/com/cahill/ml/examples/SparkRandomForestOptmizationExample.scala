@@ -1,10 +1,9 @@
 package com.cahill.ml.examples
 
-import java.io.File
 import java.util
 
 import com.cahill.ml.{CrossValidationResults, MLAlgorithm}
-import com.cahill.optimization.Parameter
+import com.cahill.optimization.{CategoricalParameter, NumericalParameter, Parameter}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.mllib.tree.RandomForest
@@ -15,7 +14,7 @@ import scala.io.Source
 
 class SparkRandomForestOptmizationExample extends MLAlgorithm {
 
-  override def run(params: util.Map[String, Parameter]): CrossValidationResults = {
+  def run(params: util.Map[String, Parameter[_]]): CrossValidationResults = {
 
     Thread.sleep(10000)
 
@@ -26,14 +25,17 @@ class SparkRandomForestOptmizationExample extends MLAlgorithm {
     val splits = data.randomSplit(Array(0.7, 0.3))
     val (trainingData, testData) = (splits(0), splits(1))
 
-    //se parameters here
-    val numClasses = if (params.containsKey("final.parameter.numClasses")) params.get("final.parameter.numClasses").getRunningValue.toInt else 2
+    //TODO create get categorical and get numerical value from param
+    //parameter.featureSubsetStrategy=("sqrt", "log2", "onethird"),"sqrt
+    //use parameters here
+    val numClasses = if (params.containsKey("final.parameter.numClasses")) getNumericParameter(params.get("final.parameter.numClasses").asInstanceOf[Parameter[Double]]) else 2
     val categoricalFeaturesInfo = Map[Int, Int]()
-    val numTrees = if (params.containsKey("parameter.numTrees")) params.get("parameter.numTrees").getRunningValue.toInt else 3 //default should be more in practice
-    val featureSubsetStrategy = "auto" // Let the algorithm choose.
+    val numTrees = if (params.containsKey("parameter.numTrees")) getNumericParameter(params.get("parameter.numTrees").asInstanceOf[Parameter[Double]]) else 3 //default should be more in practice
+//    val featureSubsetStrategy = "auto" // Let the algorithm choose.
+    val featureSubsetStrategy = if (params.containsKey("parameter.featureSubsetStrategy")) getCategoricalParameter(params.get("parameter.featureSubsetStrategy").asInstanceOf[Parameter[String]]) else "auto"
     val impurity = "variance"
-    val maxDepth = if (params.containsKey("parameter.maxDepth")) params.get("parameter.maxDepth").getRunningValue.toInt else 4
-    val maxBins = if (params.containsKey("parameter.maxBins")) params.get("parameter.maxBins").getRunningValue.toInt else 32
+    val maxDepth = if (params.containsKey("parameter.maxDepth")) getNumericParameter(params.get("parameter.maxDepth").asInstanceOf[Parameter[Double]]) else 4
+    val maxBins = if (params.containsKey("parameter.maxBins")) getNumericParameter(params.get("parameter.maxBins").asInstanceOf[Parameter[Double]]) else 32
 
     val model = RandomForest.trainRegressor(trainingData,categoricalFeaturesInfo,numTrees,featureSubsetStrategy,impurity,maxDepth,maxBins,100)
 
@@ -83,6 +85,16 @@ class SparkRandomForestOptmizationExample extends MLAlgorithm {
     Array(base + "1year.arff", base + "2year.arff",
       base + "3year.arff", base + "4year.arff",
       base + "5year.arff")
+  }
+
+  def getCategoricalParameter(param:Parameter[String]) : String = {
+    val cp = param.asInstanceOf[CategoricalParameter]
+    cp.getRunningValue
+  }
+
+  def getNumericParameter(param:Parameter[Double]): Int = {
+    val np = param.asInstanceOf[NumericalParameter]
+    np.getRunningValue.toInt
   }
 
 }

@@ -2,9 +2,7 @@ package com.cahill.optimization.algorithms;
 
 import com.cahill.ml.CrossValidationResults;
 import com.cahill.ml.MLAlgorithm;
-import com.cahill.optimization.Iteration;
-import com.cahill.optimization.OptimizationAlgorithm;
-import com.cahill.optimization.Parameter;
+import com.cahill.optimization.*;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -28,13 +26,13 @@ public class GridSearch extends OptimizationAlgorithm {
     public void run() {
         Map<String, Parameter> candidate = grid.get(0);
         candidate.putAll(this.immutableHyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
-        Iteration bestCandidate = new Iteration(new CrossValidationResults(new int[]{0}), new ArrayList<Parameter>(candidate.values()), -100.00);
+        Iteration bestCandidate = new Iteration(new CrossValidationResults(new int[]{0}), new ArrayList<>(candidate.values()), -100.00);
 
         int gridSize = this.grid.size();
         for (int i = 1; i < gridSize; i++) {
             CrossValidationResults candidateResult = mlAlgorithm.run(candidate);
             double candidateScore = costFunction(candidateResult);
-            Iteration candidateIteration = new Iteration(candidateResult, new ArrayList<Parameter>(candidate.values()), candidateScore);
+            Iteration candidateIteration = new Iteration(candidateResult, new ArrayList<>(candidate.values()), candidateScore);
             iterationList.add(candidateIteration);
             if (candidateScore > bestCandidate.getScore()) { //Highest Value wins
                 bestCandidate = candidateIteration;
@@ -50,16 +48,33 @@ public class GridSearch extends OptimizationAlgorithm {
         List<Map<String, Parameter>> gridList = new ArrayList<>();
         for (Parameter p : this.hyperparams) {
             List<Parameter> candidateFrame = this.hyperparams.stream().filter(tmp -> tmp != p).collect(Collectors.toList()); //Remove current parameter
-            if (p.getStep() > 0 && !p.isFinal()) { //make sure its not an immuatable parameter and that the step value won't cause an infinite loop
-                for (double val = p.getMin(); val <= p.getMax(); val += p.getStep()) {
-                    Parameter paramChanged = new Parameter(p.getName(), p.getMin(), p.getMax(), val, p.getStep());
-                    Map<String, Parameter> candidate = candidateFrame.stream()
-                            .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
-                            .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
-                    candidate.put(paramChanged.getName(), paramChanged);
-                    candidate.putAll(this.immutableHyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
-                    gridList.add(candidate);
+            if (p.isNumericParameter()) {
+                NumericalParameter np = (NumericalParameter) p;
+                if (np.getStep() > 0 && !p.isFinal()) { //make sure its not an immuatable parameter and that the step value won't cause an infinite loop
+                    for (double val = np.getMin(); val <= np.getMax(); val += np.getStep()) {
+                        NumericalParameter paramChanged = new NumericalParameter(p.getName(), np.getMin(), np.getMax(), val, np.getStep());
+                        Map<String, Parameter> candidate = candidateFrame.stream()
+                                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
+                                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
+                        candidate.put(paramChanged.getName(), paramChanged);
+                        candidate.putAll(this.immutableHyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
+                        gridList.add(candidate);
+                    }
                 }
+            } else {
+                CategoricalParameter cp = (CategoricalParameter) p;
+                if (!p.isFinal()) { //make sure its not an immuatable parameter and that the step value won't cause an infinite loop
+                    for (String val : cp.getAllowedValues()) {
+                        CategoricalParameter paramChanged = new CategoricalParameter(p.getName(), cp.getAllowedValues(), val);
+                        Map<String, Parameter> candidate = candidateFrame.stream()
+                                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
+                                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
+                        candidate.put(paramChanged.getName(), paramChanged);
+                        candidate.putAll(this.immutableHyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
+                        gridList.add(candidate);
+                    }
+                }
+
             }
         }
         return gridList;

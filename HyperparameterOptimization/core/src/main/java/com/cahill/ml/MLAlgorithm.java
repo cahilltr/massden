@@ -1,5 +1,6 @@
 package com.cahill.ml;
 
+import com.cahill.optimization.NumericalParameter;
 import com.cahill.optimization.Parameter;
 
 import java.util.Map;

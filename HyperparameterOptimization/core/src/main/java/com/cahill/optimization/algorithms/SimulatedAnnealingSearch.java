@@ -2,9 +2,7 @@ package com.cahill.optimization.algorithms;
 
 import com.cahill.ml.CrossValidationResults;
 import com.cahill.ml.MLAlgorithm;
-import com.cahill.optimization.Iteration;
-import com.cahill.optimization.OptimizationAlgorithm;
-import com.cahill.optimization.Parameter;
+import com.cahill.optimization.*;
 import org.apache.commons.lang3.RandomUtils;
 
 import java.util.*;
@@ -18,7 +16,8 @@ public class SimulatedAnnealingSearch extends OptimizationAlgorithm{
     private double startingTemperature = 1000;
     private static final String STARTING_TEMP = "startingTemperature";
 
-    public SimulatedAnnealingSearch(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams, List<Parameter> hyperparams, List<Parameter> immutableHyperparams) {
+    public SimulatedAnnealingSearch(MLAlgorithm mlAlgorithm, Map<String, Double> optimizationParams, List<Parameter> hyperparams,
+                                    List<Parameter> immutableHyperparams) {
         super(mlAlgorithm, optimizationParams, hyperparams, immutableHyperparams);
         String coolingRateParam = OPTIMIZATION_ALGORITHM_PARAMS + COOLING_RATE;
         coolingRate = optimizationParams.containsKey(coolingRateParam) ? optimizationParams.get(coolingRateParam) : coolingRate;
@@ -76,7 +75,7 @@ public class SimulatedAnnealingSearch extends OptimizationAlgorithm{
 
     private Map<String, Parameter> generateCandidate(List<Parameter> params) {
         Map<String, Parameter> parameterMap = params.stream()
-                .map(p -> new Parameter(p.getName(), p.getMin(), p.getMax(), RandomUtils.nextDouble(p.getMin(), p.getMax())))
+                .map(p -> generateNewParameter(p))
                 .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
                 .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
         parameterMap.putAll(this.immutableHyperparams.stream()
@@ -86,6 +85,13 @@ public class SimulatedAnnealingSearch extends OptimizationAlgorithm{
     }
 
     protected Parameter generateNewParameter(Parameter p) {
-        return new Parameter(p.getName(), p.getMin(), p.getMax(), RandomUtils.nextDouble(p.getMin(), p.getMax()));
+        if (p.isNumericParameter()) {
+            NumericalParameter np = (NumericalParameter) p;
+            return new NumericalParameter(p.getName(), np.getMin(), np.getMax(), RandomUtils.nextDouble(np.getMin(), np.getMax()));
+        } else {
+            CategoricalParameter cp = (CategoricalParameter)p;
+            List<String> valuesList = cp.getAllowedValues();
+            return new CategoricalParameter(p.getName(), valuesList, valuesList.get(RandomUtils.nextInt(0,  valuesList.size())));
+        }
     }
 }

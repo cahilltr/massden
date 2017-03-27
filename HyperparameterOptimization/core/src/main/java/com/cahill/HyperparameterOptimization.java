@@ -1,7 +1,9 @@
 package com.cahill;
 
 import com.cahill.ml.MLAlgorithm;
+import com.cahill.optimization.CategoricalParameter;
 import com.cahill.optimization.OptimizationAlgorithm;
+import com.cahill.optimization.NumericalParameter;
 import com.cahill.optimization.Parameter;
 
 import java.io.FileReader;
@@ -19,15 +21,17 @@ public class HyperparameterOptimization {
 
 
     public static void main(String[] args) throws IOException, NoSuchMethodException, ClassNotFoundException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
+            IllegalAccessException, InvocationTargetException, InstantiationException, InterruptedException {
         HyperparameterOptimization optimization = new HyperparameterOptimization();
         optimization.run(args[0]);
     }
 
     public void run(String propertiesFile) throws IOException, NoSuchMethodException, ClassNotFoundException,
-            IllegalAccessException, InstantiationException, InvocationTargetException {
+            IllegalAccessException, InstantiationException, InvocationTargetException, InterruptedException {
         Properties props = new Properties();
         props.load(new FileReader(propertiesFile));
+
+        Thread.sleep(10000);
 
         //Set inital parameters
         List<Parameter> parameters = getMLParameters(props, PARAMETER_ID);
@@ -66,22 +70,36 @@ public class HyperparameterOptimization {
                 .stream()
                 .filter(k -> k.startsWith(type))
                 .map(k -> {
-                    Parameter p;
                     String value = props.getProperty(k);
                     String[] values = value.split(",");
                     int valuesLength = values.length;
-                    if (valuesLength == 1) {
-                        Double paramValue = Double.parseDouble(values[0]);
-                        p = new Parameter(k, paramValue, paramValue, paramValue);
-                        p.setFinal(true);
-                    } else if (valuesLength == 3) { //min,max,runningvalue
-                        p = new Parameter(k, Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
-                        p.setFinal(false);
-                    } else if (valuesLength == 4) { //Includes step value
-                        p = new Parameter(k, Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]), Double.parseDouble(values[3]));
-                        p.setFinal(false);
+                    Parameter p;
+                    if (value.startsWith("(")) {
+                        if (valuesLength == 1) {
+                            String paramValue = values[0].replace("(", "").replace(")", "");
+                            p = new CategoricalParameter(k, Collections.singletonList(paramValue), paramValue);
+                        } else if (valuesLength == 2) {
+                            String paramValue = values[0].replace("(", "").replace(")", "");
+                            String[] valuesArray = paramValue.split(";");
+                            String runningValue = values[1];
+                            p = new CategoricalParameter(k, Arrays.asList(valuesArray), runningValue);
+                        } else {
+                            p = null;
+                        }
                     } else {
-                        p = null;
+                        if (valuesLength == 1) {
+                            Double paramValue = Double.parseDouble(values[0]);
+                            p = new NumericalParameter(k, paramValue, paramValue, paramValue);
+                            p.setFinal(true);
+                        } else if (valuesLength == 3) { //min,max,runningvalue
+                            p = new NumericalParameter(k, Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]));
+                            p.setFinal(false);
+                        } else if (valuesLength == 4) { //Includes step value
+                            p = new NumericalParameter(k, Double.parseDouble(values[0]), Double.parseDouble(values[1]), Double.parseDouble(values[2]), Double.parseDouble(values[3]));
+                            p.setFinal(false);
+                        } else {
+                            p = null;
+                        }
                     }
                     return p;
                 })

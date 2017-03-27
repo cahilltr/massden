@@ -3,6 +3,7 @@ package com.cahill.optimization.algorithms;
 
 import com.cahill.ml.MLAlgorithm;
 import com.cahill.optimization.OptimizationAlgorithm;
+import com.cahill.optimization.NumericalParameter;
 import com.cahill.optimization.Parameter;
 
 import java.util.List;
