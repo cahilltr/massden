@@ -17,6 +17,8 @@ class SparkRandomForestOptmizationExample extends MLAlgorithm {
 
   override def run(params: util.Map[String, Parameter]): CrossValidationResults = {
 
+    Thread.sleep(10000)
+
     val conf = new SparkConf().setAppName("Random_Forrest_Optimization").setMaster("local[*]")
     val sc = new SparkContext(conf)
     //load multiple files
@@ -25,13 +27,13 @@ class SparkRandomForestOptmizationExample extends MLAlgorithm {
     val (trainingData, testData) = (splits(0), splits(1))
 
     //se parameters here
-    val numClasses = if (params.containsKey("numClasses")) params.get("numClasses").getRunningValue.toInt else 2
+    val numClasses = if (params.containsKey("final.parameter.numClasses")) params.get("final.parameter.numClasses").getRunningValue.toInt else 2
     val categoricalFeaturesInfo = Map[Int, Int]()
-    val numTrees = if (params.containsKey("numTrees")) params.get("numTrees").getRunningValue.toInt else 3 //default should be more in practice
+    val numTrees = if (params.containsKey("parameter.numTrees")) params.get("parameter.numTrees").getRunningValue.toInt else 3 //default should be more in practice
     val featureSubsetStrategy = "auto" // Let the algorithm choose.
     val impurity = "variance"
-    val maxDepth = if (params.containsKey("maxDepth")) params.get("maxDepth").getRunningValue.toInt else 4
-    val maxBins = if (params.containsKey("maxBins")) params.get("maxBins").getRunningValue.toInt else 32
+    val maxDepth = if (params.containsKey("parameter.maxDepth")) params.get("parameter.maxDepth").getRunningValue.toInt else 4
+    val maxBins = if (params.containsKey("parameter.maxBins")) params.get("parameter.maxBins").getRunningValue.toInt else 32
 
     val model = RandomForest.trainRegressor(trainingData,categoricalFeaturesInfo,numTrees,featureSubsetStrategy,impurity,maxDepth,maxBins,100)
 
@@ -55,7 +57,8 @@ class SparkRandomForestOptmizationExample extends MLAlgorithm {
 
   //throw out unneeded data (anything that starts with "@")
   def parseARFF(file:String) : Seq[LabeledPoint] = {
-    Source.fromFile(new File(file))
+    val classLoader = SparkRandomForestOptmizationExample.super.getClass.getClassLoader
+    Source.fromInputStream(classLoader.getResourceAsStream(file))
       .getLines()
       .filter(s => !s.startsWith("@"))
       .filter(s => !s.isEmpty)
@@ -77,12 +80,9 @@ class SparkRandomForestOptmizationExample extends MLAlgorithm {
 
   def getFilesFromResources: Array[String] = {
     val base = "examples/SparkRandomForestData/"
-//    val classLoader = Thread.currentThread().getContextClassLoader
-    val classLoader = SparkRandomForestOptmizationExample.super.getClass.getClassLoader;
-    System.out.println("Look Here: " + new File(classLoader.getResource(base).getFile()).exists())
-    Array(classLoader.getResource(base + "1year.arff").getFile, classLoader.getResource(base + "2year.arff").getFile,
-      classLoader.getResource(base + "3year.arff").getFile, classLoader.getResource(base + "4year.arff").getFile,
-      classLoader.getResource(base + "5year.arff").getFile)
+    Array(base + "1year.arff", base + "2year.arff",
+      base + "3year.arff", base + "4year.arff",
+      base + "5year.arff")
   }
 
 }
