@@ -4,10 +4,7 @@ import com.cahill.ml.CrossValidationResults;
 import com.cahill.ml.MLAlgorithm;
 import com.cahill.optimization.*;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GridSearch extends OptimizationAlgorithm {
@@ -78,5 +75,68 @@ public class GridSearch extends OptimizationAlgorithm {
             }
         }
         return gridList;
+    }
+
+    //TODO need to do a cross join (cartiesian product) -> generate as needed?
+    List<Map<String, Parameter>> generateParameterGrid2() {
+        List<Map<String, Parameter>> gridList = new ArrayList<>();
+
+        Map<String, List<Parameter>> builtMap = this.hyperparams
+                .stream()
+                .map(p -> p.isNumericParameter() ? getNumericParameterPermutations((NumericalParameter)p) : getCategoricalParameterPermutation((CategoricalParameter)p))
+                .map(l -> new AbstractMap.SimpleEntry<>(l.get(0).getName(), l))
+                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
+
+//        builtMap.entrySet().stream()
+//                .map()
+
+
+        for (Parameter p : this.hyperparams) {
+            List<Parameter> candidateFrame = this.hyperparams.stream().filter(tmp -> tmp != p).collect(Collectors.toList()); //Remove current parameter
+            if (p.isNumericParameter()) {
+                NumericalParameter np = (NumericalParameter) p;
+
+            } else {
+                CategoricalParameter cp = (CategoricalParameter) p;
+
+            }
+        }
+        return gridList;
+    }
+
+    List<Map<String, Parameter>> generateParameterPermutation(Parameter op, Map<String, List<Parameter>> stringListMap) {
+        List<Map<String, Parameter>> candidates = new ArrayList<>();
+
+
+        stringListMap.remove(op.getName());
+        for (Map.Entry<String, List<Parameter>> e : stringListMap.entrySet()) {
+            for (Parameter p : e.getValue()) {
+                Map<String, Parameter> tmpMap = new HashMap<>();
+                tmpMap.put(p.getName(), p);
+                candidates.add(tmpMap);
+            }
+
+        }
+
+
+        return candidates;
+    }
+
+    List<Parameter> getNumericParameterPermutations(NumericalParameter np) {
+        List<Parameter> parameters = new ArrayList<>();
+        if (np.getStep() > 0 && !np.isFinal()) { //make sure its not an immuatable parameter and that the step value won't cause an infinite loop
+            for (double val = np.getMin(); val <= np.getMax(); val += np.getStep()) {
+                parameters.add(new NumericalParameter(np.getName(), np.getMin(), np.getMax(), val, np.getStep()));
+            }
+        }
+        return parameters;
+    }
+
+    List<Parameter> getCategoricalParameterPermutation(CategoricalParameter cp) {
+        List<Parameter> parameters = new ArrayList<>();
+        for (String val : cp.getAllowedValues()) {
+            parameters.add(new CategoricalParameter(cp.getName(), cp.getAllowedValues(), val));
+        }
+        return parameters;
     }
 }

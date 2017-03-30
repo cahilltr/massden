@@ -1,13 +1,11 @@
 package com.cahill.optimization.algorithms;
 
+import com.cahill.optimization.CategoricalParameter;
 import com.cahill.optimization.NumericalParameter;
 import com.cahill.optimization.Parameter;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -72,6 +70,7 @@ public class GridSearchTest {
     public void generateParameterGridStepWillBeLargerThanMax() throws Exception {
         List<Parameter> hyperParams = new ArrayList<>();
         hyperParams.add(new NumericalParameter("p1", 1, 5, 2, 3));
+        hyperParams.add(new CategoricalParameter("p3", Arrays.asList(new String[]{"a", "b"}), "b"));
         List<Parameter> immutableParams = new ArrayList<>();
         immutableParams.add(new NumericalParameter("p2", 1, 5, 2));
 
