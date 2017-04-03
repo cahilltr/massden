@@ -79,7 +79,7 @@ public class GridSearch extends OptimizationAlgorithm {
 
     //TODO need to do a cross join (cartiesian product) -> generate as needed?
     List<Map<String, Parameter>> generateParameterGrid2() {
-        List<Map<String, Parameter>> gridList = new ArrayList<>();
+        List<Map<String, Parameter>> gridList;
 
         Map<String, List<Parameter>> builtMap = this.hyperparams
                 .stream()
@@ -87,21 +87,46 @@ public class GridSearch extends OptimizationAlgorithm {
                 .map(l -> new AbstractMap.SimpleEntry<>(l.get(0).getName(), l))
                 .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
 
-//        builtMap.entrySet().stream()
-//                .map()
 
+        gridList = new ArrayList<>(
+                recurse5(
+                        new ArrayList<>(builtMap.values())
+                ));
 
-        for (Parameter p : this.hyperparams) {
-            List<Parameter> candidateFrame = this.hyperparams.stream().filter(tmp -> tmp != p).collect(Collectors.toList()); //Remove current parameter
-            if (p.isNumericParameter()) {
-                NumericalParameter np = (NumericalParameter) p;
-
-            } else {
-                CategoricalParameter cp = (CategoricalParameter) p;
-
-            }
-        }
+//        for (Parameter p : this.hyperparams) {
+//            List<Parameter> candidateFrame = this.hyperparams.stream().filter(tmp -> tmp != p).collect(Collectors.toList()); //Remove current parameter
+//            if (p.isNumericParameter()) {
+//                NumericalParameter np = (NumericalParameter) p;
+//
+//            } else {
+//                CategoricalParameter cp = (CategoricalParameter) p;
+//
+//            }
+//        }
         return gridList;
+    }
+
+    //TODO test me
+    static Set<Map<String, Parameter>> recurse5(List<List<Parameter>> values) {
+        Set<Map<String, Parameter>> product = new HashSet<>();
+
+        if (values.size() == 1) { //base case
+            values.get(0).forEach(p ->
+                {Map<String, Parameter> map = new HashMap<>();
+                map.put(p.getName(), p);
+                product.add(map);
+                });
+        } else {
+            Set<Map<String, Parameter>> tmpProduct = recurse5(values.subList(1, values.size()));
+            List<Parameter> parameterList = values.get(0);
+            product.addAll(tmpProduct.stream().flatMap(m -> parameterList.stream().map(p -> {
+                Map<String, Parameter> tmpMap = new HashMap<>(m);
+                tmpMap.put(p.getName(), p);
+                return tmpMap;
+            })).collect(Collectors.toSet()));
+        }
+
+        return product;
     }
 
     List<Map<String, Parameter>> generateParameterPermutation(Parameter op, Map<String, List<Parameter>> stringListMap) {
@@ -122,7 +147,7 @@ public class GridSearch extends OptimizationAlgorithm {
         return candidates;
     }
 
-    List<Parameter> getNumericParameterPermutations(NumericalParameter np) {
+    static List<Parameter> getNumericParameterPermutations(NumericalParameter np) {
         List<Parameter> parameters = new ArrayList<>();
         if (np.getStep() > 0 && !np.isFinal()) { //make sure its not an immuatable parameter and that the step value won't cause an infinite loop
             for (double val = np.getMin(); val <= np.getMax(); val += np.getStep()) {
@@ -132,7 +157,7 @@ public class GridSearch extends OptimizationAlgorithm {
         return parameters;
     }
 
-    List<Parameter> getCategoricalParameterPermutation(CategoricalParameter cp) {
+    static List<Parameter> getCategoricalParameterPermutation(CategoricalParameter cp) {
         List<Parameter> parameters = new ArrayList<>();
         for (String val : cp.getAllowedValues()) {
             parameters.add(new CategoricalParameter(cp.getName(), cp.getAllowedValues(), val));

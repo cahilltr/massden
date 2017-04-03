@@ -6,7 +6,10 @@ import com.cahill.optimization.Parameter;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
+import static com.cahill.optimization.algorithms.GridSearch.getCategoricalParameterPermutation;
+import static com.cahill.optimization.algorithms.GridSearch.getNumericParameterPermutations;
 import static org.junit.Assert.*;
 
 
@@ -64,6 +67,25 @@ public class GridSearchTest {
             }
         }
 
+    }
+
+    @Test
+    public void recurse5Test() {
+        List<Parameter> paramsList = new ArrayList<>();
+        paramsList.add(new NumericalParameter("p1", 1.0, 2.0, 2.0, 1));
+        paramsList.add(new NumericalParameter("p2", 100.0, 200.0, 200.0, 100));
+
+        Map<String, List<Parameter>> builtMap = paramsList
+                .stream()
+                .map(p -> p.isNumericParameter() ? getNumericParameterPermutations((NumericalParameter)p) : getCategoricalParameterPermutation((CategoricalParameter)p))
+                .map(l -> new AbstractMap.SimpleEntry<>(l.get(0).getName(), l))
+                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
+
+
+        Set<Map<String, Parameter>> testSet = GridSearch.recurse5(new ArrayList<>(builtMap.values()));
+        testSet.forEach(m -> assertEquals(2, m.size()));
+        assertEquals(4, testSet.size());
+        assertNotNull(testSet);
     }
 
     @Test
