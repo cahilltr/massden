@@ -40,47 +40,11 @@ public class GridSearch extends OptimizationAlgorithm {
         writeOutResults();
     }
 
-    //This will return a list of list<parameter> in running order.
-    protected List<Map<String, Parameter>> generateParameterGrid() {
-        List<Map<String, Parameter>> gridList = new ArrayList<>();
-        for (Parameter p : this.hyperparams) {
-            List<Parameter> candidateFrame = this.hyperparams.stream().filter(tmp -> tmp != p).collect(Collectors.toList()); //Remove current parameter
-            if (p.isNumericParameter()) {
-                NumericalParameter np = (NumericalParameter) p;
-                if (np.getStep() > 0 && !p.isFinal()) { //make sure its not an immuatable parameter and that the step value won't cause an infinite loop
-                    for (double val = np.getMin(); val <= np.getMax(); val += np.getStep()) {
-                        NumericalParameter paramChanged = new NumericalParameter(p.getName(), np.getMin(), np.getMax(), val, np.getStep());
-                        Map<String, Parameter> candidate = candidateFrame.stream()
-                                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
-                                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
-                        candidate.put(paramChanged.getName(), paramChanged);
-                        candidate.putAll(this.immutableHyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
-                        gridList.add(candidate);
-                    }
-                }
-            } else {
-                CategoricalParameter cp = (CategoricalParameter) p;
-                if (!p.isFinal()) { //make sure its not an immuatable parameter and that the step value won't cause an infinite loop
-                    for (String val : cp.getAllowedValues()) {
-                        CategoricalParameter paramChanged = new CategoricalParameter(p.getName(), cp.getAllowedValues(), val);
-                        Map<String, Parameter> candidate = candidateFrame.stream()
-                                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa))
-                                .collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
-                        candidate.put(paramChanged.getName(), paramChanged);
-                        candidate.putAll(this.immutableHyperparams.stream().map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue)));
-                        gridList.add(candidate);
-                    }
-                }
-
-            }
-        }
-        return gridList;
-    }
-
-    //TODO need to do a cross join (cartiesian product) -> generate as needed?
-    List<Map<String, Parameter>> generateParameterGrid2() {
+    List<Map<String, Parameter>> generateParameterGrid() {
         List<Map<String, Parameter>> gridList;
 
+        //Generate a list of all possible mutable param values
+        //So, for Parameter "p1" of possible parameter values (a,b), you'll get a map of <"p1", [a,b]>
         Map<String, List<Parameter>> builtMap = this.hyperparams
                 .stream()
                 .map(p -> p.isNumericParameter() ? getNumericParameterPermutations((NumericalParameter)p) : getCategoricalParameterPermutation((CategoricalParameter)p))
@@ -89,25 +53,18 @@ public class GridSearch extends OptimizationAlgorithm {
 
 
         gridList = new ArrayList<>(
-                recurse5(
+                recurseCartesian(
                         new ArrayList<>(builtMap.values())
                 ));
 
-//        for (Parameter p : this.hyperparams) {
-//            List<Parameter> candidateFrame = this.hyperparams.stream().filter(tmp -> tmp != p).collect(Collectors.toList()); //Remove current parameter
-//            if (p.isNumericParameter()) {
-//                NumericalParameter np = (NumericalParameter) p;
-//
-//            } else {
-//                CategoricalParameter cp = (CategoricalParameter) p;
-//
-//            }
-//        }
+        //Add immutable Hyperparams to each map
+        gridList.forEach(m -> m.putAll(this.immutableHyperparams.stream()
+                .map(pa -> new AbstractMap.SimpleEntry<>(pa.getName(), pa)).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue))));
         return gridList;
     }
 
-    //TODO test me
-    static Set<Map<String, Parameter>> recurse5(List<List<Parameter>> values) {
+    //Returns a Set to prevent duplicates
+    static Set<Map<String, Parameter>> recurseCartesian(List<List<Parameter>> values) {
         Set<Map<String, Parameter>> product = new HashSet<>();
 
         if (values.size() == 1) { //base case
@@ -117,8 +74,13 @@ public class GridSearch extends OptimizationAlgorithm {
                 product.add(map);
                 });
         } else {
-            Set<Map<String, Parameter>> tmpProduct = recurse5(values.subList(1, values.size()));
-            List<Parameter> parameterList = values.get(0);
+            Set<Map<String, Parameter>> tmpProduct = recurseCartesian(values.subList(1, values.size())); //Remove first value of the list
+            List<Parameter> parameterList = values.get(0); //Take the first value
+            //for every map from the tmpProduct (coming back up the stack), create a new map and add a value from the parameter list
+            //Example input: ([1,2],[3,4],[5,6]) -> Each bracket is a list, which we'll use in this explaination rather than a map
+            //Base Stack: ([5],[6])
+            //Previous Stack -> Input: ([5],[6]), Output: ([5,3], [6,3], [5,4], [6,4]) (adding a value from the parameter list)
+            //Current Stack: For each input map ([5,3], [6,3], [5,4], [6,4]), add a value from the parameter list to create an output map -> ([5,3,1], [5,3,2], [6,3,1], [6,3,2], [5,4,1], [5,4,2], [6,4,1], [6,4,2])
             product.addAll(tmpProduct.stream().flatMap(m -> parameterList.stream().map(p -> {
                 Map<String, Parameter> tmpMap = new HashMap<>(m);
                 tmpMap.put(p.getName(), p);
@@ -127,24 +89,6 @@ public class GridSearch extends OptimizationAlgorithm {
         }
 
         return product;
-    }
-
-    List<Map<String, Parameter>> generateParameterPermutation(Parameter op, Map<String, List<Parameter>> stringListMap) {
-        List<Map<String, Parameter>> candidates = new ArrayList<>();
-
-
-        stringListMap.remove(op.getName());
-        for (Map.Entry<String, List<Parameter>> e : stringListMap.entrySet()) {
-            for (Parameter p : e.getValue()) {
-                Map<String, Parameter> tmpMap = new HashMap<>();
-                tmpMap.put(p.getName(), p);
-                candidates.add(tmpMap);
-            }
-
-        }
-
-
-        return candidates;
     }
 
     static List<Parameter> getNumericParameterPermutations(NumericalParameter np) {

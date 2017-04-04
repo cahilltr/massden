@@ -11,6 +11,8 @@ public class CategoricalParameter extends Parameter<String> {
         super.setName(name);
         this.allowedValues = values;
         this.runningValue = runningValue;
+        if (!this.allowedValues.contains(this.runningValue))
+            this.allowedValues.add(this.runningValue);
         super.setNumericParameter(false);
     }
 

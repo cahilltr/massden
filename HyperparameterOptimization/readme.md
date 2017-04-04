@@ -27,11 +27,12 @@ The simulated annealing search runs the simulated annealing algorithm over the m
 - parameter. : This is the start of a parameter that the ML algorithm will use and be altered by the optmization algorithm
 
 ### Specifiying Parameters
-Numeric Params are specified min,max,runningValue,step(optional)
+Numeric Params are specified: min,max,runningValue,step(optional)
 - i.e. parameter.myparam=0,5,3,1
 
-Categorical Params are specified (semicolon separated values), runningValue
-- i.e. parameter.myCategoricalParam=("sadf"; "321"; "900"),"900"
+Categorical Params are specified: (semicolon separated values), runningValue
+- i.e. parameter.myCategoricalParam=("sadf"; "word"; "otherword"),"otherword"
+- The running value of a Cataegorical param should be present in the allowed values (parenthesis semicolo separated values).  If not, it will be added on parameter creation.
 
 Numeric Final params are specified runningValue
 - i.e. final.parameter.myparamfinal=3
@@ -40,7 +41,7 @@ Categorical Final params are specified runningValue
 - i.e. final.parameter.myCategoricalParam=(3)
 
 ## Limitations
-- Currently, only numeric datatypes can be optimized by the Optimiation Algorithms.
+- ~Currently, only numeric datatypes can be optimized by the Optimiation Algorithms.~
 
 ## SparkRandomForestData
 This data is gotten from [Polish Companies Bankruptcy data](http://archive.ics.uci.edu/ml/datasets/Polish+companies+bankruptcy+data).
