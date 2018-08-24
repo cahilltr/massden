@@ -4,8 +4,11 @@ import java.io.{ByteArrayInputStream, File}
 
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SparkSession
-import org.openimaj.image.ImageUtilities
-import org.openimaj.image.objectdetection.hog.{GetHOGClassifier, HOGDetector}
+import org.openimaj.image.feature.local.engine.DoGSIFTEngine
+import org.openimaj.image.feature.local.keypoints.Keypoint
+import org.openimaj.image.pixel.PixelSet
+import org.openimaj.image.processing.edges.SUSANEdgeDetector
+import org.openimaj.image.{DisplayUtilities, ImageUtilities}
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -49,8 +52,35 @@ object ImageDetection {
 //    val histogram = hog.getFeatureVector(new Rectangle(new Point2dImpl(topLeftBottomRight._1.floatValue(), topLeftBottomRight._2.floatValue()), new Point2dImpl(topLeftBottomRight._3.floatValue(), topLeftBottomRight._4.floatValue())))
 
 
-    val hogDetector = new HOGDetector(GetHOGClassifier.getHOGClassifier)
-    val rectangle = hogDetector.detect(fImage)
+//    val hogDetector = new HOGDetector(GetHOGClassifier.getHOGClassifier(fImage.height, fImage.width))
+//    val rectangle = hogDetector.detect(fImage)
+
+    val engine = new DoGSIFTEngine()
+    val features = engine.findFeatures(fImage)
+//    val featuresArray = features.asDataArray(new Array[Keypoint](features.vecLength()))
+    val featuresArray:Array[Keypoint] = features.toArray(new Array[Keypoint](features.vecLength()))
+
+    val maskDouble = createDoublePixelArray(mask, fImage.height, fImage.width)
+
+    val featuresToMask = featuresArray.filter(kp => maskDouble.apply(kp.x.intValue()).apply(kp.y.intValue()) == 1.0F)
+
+  //LocalFeatureMatcher<Keypoint> matcher = new BasicMatcher<Keypoint>(80);
+  //matcher.setModelFeatures(queryKeypoints);
+  //matcher.findMatches(targetKeypoints);
+//    val matcher = new BasicMatcher[Keypoint](80)
+//    matcher.setModelFeatures()
+//    matcher.findMatches(features)
+
+    val pixelSet = new PixelSet(fImage,0.1f)
+//    val filter = new LocalContrastFilter(pixelSet.pixels)
+//    val filter = new AverageBoxFilter(15)
+//    val filter = new AdaptiveLocalThresholdMedian(50)
+//    filter.processImage(fImage)
+
+//    fImage.processInplace(new CannyEdgeDetector(.1f))
+    fImage.processInplace(new SUSANEdgeDetector())
+    DisplayUtilities.display(fImage)
+
 
     System.out.println("hello")
 

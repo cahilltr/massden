@@ -51,6 +51,11 @@
             <artifactId>object-detection</artifactId>
             <version>1.3.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.openimaj</groupId>
+            <artifactId>image-local-features</artifactId>
+            <version>1.3.6</version>
+        </dependency>
 
 
         <!--Test-->
