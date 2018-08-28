@@ -53,7 +53,7 @@ object ImageDetection {
 
     val maskDouble = createDoublePixelArray(mask, fImage.height, fImage.width)
 //    DisplayUtilities.display(new FImage(maskDouble))
-    DisplayUtilities.display(fImage)
+//    DisplayUtilities.display(fImage)
 
   // TODO Use below
     val segmentor = new FelzenszwalbHuttenlocherSegmenter[FImage]()
@@ -80,8 +80,8 @@ object ImageDetection {
     filteredSegmentList.foreach(cc => println(encodeConnectedComponent(cc, fImage.height, fImage.width)))
 
 
-    val segImage = SegmentationUtilities.renderSegments(new MBFImage(fImage), segments)
-    DisplayUtilities.display(segImage)
+//    val segImage = SegmentationUtilities.renderSegments(new MBFImage(fImage), segments)
+//    DisplayUtilities.display(segImage)
 
     System.out.println("hello")
 
@@ -141,19 +141,19 @@ object ImageDetection {
 
     pixels.foreach(p => maskDoubleArray(p.x)(p.y) = 1.0f)
 
-    DisplayUtilities.display(new FImage(maskDoubleArray.transpose))
+//    DisplayUtilities.display(new FImage(maskDoubleArray.transpose))
 //    printDoubleArray(maskDoubleArray)
     val maskArray = getArray(maskDoubleArray)
-    val encodingList = new ArrayBuffer[String]()
+    val encodingList = new ArrayBuffer[String](10)
 
-    var a = 0
+//    var a = 0
     var startRun = false
     var count = 0
     var startIndex = 0
-    for(a <- maskArray.indices) {
+    for(a <- 0 until maskArray.length - 1) {
       if (maskArray(a) == 1.0f) {
         count += 1
-        if (startRun) {
+        if (!startRun) {
           startRun = true
           startIndex = a
         }
