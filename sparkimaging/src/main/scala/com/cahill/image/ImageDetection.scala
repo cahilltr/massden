@@ -1,6 +1,7 @@
 package com.cahill.image
 
 import java.io.{ByteArrayInputStream, File}
+import java.util.zip.ZipFile
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics
 import org.apache.spark.SparkContext
@@ -22,11 +23,8 @@ object ImageDetection {
   val lengthToBreadthOilRatio = 5/6.0
   val lengthToBreadthContainerRatio = 6/8.0
 
-  //TODO 1: Divide images between has ship and no ship
-  //oldTODO 2: template match ship images
-  //oldTODO 3: Narrow down to closest possible ship (stil need to research)
-  //TODO 2: segment find each image
-  //TODO 3: bounding box statistically significant segments
+    //TODO 0: Boat or no boat
+    //TODO 1: fill in segments -> FloodFill
 
   //Should be only one image. They have to be always in pairs (imageID =>RLE pixels).
 // The if the shape of the image is 768x768, we have 589824 pixels in a single line.
@@ -41,24 +39,60 @@ object ImageDetection {
     val fImage = ImageUtilities.readF(new File("C:\\Users\\ph9qum\\Desktop\\000155de5.jpg"))
 //    val fImage = ImageUtilities.readF(new File("C:\\Users\\ph9qum\\Desktop\\00a7c6bed.jpg")) //No Ship
 //    val fImage = ImageUtilities.readF(new File("C:\\Users\\ph9qum\\Desktop\\2d9c5aef4.jpg"))
-    val mask = getMask(fImage.height, fImage.width, encoding)
-
-
+//    val mask = getMask(fImage.height, fImage.width, encoding)
 
 //    printDoubleArray(createDoublePixelArray(mask,fImage.getHeight(), fImage.getWidth))
 
-//    val hog = new HOG(new FlexibleHOGStrategy(50, 50, 2500))
-//    val hog = new HOG(new SimpleBlockStrategy(50))
-    val topLeftBottomRight = getTopLeftBottomRight(createDoublePixelArray(mask, fImage.getHeight(), fImage.getWidth()), fImage.getHeight(), fImage.getWidth())
-
-    val maskDouble = createDoublePixelArray(mask, fImage.height, fImage.width)
+//    val topLeftBottomRight = getTopLeftBottomRight(createDoublePixelArray(mask, fImage.getHeight(), fImage.getWidth()), fImage.getHeight(), fImage.getWidth())
+//
+//    val maskDouble = createDoublePixelArray(mask, fImage.height, fImage.width)
 //    DisplayUtilities.display(new FImage(maskDouble))
 //    DisplayUtilities.display(fImage)
 
-  // TODO Use below
-    val segmentor = new FelzenszwalbHuttenlocherSegmenter[FImage]()
 
-    val segments = segmentor.segment(fImage)
+  // TODO Use below
+//    val segmentor = new FelzenszwalbHuttenlocherSegmenter[FImage]()
+//
+//    val segments = segmentor.segment(fImage)
+//    val segmentList = segments.toArray(new Array[ConnectedComponent](segments.size())).toList
+//    //Largest ConnectedComponent is the background; TODO needed?
+//    val cleanedSegmentList = segmentList.sortBy(cc => cc.calculateArea()).slice(0, segmentList.size - 1)
+//    val stats = new DescriptiveStatistics()
+//
+//    cleanedSegmentList.foreach(cc => stats.addValue(cc.calculateArea().toDouble))
+//
+//  //Also test 1 - value for rotations
+//  //use .5 allowance
+//    val filteredSegmentList = filterConnectedComponents(cleanedSegmentList)
+//      .filter(cc => stats.getQuadraticMean < cc.calculateArea())
+//
+//    filteredSegmentList.foreach(cc => println(cc.toString))
+//    filteredSegmentList.foreach(cc => println(encodeConnectedComponent(cc, fImage.height, fImage.width)))
+
+
+//    val segImage = SegmentationUtilities.renderSegments(new MBFImage(fImage), segments)
+//    DisplayUtilities.display(segImage)
+
+    val zipFile = new ZipFile("C:\\Users\\ph9qum\\Downloads\\train.zip")
+    val entries = zipFile.entries()
+    var count = 0
+    var keepGoing = true
+    while (entries.hasMoreElements && keepGoing) {
+      if (count > 10) keepGoing = false
+      val entry = entries.nextElement()
+      val is = zipFile.getInputStream(entry)
+      val myImage = ImageUtilities.readF(is)
+      val output = outputSegment(myImage, entry.getName)
+      if (!output.isEmpty) count += 1
+    }
+
+    System.out.println("hello")
+  }
+
+  def outputSegment(fImage: FImage, name:String):String = {
+    val segmenter = new FelzenszwalbHuttenlocherSegmenter[FImage]()
+
+    val segments = segmenter.segment(fImage)
     val segmentList = segments.toArray(new Array[ConnectedComponent](segments.size())).toList
     //Largest ConnectedComponent is the background; TODO needed?
     val cleanedSegmentList = segmentList.sortBy(cc => cc.calculateArea()).slice(0, segmentList.size - 1)
@@ -66,32 +100,77 @@ object ImageDetection {
 
     cleanedSegmentList.foreach(cc => stats.addValue(cc.calculateArea().toDouble))
 
-  //Also test 1 - value for rotations
-  //use .5 allowance
-    val filteredSegmentList = cleanedSegmentList
+    //There's probably not a boat in an image with little skewness
+    if (stats.getSkewness < 7.0d) return ""
+
+    //TODO calculate top n values for use
+    val filteredSegmentList = filterConnectedComponents(cleanedSegmentList)
+      .filter(cc => stats.getMean < cc.calculateArea())
+
+    if (filteredSegmentList.nonEmpty) DisplayUtilities.display(fImage)
+
+    val sb = new StringBuilder()
+    filteredSegmentList.foreach(cc => sb.append(name).append(" - ").append(stats.getQuadraticMean).append(System.lineSeparator()).append("\t").append(cc.toString).append(System.lineSeparator()).append("\t").append(encodeConnectedComponent(cc, fImage.height, fImage.width)))
+    //    filteredSegmentList.foreach(cc => println(encodeConnectedComponent(cc, fImage.height, fImage.width)))
+
+    sb.toString()
+  }
+
+
+  def filterConnectedComponents(ccs:List[ConnectedComponent]): List[ConnectedComponent] = {
+    //Also test 1 - value for rotations
+    //use .5 allowance
+    ccs
       .filter(cc => {
         val ratio = cc.calculateOrientatedBoundingBoxAspectRatio()
         val oneMinusRation = 1 - ratio
         ~=(ratio, lengthToBreadthOilRatio, 0.04) || ~=(ratio, lengthToBreadthContainerRatio, 0.04) || ~=(oneMinusRation, lengthToBreadthContainerRatio, 0.04) || ~=(oneMinusRation, lengthToBreadthOilRatio, 0.04)
       })
-    .filter(cc => stats.getQuadraticMean < cc.calculateArea())
-
-    filteredSegmentList.foreach(cc => println(cc.toString))
-    filteredSegmentList.foreach(cc => println(encodeConnectedComponent(cc, fImage.height, fImage.width)))
-
-
-//    val segImage = SegmentationUtilities.renderSegments(new MBFImage(fImage), segments)
-//    DisplayUtilities.display(segImage)
-
-    System.out.println("hello")
-
-
-
-
-
-
   }
 
+  def encodeConnectedComponent(cc:ConnectedComponent, height:Int, width:Int): String = {
+    val pixels = cc.getPixels.toArray(new Array[Pixel](cc.getPixels.size()))
+
+    val maskDoubleArray = new Array[Array[Float]](height)
+    0 until width foreach(i => {
+      maskDoubleArray(i) = Array.fill[Float](height)(0.0f)
+    })
+
+    pixels.foreach(p => maskDoubleArray(p.x)(p.y) = 1.0f)
+
+//    val maskFimage = FloodFill.floodFill(new FImage(maskDoubleArray),cc.topLeftMostPixel(),0.1f)
+      DisplayUtilities.display(new FImage(maskDoubleArray.transpose))
+//    DisplayUtilities.display(maskFimage)
+//    printDoubleArray(maskDoubleArray)
+
+    val maskArray = getArray(maskDoubleArray)
+    val encodingList = new ArrayBuffer[String](10)
+
+    var startRun = false
+    var count = 0
+    var startIndex = 0
+    for(a <- 0 until maskArray.length - 1) {
+      if (maskArray(a) == 1.0f) {
+        count += 1
+        if (!startRun) {
+          startRun = true
+          startIndex = a
+        }
+      } else {
+        if (startRun) {
+          encodingList += startIndex.toString
+          encodingList += count.toString
+          startRun = false
+          count = 0
+          startIndex = 0
+        }
+      }
+    }
+
+    encodingList.mkString(" ")
+  }
+
+  //TODO needed?
   def findSegments(fImage: FImage, display:Boolean):Unit = {
     val segmentor = new FelzenszwalbHuttenlocherSegmenter[FImage]()
 
@@ -121,54 +200,6 @@ object ImageDetection {
       val segImage = SegmentationUtilities.renderSegments(new MBFImage(fImage), segments)
       DisplayUtilities.display(segImage)
     }
-  }
-
-  def encodeConnectedComponent(cc:ConnectedComponent, height:Int, width:Int): String = {
-    //(x,y) -> per pixel
-    //(383, 468)
-    //Pixel value is (
-    val pixels = cc.getPixels.toArray(new Array[Pixel](cc.getPixels.size()))
-//    val pixel = pixels(0)
-//    val x = pixel.x
-//    val y = pixel.y
-
-//    val overCount =
-
-    val maskDoubleArray = new Array[Array[Float]](height)
-    0 until width foreach(i => {
-      maskDoubleArray(i) = Array.fill[Float](height)(0.0f)
-    })
-
-    pixels.foreach(p => maskDoubleArray(p.x)(p.y) = 1.0f)
-
-//    DisplayUtilities.display(new FImage(maskDoubleArray.transpose))
-//    printDoubleArray(maskDoubleArray)
-    val maskArray = getArray(maskDoubleArray)
-    val encodingList = new ArrayBuffer[String](10)
-
-//    var a = 0
-    var startRun = false
-    var count = 0
-    var startIndex = 0
-    for(a <- 0 until maskArray.length - 1) {
-      if (maskArray(a) == 1.0f) {
-        count += 1
-        if (!startRun) {
-          startRun = true
-          startIndex = a
-        }
-      } else {
-        if (startRun) {
-          encodingList += startIndex.toString
-          encodingList += count.toString
-          startRun = false
-          count = 0
-          startIndex = 0
-        }
-      }
-    }
-
-    encodingList.mkString(" ")
   }
 
   //Flatten double array to single array for Run Time Length Encoding
