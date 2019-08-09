@@ -46,7 +46,7 @@ public class TextToQuery implements Runnable {
               .collect(Collectors.toList()));
     } catch (IOException e) {
       e.printStackTrace();
-      this.sqlQuery = "Exception Occured: " + e.getMessage();
+      this.sqlQuery = "Exception Occurred: " + e.getMessage();
     }
   }
 

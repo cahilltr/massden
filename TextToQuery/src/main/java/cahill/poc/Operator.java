@@ -24,7 +24,7 @@ public class Operator {
   }
 
   private void isOperatorNumerical(String text) {
-    List<String> stringOperators = new ArrayList<>(Arrays.asList("like", "starts", "ends"));
+    List<String> stringOperators = new ArrayList<>(Arrays.asList("like", "starts", "ends", "to")); //To handles range queries
     this.isOperatorNumerical = !stringOperators.contains(this.operatorText);
   }
 }

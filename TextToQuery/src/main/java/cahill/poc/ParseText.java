@@ -1,5 +1,6 @@
 package cahill.poc;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
@@ -14,13 +15,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class ParseText {
+
   private static final List<String> splitList = new ArrayList<>(Arrays.asList("from", "where", "and"));
 
   private final String originalText;
-
   private final List<String> selectClauses;
   private final List<String> conditionalClauses;
-
 
   public ParseText(String text) throws IOException {
     this.originalText = text;
@@ -54,7 +54,7 @@ public class ParseText {
     return conditionalClauses;
   }
 
-
+  //TODO make me much better
   private List<String> splitter(String queryString) {
 
     Set<Integer> splitIndexes = new TreeSet<>();
@@ -69,14 +69,29 @@ public class ParseText {
     int startIndex = 0;
     Iterator<Integer> iterator = splitIndexes.iterator();
 
+    String lastSplit = "";
+    boolean handledFirstTerm = false;
     do {
       int index = iterator.next();
       String subString = queryString.substring(startIndex, index - 1);
       startIndex = index;
-      returnClausesArray.add(subString);
+      if (subString.split(" ").length <= 3) { //split word, value, operator or other
+        if (!handledFirstTerm) {
+          returnClausesArray.add(subString);
+          handledFirstTerm = true;
+        } else {
+          lastSplit = subString;
+        }
+      } else {
+        if (!lastSplit.isEmpty()) {
+          subString = lastSplit + " " + subString;
+          lastSplit = StringUtils.EMPTY;
+        }
+        returnClausesArray.add(subString);
+      }
     } while (iterator.hasNext());
 
-    returnClausesArray.add(queryString.substring(startIndex, queryString.length()));
+    returnClausesArray.add((lastSplit.isEmpty() ? "" : lastSplit + " " ) + queryString.substring(startIndex, queryString.length()));
 
     return returnClausesArray;
   }
@@ -113,7 +128,7 @@ public class ParseText {
     SynonymMap.Builder builder = new SynonymMap.Builder(true);
     addTo(builder, new String[]{"where", "has"}, new String[]{"where"});
     addTo(builder, new String[]{"moreover", "furthermore", "also", "along with", "as well as"}, new String[]{"and"});
-    addTo(builder, new String[]{"separating", "bounded by", "between", "range"}, new String[]{"from"});
+//    addTo(builder, new String[]{"separating", "bounded by", "between", "range"}, new String[]{"from"});
     addTo(builder, new String[]{"to", "until", "till", "up to", "stopping at", "extending to"}, new String[]{"to"});
 
     Analyzer analyzer = new WhitespaceAnalyzer();

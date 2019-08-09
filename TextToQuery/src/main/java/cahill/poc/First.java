@@ -28,6 +28,7 @@ public class First {
 
 
         String text = "I want some values from june 2015 where the name contains Amazon";
+        String text4 = "from june 2015 where the name contains Amazon";
         String text2 = "Get some values from june 2015 where the name starts with Amazon";
         String text3 = "Return some values from june 2015 to june 2016 where the name starts with Amazon";
 
@@ -35,7 +36,7 @@ public class First {
         props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref, natlog, openie");
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
-        Annotation document = new Annotation(text3);
+        Annotation document = new Annotation(text4);
 
         // run all Annotators on this text
         pipeline.annotate(document);

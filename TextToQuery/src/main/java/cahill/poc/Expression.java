@@ -1,42 +1,31 @@
 package cahill.poc;
 
 
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.CoreMap;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
-import java.util.Arrays;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Expression {
 
   private final String expression;
-  private final String fieldValue;
-  private final String valueValue;
+  private final Operator operator;
+  private final List<String> stopWords;
 
 
-  public Expression(String clause, Operator operator, List<String> stopWords) throws Exception {
-    this.expression = clause;
-    this.operator = operator;
-
-    //0 is left side, 1 is right side
-    String[] sideSplit = clause.split(operator.getOperatorText());
-
-    if (sideSplit.length != 2) {
-      throw new Exception("Malformed clause: " + clause);
-    }
-
-    String leftSide = sideSplit[0];
-    String rightSide = sideSplit[1];
-
-    this.fieldValue = findFieldValue(leftSide, stopWords);
-
-    String valueValue;
-    if (operator.getIsOperatorNumerical()) {
-      this.valueValue = handleNumericSide(rightSide);
-    } else {
-      this.valueValue = handleStringSide(rightSide, operator);
-    }
-  }
+  public Expression(String clause, Operator operator, List<String> stopWords) {
+   this.expression = clause;
+   this.operator = operator;
+   this.stopWords = stopWords;
+ }
 
   public String getExpression() {
     return expression;
@@ -46,62 +35,16 @@ public class Expression {
     return operator;
   }
 
-  private final Operator operator;
-
-  public String getFieldValue() {
-    return fieldValue;
-  }
-
-  public String getValueValue() {
-    return valueValue;
-  }
-
-  @Override
-  public String toString() {
-    return this.fieldValue + " " +  operator.getOperatorText() + " " + this.valueValue;
-  }
-
-  //return first word that is numeric
-  private String handleNumericSide(String sideOfOperator) throws Exception {
-
-    String[] sideSplits = sideOfOperator.split(" ");
-    for (String word : sideSplits) {
-      if (NumberUtils.isNumber(word)) {
-        return word;
-      }
-    }
-    throw new Exception("No Numeric value found in: " + sideOfOperator);
-  }
-
-
-  private String handleStringSide(String sideOfOperator, Operator operator) throws Exception {
-
-    String returnValue;
-    switch (operator.getOperatorText()) {
-      case "like":
-      case "contains":
-        returnValue = "'%" + sideOfOperator.trim() + "%'";
-        break;
-      case "starts":
-        returnValue = "'" + sideOfOperator.trim() + "%'";
-        break;
-      case "ends":
-        returnValue = "'%" + sideOfOperator.trim() + "'";
-        break;
-      default:
-        throw new Exception("StatementHandler not found: " + operator);
-    }
-    return returnValue;
-  }
+  public List<String> getStopWords() { return this.stopWords; }
 
   //http://stackoverflow.com/questions/1889675/extract-nouns-from-text-java
-  private String findFieldValue(String expression, List<String> stopWordList) throws Exception {
+  String findFieldValue(String expression) throws Exception {
     List<String> nonStopWordList = Arrays.stream(expression.split(" "))
-            .filter(word -> !stopWordList.contains(word))
+            .filter(word -> !this.getStopWords().contains(word))
             .collect(Collectors.toList());
 
     if (nonStopWordList.size() == 0) {
-      throw new Exception("No Fields found: " + expression);
+      throw new Exception("No Allowable Fields Found: " + expression);
     }
 
     for (String word : nonStopWordList) {
@@ -116,5 +59,121 @@ public class Expression {
   //TODO metadata look up here
   private boolean isField(String value) {
     return true;
+  }
+
+  String getNumericValue(List<CoreLabel> allTokens) {
+
+    for (CoreLabel token : allTokens) {
+      if (token.tag().equalsIgnoreCase("cd")) {
+        if (NumberUtils.isNumber(token.originalText())) {
+          return token.originalText();
+        }
+      }
+    }
+    return null;
+  }
+
+  protected List<CoreLabel> getDateTokens(String value) {
+    List<CoreLabel> allTokens = getAllTokens(value);
+    return getDateTokensFromList(allTokens);
+  }
+
+  protected List<CoreLabel> getDateTokensFromList(List<CoreLabel> allTokens) {
+
+    List<CoreLabel> tokenDates = new ArrayList<>();
+    for (CoreLabel token : allTokens) {
+      // this is the NER label of the token - can return if a term is a date
+      String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+      if (ne.equalsIgnoreCase("date")) {
+        tokenDates.add(token);
+      }
+    }
+    return tokenDates;
+  }
+
+  protected List<CoreMap> getDocumentSentences(String value) {
+    Properties props = new Properties();
+    props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+
+    Annotation document = new Annotation(value);
+
+    // run all Annotators on this text
+    pipeline.annotate(document);
+
+    return document.get(CoreAnnotations.SentencesAnnotation.class);
+  }
+
+  protected List<CoreLabel> getAllTokens (String value) {
+    List<CoreMap> sentences = getDocumentSentences(value);
+
+    List<CoreLabel> tokenDates = new ArrayList<>();
+
+    for(CoreMap sentence: sentences) {
+      // traversing the words in the current sentence
+      // a CoreLabel is a CoreMap with additional token-specific methods
+      for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+        // this is the NER label of the token - can return if a term is a date
+        String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+        if (ne.equalsIgnoreCase("date")) {
+          tokenDates.add(token);
+        }
+      }
+    }
+    return tokenDates;
+  }
+
+  //TODO use indexes to help determine ordering for month, day, year
+  public static String getDateFromTokens(List<CoreLabel> tokenDates) throws ParseException {
+    List<String> dateFormatList = new ArrayList<>();
+    boolean usedDay = false;
+    boolean usedYear = false;
+    for (CoreLabel coreLabel : tokenDates) {
+      //tag nnp - string (proper noun), cd - number, rb - adverb (first)
+      if (coreLabel.tag().equalsIgnoreCase("nnp")) {
+        //Currently only supports Months as written
+        if (coreLabel.originalText().length() <= 3) {
+          dateFormatList.add("MMM");
+        } else {
+          dateFormatList.add("MMMM");
+        }
+      } else {
+        if (coreLabel.originalText().length() == 4) {
+          dateFormatList.add("yyyy");
+        } else {
+          //Use token order to determine - handle following orders
+          //month  day year
+          //year month day
+          //day month year
+          int stringToIntVal = NumberUtils.createInteger(coreLabel.originalText());
+          if ( stringToIntVal > 31 || stringToIntVal <= 0) {
+            dateFormatList.add("yy");
+            usedYear = true;
+          } else {
+            //Day before year
+            if (!usedDay) {
+              dateFormatList.add("dd");
+              usedDay = true;
+            } else if (usedYear) {
+              dateFormatList.add("yy");
+            } else {
+              dateFormatList.add("MM");
+            }
+          }
+        }
+      }
+    }
+
+    String format = StringUtils.join(dateFormatList, " ");
+
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+    Date date = simpleDateFormat.parse(
+            StringUtils.join(
+                    tokenDates.stream()
+                            .map(CoreLabel::originalText)
+                            .collect(Collectors.toList()), " " ));
+    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+    return sqlDate.toString();
   }
 }
