@@ -1,0 +1,43 @@
+
+//    val largeOrders = sqlContext.createDataFrame(loTmp.rdd.filter(r => verifyMarketMovement(r.getAs("time"), timeWindow,
+//      marketMovementThreshold, r.getAs("underlying_tid"), hbaseOneTick, configPath)), loTmp.schema)
+
+  def verifyMarketMovement(time:Long, timeThres:Long, percentThres:Double, tid:Int, tableName:String, configPath: String) : Boolean = {
+    //OneTick Row has exch_time, tid, ask_price, ask_size, bid_price, bid_size in that order
+    val config = HBaseConfiguration.create()
+    config.addResource(new FileInputStream(new File(configPath)))
+    val hbaseHandler = new HBaseTickDataHandler(tableName, config)
+
+    //gets data between time range as defined by the time threshold
+    val rows = hbaseHandler.findRange(time - timeThres, time + timeThres, Integer.toString(tid))
+    hbaseHandler.closeConnection()
+
+    log.info("Returned Rows: " + rows.size)
+    if (rows.isEmpty)
+      return false
+
+    val sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+    val avgAskBeforeStart = rows.filter(r => sdf.parse(r.getString(0)).getTime < time).map(r => r.getDouble(2)).sum/rows.size
+    val avgBidBeforeStart = rows.filter(r => sdf.parse(r.getString(0)).getTime < time).map(r => r.getDouble(4)).sum/rows.size
+
+    log.info("Average Ask Before Start: " + avgAskBeforeStart)
+    log.info("Average Bid Before Start: " + avgBidBeforeStart)
+
+    val avgAskAfterStart = rows.filter(r => sdf.parse(r.getString(0)).getTime > time).map(r => r.getDouble(2)).sum/rows.size
+    val avgBidAfterStart = rows.filter(r => sdf.parse(r.getString(0)).getTime > time).map(r => r.getDouble(4)).sum/rows.size
+
+    log.info("Average Ask After Start: " + avgAskAfterStart)
+    log.info("Average Bid After Start: " + avgBidAfterStart)
+
+    val askPercentChange = math.abs(avgAskAfterStart - avgAskBeforeStart)/avgAskBeforeStart
+    val bidPercentChange = math.abs(avgBidAfterStart - avgBidBeforeStart)/avgBidBeforeStart
+
+    log.info("Ask Percent Change: " + askPercentChange)
+    log.info("Bid Percent Change: " + bidPercentChange)
+    log.info(System.lineSeparator())
+
+    if (askPercentChange >= percentThres && bidPercentChange >= percentThres)
+      true
+    else
+      false
+  }

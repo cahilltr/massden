@@ -1,0 +1,84 @@
+curl -XPUT http://localhost:9200/blog/article/1 -d '{"title": "New version of Elasticsearch released!", "content": "Version 1.0 released today!", "tags": ["announce", "elasticsearch", "release"] }'
+curl -XPOST http://localhost:9200/blog/article/ -d '{"title": "New version of Elasticsearch released!", "content": "Version 1.0 released today!", "tags": ["announce", "elasticsearch", "release"] }'
+Change settings:
+script.inline: on
+script.indexed: on
+curl -XPOST http://localhost:9200/blog/article/1/_update -d '{ "script": "ctx._source.content = \"new content\""}'
+http://stackoverflow.com/questions/27318220/elasticsearchillegalargumentexception-on-upsert
+curl -XPOST http://localhost:9200/blog/article/1/_update -d '{"script": "ctx._source.counter+=1","upsert":{"counter": 0}}'
+curl -XPOST http://localhost:9200/blog/article/1/_update -d '{"script": "if (!ctx._source.counter) {ctx._source.counter = 1};ctx._source.counter += 0"}'
+curl -XPOST 'localhost:9200/books/es/1' -d '{"title":"Elasticsearch  Server", "published": 2013}'
+curl -XPOST 'localhost:9200/books/es/2' -d '{"title":"Mastering  Elasticsearch", "published": 2013}'
+curl -XPOST 'localhost:9200/books/solr/1' -d '{"title":"Apache Solr 4  Cookbook", "published": 2012}'
+curl -XGET 'localhost:9200/books/_analyze?field=title' -d  'Elasticsearch Server'
+curl -XGET 'localhost:9200/books/_search?pretty&q=published:2013&df=title&explain=true&default_operator=AND'
+
+CH3:
+https://www.elastic.co/blog/great-mapping-refactoring#meta-fields
+old:{"book":{"_index":{"enabled":true},"_id":{"index":"not_analyzed","store":"yes"},"properties":{"author":{"type":"string"},"characters":{"type":"string"},"copies":{"type":"long","ignore_malformed":false},"otitle":{"type":"string"},"tags":{"type":"string"},"title":{"type":"string"},"year":{"type":"long","ignore_malformed":false,"index":"analyzed"},"available":{"type":"boolean"}}}}
+new:{"book":{"properties":{"author":{"type":"string"},"characters":{"type":"string"},"copies":{"type":"long","ignore_malformed":false},"otitle":{"type":"string"},"tags":{"type":"string"},"title":{"type":"string"},"year":{"type":"long","ignore_malformed":false,"index":"analyzed"},"available":{"type":"boolean"}}}}
+
+Data:https://github.com/siddontang/elasticsearch-note/blob/master/data/book_document.json
+
+curl -XGET 'localhost:9200/library/book/_search?pretty=true' -d '{"query":{"query_string" : { "query" : "title:crime" }}}'
+{"partial_fields" : {"partial1" : {"include" : [ "titl*" ],"exclude" : [ "chara*" ]}},"query" : {"query_string" : { "query" : "title:crime" }}}
+{"script_fields" : {"correctYear" : {"script" : "_source.year - 1800"} },"query" : {"query_string" : { "query" : "title:crime" }} }
+Search Types: Query_and_fetch is deprecated in 2.0 and count is soon to be deprecated
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-search-type.html
+Query_then_fetch is the default
+curl -XGET 'localhost:9200/library/book/_search?pretty=true&search_type=query_and_fetch' -d '{"query":{"term":{"title":"crime" }} }'
+curl -XGET 'localhost:9200/library/_search?preference=_local' -d '{"query":{"term":{"title":"crime"}}}'
+curl -XGET 'localhost:9200/library/_search_shards?pretty' -d '{"query":"match_all":{}}'
+curl -XGET 'localhost:9200/library/_search?pretty=true' -d '{"query":{"fuzzy":{"title":"crme"}}}'
+curl -XGET 'localhost:9200/library/_search?pretty=true' -d '{"query":{"range":{"year":{"gte" : 1700,"lte" : 1900 }}}}'
+curl -XGET 'localhost:9200/library/_search?pretty=true' -d '{"query":{"bool":{"must":{"term":{"title":"crime"}},"should":{"range":{"year":{"from":1900,"to":2000}}},"must_not":{"term":{"otitle":"nothing"}}}}}'
+curl -XGET 'localhost:9200/library/_search?pretty=true' -d '{"query":{"filtered":{"query":{"match_all":{}},"filter":{"or":{"filters":[{"and":{"filters":[{"term":{"available":true,"_name":"avail"}},{"term":{"tags":"novel","_name":"tag"}}],"_name":"and"}},{"range":{"year":{"gte":1800,"lte":1899},"_name":"year"}}],"_name":"or"}}}}}'
+curl -XGET 'localhost:9200/library/_search?pretty=true' -d '{"query":{"term":{"title":"crime"}},"highlight":{"fields":{"title":{}}}}'
+curl -XPUT 'http://localhost:9200/users/user/1' -d '{"name":"Test user","description":"Test document"}'
+curl -XGET 'localhost:9200/users/_search?pretty=true' -d '{"query":{"term":{"name":"test"}},"highlight":{"fields":{"name":{"pre_tags":["<b>"],"post_tags":["</b>"]},"description":{"pre_tags":["<b>"],"post_tags":["</b>" ]}}}}'
+
+CH 4:
+{"settings":{"index":{"analysis":{"analyzer":{"path_analyzer":{"tokenizer":"path_hierarchy"}}}}},"mappings":{"category":{"properties":{"category":{"type":"string","fields":{"name":{"type":"string","index":"not_analyzed"},"path":{"type":"string","analyzer":"path_analyzer","store":true}}}}}}}
+curl -XGET 'localhost:9200/path/_analyze?field=category.path&pretty' -d '/cars/passenger/sport'
+{"book":{"author":{"name":{"firstName":"Fyodor","lastName":"Dostoevsky"}},"isbn":"123456789","englishTitle":"Crime and Punishment","year":1886,"characters":[{"name":"Raskolnikov"},{"name":"Sofia"}],"copies":0}}
+{"book":{"properties":{"author":{"type":"object","properties":{"name":{"type":"object","properties":{"firstName":{"type":"string","store":"yes"},"lastName":{"type":"string","store":"yes"}}}}},"isbn":{"type":"string","store":"yes"},"englishTitle":{"type":"string","store":"yes"},"year":{"type":"integer","store":"yes"},"characters":{"properties":{"name":{"type":"string","store":"yes"}}},"copies":{"type":"integer","store":"yes"}}}}
+
+Parent-Child:https://www.elastic.co/guide/en/elasticsearch/reference/2.0/_parent_child_changes.html
+Old:
+curl -XPUT 'localhost:9200/shop/cloth/_mapping' -d '{"cloth":{"properties":{"name":{"type":"string"}}}}'
+curl -XPUT 'localhost:9200/shop/variation/_mapping' -d '{"variation":{"_parent":{"type":"cloth"},"properties":{"size":{"type":"string","index":"not_analyzed"},"color":{"type":"string","index":"not_analyzed"}}}}'
+New:
+curl -XPUT 'localhost:9200/shop/_mapping' -d '{"cloth":{"properties":{"name":{"type":"string"}}},"variation":{"_parent":{"type":"cloth"},"properties":{"size":{"type":"string","index":"not_analyzed"},"color":{"type":"string","index":"not_analyzed"}}}}'
+
+curl -XPUT 'localhost:9200/shop/' -d '{"mappings":{"cloth":{"properties":{"name":{"type":"string"}}},"variation":{"_parent":{"type":"cloth"},"properties":{"size":{"type":"string","index":"not_analyzed"},"color":{"type":"string","index":"not_analyzed"}}}}}'
+ 
+curl -XPUT 'localhost:9200/shop/' -d '{"mappings":{"cloth":{"properties":{"name":{"type":"string"}}},"variation":{"_parent":{"type":"cloth"},"properties":{"size":{"type":"string","index":"not_analyzed"},"color":{"type":"string","index":"not_analyzed"}}}}}'
+DOESN'T WORK: curl -XPUT 'localhost:9200/shop/_mapping' -d '{"cloth":{"properties":{"name":{"type":"string"}}},"variation":{"_parent":{"type":"cloth"},"properties":{"size":{"type":"string","index":"not_analyzed"},"color":{"type":"string","index":"not_analyzed"}}}}'
+curl -XPOST 'localhost:9200/shop/cloth/1' -d '{"name":"Test shirt"}'
+curl -XPOST 'localhost:9200/shop/variation/1000?parent=1' -d '{"color":"red","size":"XXL"}'
+curl -XPOST 'localhost:9200/shop/variation/1001?parent=1' -d '{"color":"black","size":"XL"}'
+curl -XGET 'localhost:9200/shop/_search?pretty' -d '{"query":{"has_child":{"type":"variation","query":{"bool":{"must":[{"term":{"size":"XXL"}},{"term":{"color":"red"}}]}}}}}'
+curl -XGET 'localhost:9200/shop/_search?pretty' -d '{"query":{"top_children":{"type":"variation","query":{"term":{"size":"XXL"}},"score":"max","factor":10,"incremental_factor":2}}}'
+
+curl -XPUT 'localhost:9200/user1/user/_mapping' -d '{"user":{"properties":{"phone":{"type":"string","store":"yes","index" : "not_analyzed"}}}}'
+curl -XGET 'localhost:9200/library/_analyze?tokenizer=whitespace&filters=lowercase,kstem&pretty' -d 'John Smith'
+
+CH6
+curl 'localhost:9200/_search?search_type=count&pretty' -d '{"aggs":{"years":{"stats":{"field": "year"}},"words":{"terms":{"field":"copies"}}}}'
+curl -XPOST localhost:9200/_bulk --data-binary '{ "index": {"_index":  "library2", "_type": "book", "_id": "1"}}{ "title": "Fishing news", "published": "2010/12/03 10:00:00",  "copies": 3, "available": true }{ "index": {"_index": "library2", "_type": "book", "_id": "2"}}{ "title": "Knitting magazine", "published": "2010/11/07 11:32:00","copies": 1, "available": true }{ "index": {"_index": "library2", "_type": "book", "_id": "3"}}{ "title": "The guardian", "published": "2009/07/13 04:33:00","copies": 0, "available": false }{ "index": {"_index": "library2", "_type": "book", "_id": "4"}}{ "title": "Hadoop World", "published": "2012/01/01 04:00:00","copies": 6, "available": true }'
+curl -XPOST localhost:9200/_bulk --data-binary '{ "index": {"_index":  "library2", "_type": "book", "_id": "1"}}{ "title": "Fishing news", "published": "2010/12/03 10:00:00", "copies": 3, "available": true }'
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-facets.html
+curl -XGET 'localhost:9200/library/_search?pretty' -d '{"suggest":{"text":"sherlock holnes","our_suggestion":{"phrase":{"field":"_all"}}}}'
+Doesn't Work:curl -XPOST 'localhost:9200/authors' -d '{"mappings":{"author":{"properties":{"name":{"type":"string"},"ac":{"type":"completion","index_analyzer":"simple","search_analyzer":"simple","payloads":true}}}}}' cause {"error":{"root_cause":[{"type":"mapper_parsing_exception","reason":"analyzer on completion field [ac] must be set when search_analyzer is set"}],"type":"mapper_parsing_exception","reason":"mapping [author]","caused_by":{"type":"mapper_parsing_exception","reason":"analyzer on completion field [ac] must be set when search_analyzer is set"}},"status":400}
+
+Works: curl -XPOST 'localhost:9200/authors' -d '{"mappings":{"author":{"properties":{"name":{"type":"string"},"ac":{"type":"completion","analyzer":"simple","search_analyzer":"simple","payloads":true}}}}}'
+
+curl -XPOST 'localhost:9200/authors/author/1' -d '{"name":"Fyodor Dostoevsky","ac":{"input":["fyodor","dostoevsky"],"output":"Fyodor Dostoevsky","payload":{"books":["123456","123457"]}}}'
+
+curl -XPOST 'localhost:9200/authors/author/1' -d '{"name" : "Fyodor Dostoevsky","ac" : "Fyodor Dostoevsky"}'
+curl -XGET 'localhost:9200/authors/_suggest?pretty' -d '{"authorsAutocomplete":{"text":"fyo","completion":{"field":"ac"}}}'
+
+curl -XPOST 'localhost:9200/notifier' -d '{"mappings":{"book":{"properties":{"available":{"type":"boolean"}}}}}'
+
+CH 8:
+curl -XPUT localhost:9200/_snapshot/backup -d '{"type": "fs","settings":{"location": "/tmp/es_backup_folder/cluster1"}}'

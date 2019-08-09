@@ -1,0 +1,80 @@
+pandas.read_csv('/Users/cahillt/Downloads/merged.csv')
+unsorted = pd.read_csv('/Users/cahillt/Downloads/merged.csv')
+data = unsorted.sort("TIME")
+
+medPrice = pd.rolling_median(data.PRICE, 15, min_periods=1)
+medSize = pd.rolling_median(data.SIZE, 15, min_periods=1)
+
+sizeThres = 5
+priceThres = .07
+
+def LargeOrders(data):
+    return data[(data.SIZE/medSize[data.index] > 5) & (abs(medPrice[data.index]-data.PRICE) >= (medPrice[data.index] * .05))]
+
+    return data[(data.SIZE/medSize[data.index] > 5) & (abs(medPrice[data.index]-data.PRICE) >= (medPrice[data.index] * .05))]
+
+#FIX
+largeOrders = data.apply(LargeOrders, axis=1)
+
+joinedLargeOrders = pd.merge(largeOrders, largeOrders, left_index=True, right_index=True)
+
+joinedLargeOrders = pd.merge(largeOrders, largeOrders, on=['SIZE', 'PRICE', 'DIRECTION'])
+joinedLargeOrders = joinedLargeOrders[(joinedLargeOrders.TYPE_x == 1) & (joinedLargeOrders.TYPE_y == 3)]
+
+orderBookHeader = ["ASK_PRICE_1","ASK_SIZE_1","BID_PRICE_1","BID_SIZE_1","ASK_PRICE_2","ASK_SIZE_2","BID_PRICE_2","BID_SIZE_2","ASK_PRICE_3","ASK_SIZE_3","BID_PRICE_3","BID_SIZE_3","ASK_PRICE_4","ASK_SIZE_4","BID_PRICE_4","BID_SIZE_4","ASK_PRICE_5","ASK_SIZE_5","BID_PRICE_5","BID_SIZE_5","ASK_PRICE_6","ASK_SIZE_6","BID_PRICE_6","BID_SIZE_6","ASK_PRICE_7","ASK_SIZE_7","BID_PRICE_7","BID_SIZE_7","ASK_PRICE_8","ASK_SIZE_8","BID_PRICE_8","BID_SIZE_8","ASK_PRICE_9","ASK_SIZE_9","BID_PRICE_9","BID_SIZE_9","ASK_PRICE_10","ASK_SIZE_10","BID_PRICE_10","BID_SIZE_10"]
+
+from datetime import datetime, timedelta
+#for each merged get time range and work with time range
+for x in joinedLargeOrders.iterrows():
+    early = x[1]['TIME_x'] - 100
+    late = x[1]['TIME_y'] + 100
+    direction = x[1]['DIRECTION_x']
+    rangedTime = data[(data.TIME > early) & (data.TIME < late)]
+    rangedTime = rangedTime[(rangedTime.TYPE != 3) & (rangedTime.TYPE != 2) & (rangedTime.TYPE != 7) & (rangedTime.DIRECTION != direction)]
+    print rangedTime[['TIME', 'PRICE', 'SIZE']]
+
+    print "start"
+    print rangedTime
+    print "stop"
+
+
+    print str(rangedTime.PRICE.mean()) + "," + str(rangedTime.PRICE.min()) + "," + str(x[1]['PRICE']) + "," + str(x[1]['SIZE'])
+
+#find advatage order(s) in time frame
+#find change in prices
+
+
+
+
+
+
+avgOrderSize = data.SIZE.mean()
+stdOrderSize = data.SIZE.std()
+medOrderSize = data.SIZE.median()
+
+def LargeOrders(data, avg, diff):
+#    small = avg * (1 - diff)
+    large = avg * (1.0  + diff)
+    return data[data.SIZE > large]
+
+largeOrders = LargeOrders(data, medOrderSize, 1)
+
+ joinedLargeOrders = pd.merge(largeOrders, largeOrders, left_index=True, right_index=True)
+
+cancelledOrders = joinedLargeOrders[(joinedLargeOrders.TYPE_y == 3)]
+
+
+def windowAroundCancelledOrders(cancelledOrder, delta):
+    window = data.loc[(data.index > (cancelledOrder.name - timedelta(seconds=delta))) & (data.index < (cancelledOrder.name + timedelta(seconds=delta)))]
+    startAsk = of window
+    startBid = 
+    endAsk = 
+    endBid =
+    diffAsk = endAsk - startAsk
+    diffBid = endBid - startBid
+    
+
+
+
+
+
