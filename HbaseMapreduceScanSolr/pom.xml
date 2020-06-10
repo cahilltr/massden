@@ -32,7 +32,7 @@
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <hbase.version>0.98.4.2.2.0.0-2041-hadoop2</hbase.version>
         <hbase-client.version>${hbase.version}</hbase-client.version>
-        <commons-beanutils.version>1.9.0</commons-beanutils.version>
+        <commons-beanutils.version>1.9.2</commons-beanutils.version>
         <hbase-testing-util.version>${hbase.version}</hbase-testing-util.version>
 
 
