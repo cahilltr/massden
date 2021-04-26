@@ -21,7 +21,7 @@
         <slf4j-log4j12.version>${slf4j.version}</slf4j-log4j12.version>
 
         <commons-cli.version>1.2</commons-cli.version>
-        <commons-io.version>2.4</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
 
         <junit.version>4.11</junit.version>
         <avro.version>1.7.4</avro.version>
