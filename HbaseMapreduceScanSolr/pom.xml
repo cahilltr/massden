@@ -37,7 +37,7 @@
 
 
         <curator-test.version>2.6.0</curator-test.version>
-        <zookeeper.version>3.4.6.2.2.0.0-2041</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
     </properties>
 
     <build>
